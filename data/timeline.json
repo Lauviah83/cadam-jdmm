@@ -1,0 +1,31 @@
+{
+  "_a_renseigner": "CONTENU EN ATTENTE — le fichier sources/timeline_rollup_60x160cm.pdf n'a pas été fourni. Ce fichier porte le contenu du roll-up 60×160 cm : 10 phases, 3 étapes, 8 services. Le remplir en respectant la structure ci-dessous ; l'application affiche un message d'attente tant que « phases » est vide, elle ne casse pas.",
+  "titre": "Vie d'un projet immobilier",
+  "sous_titre": "De l'intention à l'exploitation, les 10 phases d'une opération de la DCIP",
+  "etapes": [
+    { "id": "conception",  "num": 1, "titre": "Conception",  "couleur": "var(--b6)" },
+    { "id": "realisation", "num": 2, "titre": "Réalisation", "couleur": "var(--a2)" },
+    { "id": "exploitation","num": 3, "titre": "Exploitation","couleur": "var(--t6)" }
+  ],
+  "services": [],
+  "phases": [],
+  "_gabarit_service": {
+    "id": "energie-fluides",
+    "nom": "Énergie et fluides",
+    "ico": "⚡",
+    "couleur": "#185FA5",
+    "description": "Une phrase décrivant le rôle du service."
+  },
+  "_gabarit_phase": {
+    "num": 1,
+    "etape": "conception",
+    "titre": "Intitulé de la phase tel qu'il figure sur le roll-up",
+    "citation": "La phrase d'accroche du roll-up, reprise mot pour mot.",
+    "points": ["Point clé 1", "Point clé 2"],
+    "intervenants": ["energie-fluides", "etudes-travaux"]
+  },
+  "_services_connus": {
+    "commentaire": "Quatre des huit services sont déduits des 7 fiches de postes. Les quatre autres sont à relever sur le roll-up.",
+    "liste": ["Énergie et fluides", "Études et travaux", "Maintenance des collèges", "Sécurité, Sûreté & Prévention"]
+  }
+}

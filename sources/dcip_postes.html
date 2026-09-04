@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DCIP — Postes vacants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --b9:#042C53;--b8:#0C447C;--b6:#185FA5;--b4:#378ADD;--b1:#B5D4F4;--b0:#E6F1FB;
+  --a2:#EF9F27;--a0:#FAEEDA;--a6:#854F0B;
+  --t0:#E1F5EE;--t6:#0F6E56;
+  --g0:#F4F3EF;--g1:#E2E0D8;--g4:#888780;--g6:#5F5E5A;
+  --c0:#FAECE7;--c6:#993C1D;
+  --bg:#FAFAF8;--text:#1a1a18;--muted:#5F5E5A;--border:rgba(0,0,0,0.07);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{min-height:100%;background:var(--bg);font-family:'Manrope',sans-serif;color:var(--text);font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+
+/* ── TOP NAV ── */
+.topnav {
+  position: sticky; top: 0; z-index: 100;
+  background: var(--b9);
+  display: flex; align-items: center;
+  padding: 0 clamp(20px,4vw,48px);
+  height: 58px; gap: 0;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.nav-brand {
+  font-family: 'Fraunces', serif;
+  font-size: 17px; font-weight: 400; color: #fff;
+  font-variation-settings: "opsz" 144;
+  margin-right: 32px; flex-shrink: 0; white-space: nowrap;
+}
+.nav-brand em { color: var(--a2); font-style: italic; }
+.nav-filters {
+  display: flex; align-items: center; gap: 4px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+  flex: 1;
+}
+.nav-filters::-webkit-scrollbar { display: none; }
+.nf-btn {
+  flex-shrink: 0; background: none; border: none; cursor: pointer;
+  font-family: 'Manrope', sans-serif; font-size: 13px; font-weight: 500;
+  color: rgba(255,255,255,.45); padding: 6px 14px;
+  border-radius: 20px; white-space: nowrap; transition: all .15s;
+}
+.nf-btn:hover { color: rgba(255,255,255,.85); background: rgba(255,255,255,.06); }
+.nf-btn.on { color: #fff; background: rgba(255,255,255,.13); }
+.nf-btn.on::after { content: ''; display: block; height: 2px; background: var(--a2); border-radius: 1px; margin-top: 2px; }
+.nav-tag {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.25); margin-left: auto; flex-shrink: 0;
+  display: none;
+}
+@media(min-width:900px){ .nav-tag { display: block; } }
+
+/* ── VIEWS ── */
+.view { display: none; }
+.view.on { display: block; }
+
+/* ── HERO ── */
+.hero {
+  background: linear-gradient(150deg, #031F3D 0%, var(--b8) 100%);
+  padding: clamp(28px,5vw,48px) clamp(24px,5vw,64px);
+  position: relative; overflow: hidden;
+}
+.hero::after {
+  content: ''; position: absolute; right: -60px; top: -60px;
+  width: 340px; height: 340px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(239,159,39,.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-pill {
+  display: inline-block; font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .14em; text-transform: uppercase;
+  color: var(--a2); background: rgba(239,159,39,.10);
+  padding: 4px 12px; border-radius: 20px; margin-bottom: 14px;
+  border: 1px solid rgba(239,159,39,.2);
+}
+.hero h1 {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: clamp(26px, 4vw, 42px); color: #fff;
+  line-height: 1.1; letter-spacing: -.02em; margin-bottom: 8px;
+  font-variation-settings: "opsz" 144;
+}
+.hero h1 em { color: var(--a2); font-style: italic; }
+.hero-sub { color: rgba(255,255,255,.5); font-size: 14px; font-weight: 400; }
+
+/* ── PAGE HEADER ── */
+.page-hd {
+  padding: clamp(20px,3vw,32px) clamp(24px,5vw,64px) 8px;
+}
+.page-hd h2 {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: clamp(20px,3vw,28px); color: var(--b9);
+  letter-spacing: -.01em; font-variation-settings: "opsz" 144;
+}
+.page-hd p { font-size: 13px; color: var(--muted); margin-top: 3px; }
+
+/* ── POSTES LIST ── */
+.postes-list {
+  padding: 12px clamp(24px,5vw,64px) 48px;
+  display: flex; flex-direction: column; gap: 8px;
+}
+.poste-row {
+  display: flex; align-items: center; gap: 16px;
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 16px; padding: 16px 20px;
+  cursor: pointer;
+  transition: border-color .2s, box-shadow .2s, transform .15s;
+}
+.poste-row:hover {
+  border-color: var(--b1);
+  box-shadow: 0 4px 20px rgba(55,138,221,.07);
+  transform: translateY(-1px);
+}
+.pr-svc-ico { font-size: 24px; flex-shrink: 0; }
+.pr-info { flex: 1; min-width: 0; }
+.pr-title {
+  font-family: 'Manrope', sans-serif; font-weight: 600;
+  font-size: 15px; color: var(--b8); line-height: 1.3;
+  letter-spacing: -.01em;
+}
+.pr-svc {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--b4); margin-top: 3px;
+}
+.pr-meta { display: flex; gap: 12px; margin-top: 5px; flex-wrap: wrap; }
+.pr-meta span { font-size: 12px; color: var(--g6); }
+.pr-tags { display: flex; gap: 6px; align-items: center; flex-shrink: 0; }
+.tag { font-size: 10px; font-weight: 600; padding: 3px 9px; border-radius: 20px; text-transform: uppercase; letter-spacing: .04em; }
+.tag-u { background: var(--c0); color: var(--c6); }
+.tag-n { background: var(--t0); color: var(--t6); }
+.pr-arrow { color: var(--g4); font-size: 18px; flex-shrink: 0; }
+.empty { padding: 48px; text-align: center; color: var(--g4); font-size: 15px; }
+
+/* ── FICHE POSTE ── */
+.fiche-body { padding: clamp(20px,3vw,32px) clamp(24px,5vw,64px) 48px; }
+.back-btn {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-size: 13px; font-weight: 500; color: var(--g4);
+  background: none; border: 1px solid var(--g1);
+  padding: 7px 16px; border-radius: 20px; cursor: pointer;
+  margin-bottom: 24px; transition: all .15s;
+  font-family: 'Manrope', sans-serif;
+}
+.back-btn:hover { color: var(--b8); border-color: var(--b1); background: var(--b0); }
+
+.fiche-card {
+  background: #fff; border: 1px solid var(--border);
+  border-radius: 20px; overflow: hidden; margin-bottom: 16px;
+}
+.fiche-card-hd {
+  background: var(--b9); padding: 24px 28px;
+}
+.fiche-card-hd h2 {
+  font-family: 'Manrope', sans-serif; font-weight: 700;
+  font-size: clamp(18px,2.5vw,24px); color: #fff;
+  line-height: 1.2; letter-spacing: -.01em;
+}
+.fiche-card-hd .svc-lbl {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
+  color: rgba(255,255,255,.4); margin-top: 6px;
+}
+.fiche-card-body { padding: 24px 28px; }
+.fiche-section { margin-bottom: 22px; }
+.fiche-section h4 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .14em; color: var(--g4); margin-bottom: 10px;
+}
+.fiche-section p { font-size: 15px; color: var(--text); line-height: 1.65; }
+.fiche-section ul {
+  padding-left: 18px; font-size: 14px; color: var(--text); line-height: 1.9;
+}
+.fiche-meta-row {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  padding: 16px 0; border-top: 1px solid var(--border);
+}
+.fiche-meta-row span { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+.fiche-cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 6px; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  border: none; cursor: pointer; font-family: 'Manrope', sans-serif;
+  font-size: 14px; font-weight: 600; padding: 12px 22px;
+  border-radius: 12px; transition: all .15s;
+}
+.btn-primary { background: var(--b9); color: #fff; }
+.btn-primary:hover { background: var(--b8); }
+.btn-secondary { background: var(--bg); color: var(--b8); border: 1px solid var(--b1); }
+.btn-secondary:hover { background: var(--b0); }
+.btn-teal { background: var(--t6); color: #fff; }
+.btn-teal:hover { background: #0D5C46; }
+
+/* ── FORMULAIRE ── */
+.form-body { padding: clamp(20px,3vw,32px) clamp(24px,5vw,64px) 48px; max-width: 680px; }
+.form-poste-recap {
+  background: var(--b0); border: 1px solid var(--b1);
+  border-radius: 14px; padding: 14px 18px; margin-bottom: 24px;
+}
+.fpr-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .12em; color: var(--b4); margin-bottom: 5px;
+}
+.fpr-title {
+  font-family: 'Manrope', sans-serif; font-weight: 700;
+  font-size: 15px; color: var(--b9);
+}
+.fpr-svc { font-size: 12px; color: var(--b6); margin-top: 2px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
+.fg { display: flex; flex-direction: column; gap: 5px; }
+.fg label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; font-weight: 500; text-transform: uppercase;
+  letter-spacing: .1em; color: var(--g6);
+}
+.fg input,.fg textarea {
+  border: 1px solid var(--g1); border-radius: 10px;
+  padding: 11px 14px; font-family: 'Manrope', sans-serif;
+  font-size: 14px; color: var(--text); background: #fff;
+  outline: none; transition: border-color .2s;
+}
+.fg input:focus,.fg textarea:focus { border-color: var(--b4); }
+.fg textarea { resize: none; height: 80px; }
+.hr { border: none; border-top: 1px solid var(--border); margin: 18px 0; }
+.slbl {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 16px; color: var(--text); margin-bottom: 12px;
+  font-variation-settings: "opsz" 144;
+}
+.proj-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 8px; margin-bottom: 14px; }
+.pj {
+  border: 1px solid var(--border); border-radius: 12px;
+  padding: 10px 12px; cursor: pointer; font-size: 13px;
+  font-weight: 500; color: var(--muted);
+  display: flex; align-items: center; gap: 7px; transition: all .12s;
+}
+.pj.on { background: var(--b0); border-color: var(--b4); color: var(--b8); }
+.rgpd-box {
+  background: var(--g0); border-radius: 10px; padding: 12px 14px;
+  font-size: 12px; color: var(--muted); line-height: 1.55;
+  border-left: 2px solid var(--g1); margin-bottom: 14px;
+}
+.rgpd-row { display: flex; gap: 10px; align-items: flex-start; margin-bottom: 18px; }
+.rgpd-row input[type=checkbox] { width: 18px; height: 18px; margin-top: 2px; flex-shrink: 0; accent-color: var(--b6); }
+.rgpd-row label { font-size: 12px; color: var(--muted); line-height: 1.5; }
+.send-err { background: var(--c0); border: 1px solid #F0997B; border-radius: 10px; padding: 10px 14px; font-size: 13px; color: var(--c6); margin-bottom: 14px; display: none; }
+.spinner { display: inline-block; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.3); border-top-color: #fff; border-radius: 50%; animation: spin .7s linear infinite; vertical-align: middle; margin-right: 6px; }
+@keyframes spin { to { transform: rotate(360deg); } }
+.btn-off { opacity: .6; pointer-events: none; }
+
+/* ── SUCCESS ── */
+.success-box {
+  display: none; text-align: center; padding: 48px 32px;
+  background: var(--t0); border-radius: 20px;
+  border: 1px solid #9FE1CB; margin: 24px 0;
+}
+.success-box h3 {
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 26px; color: var(--t6); margin-bottom: 8px;
+  font-variation-settings: "opsz" 144;
+}
+.success-box p { font-size: 15px; color: #1D9E75; line-height: 1.6; margin-bottom: 20px; }
+.sf-recap { display: none; text-align: left; background: #fff; border: 1px solid #9FE1CB; border-radius: 14px; padding: 16px 18px; margin: 16px 0 20px; }
+.sf-recap .sl { font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: .12em; text-transform: uppercase; color: var(--t6); margin-bottom: 6px; }
+.sf-recap .st { font-family: 'Manrope', sans-serif; font-size: 15px; font-weight: 700; color: var(--b9); }
+.sf-recap .ss { font-size: 12px; color: var(--b4); margin-top: 2px; }
+
+@media(max-width:600px){
+  .form-grid { grid-template-columns: 1fr; }
+  .proj-grid { grid-template-columns: 1fr 1fr; }
+  .fiche-body,.form-body,.postes-list,.page-hd { padding-left: 18px; padding-right: 18px; }
+  .hero { padding: 22px 18px; }
+  .nav-brand { font-size: 15px; margin-right: 16px; }
+}
+</style>
+</head>
+<body>
+
+<!-- ── TOP NAV ── -->
+<nav class="topnav">
+  <div class="nav-brand">DCIP <em>06</em></div>
+  <div class="nav-filters" id="nav-filters">
+    <button class="nf-btn on" id="nf-tous" onclick="filterSvc(null)">Tous les postes</button>
+  </div>
+  <div class="nav-tag">Forum des Métiers · 10 juin 2026</div>
+</nav>
+
+<!-- ── VUE 1 : LISTE ── -->
+<div class="view on" id="v-liste">
+  <div class="hero">
+    <div class="hero-pill">Postes vacants · Mobilité interne</div>
+    <h1>Rejoindre la <em>DCIP</em></h1>
+    <p class="hero-sub">7 postes ouverts · Postuler avant le 31 mai 2026 · Cliquez pour découvrir la fiche complète</p>
+  </div>
+  <div class="page-hd">
+    <h2 id="liste-titre">Tous les postes</h2>
+    <p id="liste-sous">6 opportunités de mobilité interne disponibles</p>
+  </div>
+  <div class="postes-list" id="postes-list"></div>
+</div>
+
+<!-- ── VUE 2 : FICHE ── -->
+<div class="view" id="v-fiche">
+  <div class="hero">
+    <div class="hero-pill" id="fiche-service-pill">Service</div>
+    <h1 id="fiche-titre">Intitulé du poste</h1>
+    <p class="hero-sub" id="fiche-hero-sub"></p>
+  </div>
+  <div class="fiche-body">
+    <button class="back-btn" onclick="showListe()">← Retour aux postes</button>
+    <div class="fiche-card">
+      <div class="fiche-card-hd">
+        <h2 id="fd-titre"></h2>
+        <div class="svc-lbl" id="fd-svc"></div>
+      </div>
+      <div class="fiche-card-body">
+        <div class="fiche-section"><h4>Description</h4><p id="fd-desc"></p></div>
+        <div class="fiche-section"><h4>Missions principales</h4><ul id="fd-missions"></ul></div>
+        <div class="fiche-section"><h4>Profil recherché</h4><ul id="fd-profils"></ul></div>
+        <div class="fiche-meta-row" id="fd-meta"></div>
+        <div class="fiche-cta">
+          <button class="btn btn-primary" onclick="showForm()">✉️ Je suis intéressé(e) — recevoir la fiche</button>
+              <button class="btn btn-teal" id="btn-postuler" onclick="openUrl()">Postuler en ligne →</button>
+          <button class="btn btn-secondary" onclick="showListe()">Voir les autres postes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── VUE 3 : FORMULAIRE ── -->
+<div class="view" id="v-form">
+  <div class="hero">
+    <div class="hero-pill">Candidature · Mobilité interne</div>
+    <h1>Je suis <em>intéressé(e)</em></h1>
+    <p class="hero-sub">Laissez vos coordonnées — nous vous envoyons la fiche et vous recontactons.</p>
+  </div>
+  <div class="form-body">
+    <div id="form-wrap">
+      <div class="form-poste-recap" id="form-recap">
+        <div class="fpr-label">📋 Poste sélectionné</div>
+        <div class="fpr-title" id="recap-titre"></div>
+        <div class="fpr-svc" id="recap-svc"></div>
+      </div>
+      <div class="form-grid">
+        <div class="fg"><label>Prénom *</label><input id="prenom" type="text" placeholder="Votre prénom" autocomplete="given-name"></div>
+        <div class="fg"><label>Nom *</label><input id="nom" type="text" placeholder="Votre nom" autocomplete="family-name"></div>
+        <div class="fg"><label>Direction actuelle *</label><input id="direction" type="text" placeholder="Ex : DTAS, DSN…"></div>
+        <div class="fg"><label>Email professionnel *</label><input id="email" type="email" placeholder="prenom.nom@alpes-maritimes.fr" autocomplete="email"></div>
+      </div>
+      <div class="fg" style="margin-bottom:14px;"><label>Message (optionnel)</label><textarea id="message" placeholder="Votre profil, vos questions…"></textarea></div>
+      <div class="hr"></div>
+      <div class="slbl">Votre projet de mobilité</div>
+      <div class="proj-grid">
+        <div class="pj" onclick="this.classList.toggle('on')"><span>🔭</span>Curiosité</div>
+        <div class="pj" onclick="this.classList.toggle('on')"><span>📅</span>Court terme</div>
+        <div class="pj" onclick="this.classList.toggle('on')"><span>🌱</span>Moyen terme</div>
+        <div class="pj" onclick="this.classList.toggle('on')"><span>📬</span>Me tenir informé</div>
+      </div>
+      <div class="hr"></div>
+      <div class="rgpd-box"><strong style="display:block;margin-bottom:3px;">RGPD</strong>Données traitées par la DRH du Département des AM pour le suivi des mobilités internes. Conservation 12 mois. Droits d'accès et rectification auprès du DPO.</div>
+      <div class="rgpd-row">
+        <input type="checkbox" id="rgpd">
+        <label for="rgpd">J'accepte d'être recontacté(e) par la DCIP pour des opportunités de mobilité interne *</label>
+      </div>
+      <div class="send-err" id="send-err">❌ Erreur d'envoi. Vérifiez la connexion et réessayez.</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap;">
+        <button class="btn btn-primary" id="btn-submit" onclick="submitForm()">Envoyer ma demande</button>
+        <button class="btn btn-secondary" onclick="showFiche()">← Retour à la fiche</button>
+      </div>
+    </div>
+    <div class="success-box" id="success-box">
+      <div style="font-size:52px;margin-bottom:14px;">✅</div>
+      <h3>Demande enregistrée !</h3>
+      <p>Merci <strong id="success-name"></strong>.<br>La fiche vous a été envoyée par email.<br>La DCIP vous recontactera prochainement.</p>
+      <div class="sf-recap" id="sf-recap">
+        <div class="sl">Poste d'intérêt</div>
+        <div class="st" id="sf-titre"></div>
+        <div class="ss" id="sf-svc"></div>
+      </div>
+      <button class="btn btn-teal" onclick="showListe()">Voir les autres postes</button>
+    </div>
+  </div>
+</div>
+
+<script>
+var POSTES = [
+  {
+    titre: "Ingénieur rénovation énergétique globale des bâtiments H/F",
+    service: "Énergie et fluides",
+    ico: "⚡",
+    tag: "new",
+    cat: "A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/ingenieur-renovation-energetique-globale-des-batiments-hf",
+    desc: "Au sein du service études et travaux, l'ingénieur rénovation énergétique pilote des opérations de rénovation de bâtiments ambitieuses, depuis la phase de programmation jusqu'à la fin de la garantie de parfait achèvement.",
+    missions: [
+      "Piloter les opérations de rénovation énergétique globale des bâtiments départementaux",
+      "Élaborer les programmes et études préalables en lien avec les objectifs de sobriété",
+      "Assurer le suivi des marchés de travaux (MOE, entreprises, contrôle technique)",
+      "Garantir la performance énergétique des ouvrages livrés",
+      "Contribuer au reporting du plan de transition énergétique de la direction"
+    ],
+    profils: [
+      "Ingénieur bâtiment / génie civil ou thermique (Cat. A)",
+      "Connaissance approfondie des techniques de rénovation énergétique du bâtiment",
+      "Expérience en maîtrise d'ouvrage publique et conduite d'opérations",
+      "Maîtrise des marchés publics de travaux"
+    ],
+    contrat: "Cat. A", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Chargé de projets GTC DCIP H/F",
+    service: "Énergie et fluides",
+    ico: "⚡",
+    tag: "new",
+    cat: "B / A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/charge-de-projets-gtc-dcip-hf",
+    desc: "Au sein du service énergie fluides (17 agents), le chargé de projets GTC assure le fonctionnement optimal des installations techniques de Gestion Technique Centralisée (GTC/GTB) et déploie la supervision dans les bâtiments départementaux.",
+    missions: [
+      "Déployer et maintenir la GTC/GTB sur l'ensemble du patrimoine bâti départemental",
+      "Assurer la supervision à distance des équipements techniques (chauffage, ventilation, éclairage)",
+      "Piloter les contrats de maintenance liés à la GTB",
+      "Analyser les données d'exploitation pour optimiser les consommations énergétiques",
+      "Coordonner les interventions des prestataires spécialisés"
+    ],
+    profils: [
+      "Technicien ou ingénieur en génie climatique / automatismes (Cat. B ou A)",
+      "Connaissance des systèmes GTB/GTC et protocoles BACnet, KNX, Modbus",
+      "Aptitude à lire des schémas électriques et des plans d'installations",
+      "Sens de l'organisation et goût pour l'analyse de données"
+    ],
+    contrat: "Cat. B/A", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Chargé d'études CVC maintenance H/F",
+    service: "Énergie et fluides",
+    ico: "⚡",
+    tag: "",
+    cat: "B",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/charge-detudes-cvc-maintenance-hf",
+    desc: "Au sein du service énergie fluides (17 agents), le chargé d'études CVC gère les contrats de maintenance des équipements techniques de sa spécialité et pilote la mise en place de la GMAO pour le suivi de la maintenance.",
+    missions: [
+      "Gérer les contrats de maintenance CVC (chauffage, ventilation, climatisation) des bâtiments",
+      "Piloter le déploiement et l'exploitation de la GMAO",
+      "Réaliser les études techniques préalables aux opérations de remplacement d'équipements",
+      "Suivre les indicateurs de performance des installations",
+      "Assurer la veille réglementaire sur les équipements thermiques et fluides"
+    ],
+    profils: [
+      "Technicien en génie climatique ou thermique (Cat. B)",
+      "Connaissance des équipements CVC et de leur maintenance",
+      "Maîtrise ou aptitude à prendre en main un logiciel de GMAO",
+      "Rigueur dans le suivi administratif et technique des contrats"
+    ],
+    contrat: "Cat. B", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Ingénieur conduite d'opérations bâtiments OPC H/F",
+    service: "Études et travaux",
+    ico: "📐",
+    tag: "urgent",
+    cat: "A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/ingenieur-conduite-doperations-de-batiments-opc-suivi-de-chantier-hf-30249",
+    desc: "Au sein du service études et travaux, l'ingénieur conduite d'opérations assure la conduite d'opérations de construction, de rénovation et de restructuration de locaux ou bâtiments du patrimoine départemental.",
+    missions: [
+      "Assurer la maîtrise d'ouvrage d'opérations neuves et de réhabilitation (> 100 k€)",
+      "Piloter les marchés de maîtrise d'œuvre et d'entreprises (consultation, suivi, réception)",
+      "Coordonner les intervenants : MOE, OPC, bureau de contrôle, SPS",
+      "Garantir le respect des délais, des coûts et de la qualité des ouvrages",
+      "Assurer les relations avec les utilisateurs et partenaires institutionnels"
+    ],
+    profils: [
+      "Ingénieur ou technicien supérieur bâtiment / génie civil (Cat. A)",
+      "Expérience confirmée en conduite d'opérations ou maîtrise d'ouvrage publique",
+      "Maîtrise des marchés publics de travaux et des procédures administratives",
+      "Autonomie, sens de l'organisation et capacité à gérer plusieurs opérations simultanément"
+    ],
+    contrat: "Cat. A", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Ingénieur chargé d'études courants forts et faibles H/F",
+    service: "Énergie et fluides",
+    ico: "⚡",
+    tag: "urgent",
+    cat: "A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/ingenieur-charge-detudes-courants-forts-et-faibles-dcip-hf-30269",
+    desc: "Au sein du service énergie et fluides, l'ingénieur conçoit et fait réaliser, en régie ou par des entreprises, des travaux de création, de restructuration ou de rénovation concernant le patrimoine bâti — courants forts, courants faibles, SSI.",
+    missions: [
+      "Concevoir et piloter les travaux courants forts (HTA/BT, éclairage, TGBT) et courants faibles (SSI, contrôle d'accès, vidéoprotection)",
+      "Élaborer les cahiers des charges techniques et pièces de marchés",
+      "Assurer le suivi des chantiers et la réception des ouvrages",
+      "Gérer les relations avec les concessionnaires (ENEDIS, opérateurs télécoms)",
+      "Assurer la mise en conformité réglementaire des installations électriques"
+    ],
+    profils: [
+      "Ingénieur en génie électrique / électrotechnique (Cat. A)",
+      "Maîtrise des normes NF C 15-100, installations SSI (cat. A), contrôle d'accès",
+      "Expérience en maîtrise d'ouvrage ou bureau d'études technique",
+      "Aptitude à lire des schémas unifilaires et des plans d'installations"
+    ],
+    contrat: "Cat. A", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Chargé de projets études et marchés H/F",
+    service: "Maintenance des collèges",
+    ico: "🏫",
+    tag: "",
+    cat: "A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/charge-de-projets-etudes-et-marches-hf-33932",
+    desc: "Au sein du service de la maintenance des collèges, le chargé de projets études et marchés renforce l'équipe en place. Il prépare et met en œuvre les projets depuis l'élaboration du programme jusqu'au parfait achèvement de l'ouvrage.",
+    missions: [
+      "Élaborer les programmes de travaux et les cahiers des charges techniques",
+      "Piloter les procédures de marchés publics (MAPA, procédures formalisées)",
+      "Assurer le suivi administratif et financier des marchés en cours",
+      "Coordonner les interventions d'entreprises dans les collèges en activité",
+      "Assurer le reporting auprès du chef de service et des établissements"
+    ],
+    profils: [
+      "Technicien supérieur ou ingénieur bâtiment / second œuvre (Cat. A)",
+      "Connaissance des procédures de marchés publics",
+      "Expérience en gestion de projets de maintenance ou travaux en milieu occupé",
+      "Sens de l'organisation, rigueur administrative et bon relationnel"
+    ],
+    contrat: "Cat. A", lieu: "Nice — CADAM"
+  },
+  {
+    titre: "Chargé d'études et de projets sûreté H/F",
+    service: "Sécurité, Sûreté & Prévention",
+    ico: "🔒",
+    tag: "new",
+    cat: "B / A",
+    filiere: "Filière technique",
+    deadline: "31 mai 2026",
+    url: "https://www.departement06.fr/offres-demploi/charge-detudes-et-de-projets-surete-hf-31209",
+    desc: "Au sein de la section sûreté et sécurité, le chargé d'études et de projets sûreté garantit la sécurité du patrimoine départemental en déployant des systèmes techniques : contrôle d'accès, vidéoprotection et alarmes.",
+    missions: [
+      "Concevoir et piloter les projets de systèmes de sûreté (contrôle d'accès, vidéoprotection, alarmes intrusion)",
+      "Rédiger les cahiers des charges techniques et les marchés associés",
+      "Assurer la mise en service et la réception des systèmes installés",
+      "Maintenir et faire évoluer le parc existant en cohérence avec les besoins",
+      "Assurer une veille technologique et réglementaire sur les systèmes de sûreté"
+    ],
+    profils: [
+      "Technicien ou ingénieur en systèmes de sûreté / sécurité électronique (Cat. B ou A)",
+      "Connaissance des systèmes de contrôle d'accès, vidéoprotection (IP), SSI",
+      "Expérience en maîtrise d'ouvrage ou conduite de travaux CFO/CFA",
+      "Aptitude à coordonner des prestataires et à gérer plusieurs projets simultanément"
+    ],
+    contrat: "Cat. B/A", lieu: "Nice — CADAM"
+  }
+];
+
+var currentPoste = null;
+var currentFilter = null;
+
+/* ── NAVIGATION ── */
+function showListe() {
+  show('v-liste');
+  renderPostes(currentFilter);
+  syncNav();
+}
+function showFiche() { show('v-fiche'); }
+function showForm() {
+  if (!currentPoste) return;
+  document.getElementById('recap-titre').textContent = currentPoste.titre;
+  document.getElementById('recap-svc').textContent   = 'Service ' + currentPoste.service;
+  document.getElementById('form-wrap').style.display  = 'block';
+  document.getElementById('success-box').style.display = 'none';
+  show('v-form');
+}
+function show(id) {
+  var views = document.querySelectorAll('.view');
+  for (var i=0; i<views.length; i++) views[i].classList.remove('on');
+  document.getElementById(id).classList.add('on');
+  window.scrollTo({top:0, behavior:'smooth'});
+}
+
+/* ── FILTER ── */
+function filterSvc(svc) {
+  currentFilter = svc;
+  var count = svc ? POSTES.filter(function(p){ return p.service===svc; }).length : POSTES.length;
+  document.getElementById('liste-titre').textContent = svc || 'Tous les postes';
+  document.getElementById('liste-sous').textContent  = count + ' poste' + (count>1?'s':'') + ' disponible' + (count>1?'s':'') + ' — postuler avant le 31 mai 2026';
+  renderPostes(svc);
+  show('v-liste');
+  syncNav();
+}
+
+function syncNav() {
+  var btns = document.querySelectorAll('.nf-btn');
+  for (var i=0; i<btns.length; i++) {
+    btns[i].classList.toggle('on', btns[i].dataset.svc === (currentFilter||''));
+  }
+}
+
+/* ── RENDER ── */
+function renderPostes(filter) {
+  var c = document.getElementById('postes-list');
+  c.innerHTML = '';
+  var shown = 0;
+  for (var i=0; i<POSTES.length; i++) {
+    if (filter && POSTES[i].service !== filter) continue;
+    shown++;
+    (function(poste){
+      var row = document.createElement('div');
+      row.className = 'poste-row';
+      var tag = poste.tag==='urgent' ? '<span class="tag tag-u">Urgent</span>'
+              : poste.tag==='new'    ? '<span class="tag tag-n">Nouveau</span>' : '';
+      row.innerHTML =
+        '<span class="pr-svc-ico">'+poste.ico+'</span>'
+        +'<div class="pr-info">'
+          +'<div class="pr-title">'+poste.titre+'</div>'
+          +'<div class="pr-svc">Service ' + poste.service+'</div>'
+          +'<div class="pr-meta"><span>🎓 '+poste.cat+'</span><span>📍 '+poste.lieu+'</span><span>📅 Avant le '+poste.deadline+'</span></div>'
+        +'</div>'
+        +'<div class="pr-tags">'+tag+'</div>'
+        +'<span class="pr-arrow">›</span>';
+      row.onclick = function(){ openFiche(poste); };
+      c.appendChild(row);
+    })(POSTES[i]);
+  }
+  if (!shown) {
+    c.innerHTML = '<div class="empty">Aucun poste vacant pour ce service actuellement.</div>';
+  }
+}
+
+/* ── FICHE ── */
+function openFiche(poste) {
+  currentPoste = poste;
+  document.getElementById('fiche-service-pill').textContent = 'Service ' + poste.service;
+  document.getElementById('fiche-titre').textContent = poste.titre;
+  document.getElementById('fiche-hero-sub').textContent = poste.contrat + ' · ' + poste.lieu;
+  document.getElementById('fd-titre').textContent = poste.titre;
+  document.getElementById('fd-svc').textContent = 'Service ' + poste.service + ' — Département des Alpes-Maritimes';
+  document.getElementById('fd-desc').textContent = poste.desc;
+  document.getElementById('fd-missions').innerHTML = poste.missions.map(function(x){ return '<li>'+x+'</li>'; }).join('');
+  document.getElementById('fd-profils').innerHTML = poste.profils.map(function(x){ return '<li>'+x+'</li>'; }).join('');
+  document.getElementById('fd-meta').innerHTML =
+    '<span>🎓 '+poste.cat+'</span><span>🏷️ '+poste.filiere+'</span><span>📍 '+poste.lieu+'</span><span>📅 Avant le '+poste.deadline+'</span>';
+  showFiche();
+}
+
+/* ── FORMULAIRE ── */
+function submitForm() {
+  var p   = document.getElementById('prenom').value.trim();
+  var n   = document.getElementById('nom').value.trim();
+  var dir = document.getElementById('direction').value.trim();
+  var e   = document.getElementById('email').value.trim();
+  var msg = document.getElementById('message').value.trim();
+  var rg  = document.getElementById('rgpd').checked;
+
+  if (!p || !n || !e || !rg) {
+    alert("Merci de remplir les champs obligatoires (*) et d'accepter la clause RGPD.");
+    return;
+  }
+  var prj = [];
+  var pjs = document.querySelectorAll('.pj.on');
+  for (var i=0; i<pjs.length; i++) prj.push(pjs[i].textContent.trim());
+
+  var btn = document.getElementById('btn-submit');
+  btn.innerHTML = '<span class="spinner"></span>Envoi…';
+  btn.classList.add('btn-off');
+  document.getElementById('send-err').style.display = 'none';
+
+  // ── CONFIG — remplacer ces valeurs ──────────────────────────
+  var EJS_KEY      = 'VOTRE_PUBLIC_KEY';
+  var EJS_SVC      = 'VOTRE_SERVICE_ID';
+  var EJS_TPL_NOTIF = 'VOTRE_TEMPLATE_ID_NOTIF';  // notification interne → smonnoyer
+  var EJS_TPL_FICHE = 'VOTRE_TEMPLATE_ID_FICHE';  // fiche → personne intéressée
+  var SHEETS_URL   = 'VOTRE_URL_GOOGLE_SHEETS';    // URL Apps Script Google Sheets
+  // ────────────────────────────────────────────────────────────
+
+  var params = {
+    to_email_1: 'dcip_affaires_generales@departement06.fr',
+    to_email_2: 'smonnoyer@departement06.fr',
+    prenom: p, nom: n, direction: dir, email: e,
+    message:  msg || '—',
+    projet:   prj.join(', ') || 'Non précisé',
+    poste:    currentPoste ? currentPoste.titre + ' (' + currentPoste.service + ')' : '—',
+    service:  currentPoste ? currentPoste.service : '—',
+    cat:      currentPoste ? currentPoste.cat     : '—',
+    lieu:     currentPoste ? currentPoste.lieu    : '—',
+    deadline: currentPoste ? currentPoste.deadline : '—',
+    url:      currentPoste ? currentPoste.url     : '—',
+    date:     new Date().toLocaleString('fr-FR')
+  };
+
+  function loadEJS(cb) {
+    if (window.emailjs) { cb(null); return; }
+    var s = document.createElement('script');
+    s.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+    s.onload  = function() { try { emailjs.init({publicKey: EJS_KEY}); cb(null); } catch(ex){ cb(ex); } };
+    s.onerror = function() { cb(new Error('network')); };
+    document.head.appendChild(s);
+  }
+
+  // Sauvegarde dans Google Sheets
+  function saveToSheets() {
+    if (!SHEETS_URL || SHEETS_URL === 'VOTRE_URL_GOOGLE_SHEETS') return;
+    try {
+      fetch(SHEETS_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          date:      params.date,
+          prenom:    params.prenom,
+          nom:       params.nom,
+          direction: params.direction,
+          email:     params.email,
+          poste:     params.poste,
+          service:   params.service,
+          cat:       params.cat,
+          lieu:      params.lieu,
+          projet:    params.projet,
+          message:   params.message
+        })
+      });
+    } catch(e) { /* silencieux — ne bloque pas l'envoi */ }
+  }
+
+  loadEJS(function(err) {
+    if (err) { onError(); return; }
+    // Envoi notification interne
+    emailjs.send(EJS_SVC, EJS_TPL_NOTIF, params)
+      .then(function() {
+        // Envoi fiche à la personne (non bloquant)
+        if (EJS_TPL_FICHE && EJS_TPL_FICHE !== 'VOTRE_TEMPLATE_ID_FICHE') {
+          emailjs.send(EJS_SVC, EJS_TPL_FICHE, params);
+        }
+        // Sauvegarde Google Sheets (non bloquant)
+        saveToSheets();
+        onSuccess();
+      }, onError);
+  });
+
+  function onSuccess() {
+    document.getElementById('form-wrap').style.display = 'none';
+    document.getElementById('success-box').style.display = 'block';
+    document.getElementById('success-name').textContent = p + ' ' + n;
+    if (currentPoste) {
+      document.getElementById('sf-recap').style.display = 'block';
+      document.getElementById('sf-titre').textContent = currentPoste.titre;
+      document.getElementById('sf-svc').textContent   = 'Service ' + currentPoste.service;
+    }
+    window.scrollTo({top:0});
+  }
+  function onError() {
+    btn.innerHTML = 'Envoyer ma demande';
+    btn.classList.remove('btn-off');
+    document.getElementById('send-err').style.display = 'block';
+  }
+}
+
+function openUrl() {
+  if (currentPoste && currentPoste.url) window.open(currentPoste.url, '_blank');
+}
+
+/* ── BUILD NAV FILTERS ── */
+function buildNavFilters() {
+  var svcs = [];
+  var icoMap = {};
+  for (var i=0; i<POSTES.length; i++) {
+    if (svcs.indexOf(POSTES[i].service) === -1) {
+      svcs.push(POSTES[i].service);
+      icoMap[POSTES[i].service] = POSTES[i].ico;
+    }
+  }
+  var c = document.getElementById('nav-filters');
+  for (var i=0; i<svcs.length; i++) {
+    (function(svc, ico){
+      var short = svc
+        .replace('Maintenance des bâtiments','Maint. bâtiments')
+        .replace('Maintenance des collèges','Maint. collèges')
+        .replace('Sécurité, Sûreté & Prévention','Sécurité & Sûreté');
+      var btn = document.createElement('button');
+      btn.className = 'nf-btn';
+      btn.textContent = ico + ' ' + short;
+      btn.dataset.svc = svc;
+      btn.onclick = function(){ filterSvc(svc); };
+      c.appendChild(btn);
+    })(svcs[i], icoMap[svcs[i]]);
+  }
+}
+
+/* ── INIT ── */
+buildNavFilters();
+renderPostes(null);
+
+</script>
+</body>
+</html>

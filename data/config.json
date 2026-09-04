@@ -2,8 +2,11 @@
   "evenement": {
     "nom": "Journée des Métiers et de la Mobilité",
     "lieu": "CADAM — Nice",
-    "date": "À CONFIRMER",
-    "organisateur": "DCIP — Direction de la Construction, de l'Immobilier et du Patrimoine"
+    "date": "25 septembre 2026",
+    "organisateur": "DCIP — Direction de la Construction, de l'Immobilier et du Patrimoine",
+    "date_iso": "2026-09-25",
+    "date_confirmee": false,
+    "_note_date": "Date indiquée par le porteur du projet le 2026-09-04 sous réserve (« je crois que la date est le 25 septembre »). Tant que date_confirmee vaut false, l'application affiche la date suivie de la mention « (à confirmer) ». Passer date_confirmee à true une fois la date arrêtée. Ne PAS réintroduire les dates des fichiers sources (10 juin 2026, 31 mai 2026) : elles sont dépassées."
   },
   "emails_internes": [
     "dcip_affaires_generales@departement06.fr",

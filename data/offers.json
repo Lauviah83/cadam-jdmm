@@ -1,13 +1,480 @@
 {
- "generated_at": "2026-09-04T09:37:50Z",
+ "generated_at": "2026-09-04T10:06:11Z",
  "source": "https://www.departement06.fr/offres-demploi",
- "count": 46,
+ "count": 52,
  "count_dcip": 7,
  "offers": [
   {
-   "id": "adjoint-au-directeur-responsable-de-section-hf-31494",
-   "titre": "Adjoint au directeur, responsable de section H/F (31494)",
-   "url": "https://www.departement06.fr/offres-demploi/adjoint-au-directeur-responsable-de-section-hf-31494",
+   "id": "adjoint-au-responsable-de-ladret-hf-33440",
+   "titre": "Adjoint au responsable de l'ADRET H/F (33440)",
+   "url": "https://www.departement06.fr/offres-demploi/adjoint-au-responsable-de-ladret-hf-33440",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE",
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein d'une équipe de 13 agents, l'adjoint assure la coordination opérationnelle de l'activité de l'ADRET, garantit la qualité du suivi des situations, le respect des délais et des procédures, sécurise le dispositif et les professionnels. Son…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "Au sein d'une équipe de 13 agents, l'adjoint assure la coordination opérationnelle de l'activité de l'ADRET, garantit la qualité du suivi des situations, le respect des délais et des procédures, sécurise le dispositif et les professionnels. Son expertise permet d'apporter un éclairage sur les situations complexes, sur la pertinence des qualifications, et d'assurer la coordination avec les parquets et les territoires lorsque cela est nécessaire. Il apporte ainsi un soutien technique aux professionnels, et valide tous les documents sortants de l'ADRET. En relais du responsable, il supervise l'intégralité des missions, garantit le respect du traitement des informations, et veille à une organisation efficiente.",
+     "items": []
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous animerez, coordonnez et pilotez les équipes - - Vous validerez la qualification des situations au regard du danger ou du risque de danger. - - Vous accompagnerez les équipes dans la mise en œuvre des actions et des prises de décisions opérationnelles. - - Vous assurerez l'interface entre la collectivité et les partenaires institutionnels - - Vous développerez le partenariat pour une meilleure connaissance des missions de l'ADRET, de l'information préoccupante et son process. - - Vous renseignerez et suivrez des tableaux de bord et indicateurs d'activité. - - Vous transmettrez les données chiffrées de l'activité globale de l'ADRET et/ou des statistiques à la hiérarchie et à l'ODPE. - - Vous soutiendrez les agents en cas d'intensification de l'activité ou les remplacerez si nécessaire afin de garantir la continuité de service - - Vous remplacerez le responsable en cas d'absence (conseil technique, organisation du service, supervision, validation des écrits professionnels).",
+     "items": [
+      "- Vous validerez la qualification des situations au regard du danger ou du risque de danger.",
+      "- Vous accompagnerez les équipes dans la mise en œuvre des actions et des prises de décisions opérationnelles.",
+      "- Vous assurerez l'interface entre la collectivité et les partenaires institutionnels",
+      "- Vous développerez le partenariat pour une meilleure connaissance des missions de l'ADRET, de l'information préoccupante et son process.",
+      "- Vous renseignerez et suivrez des tableaux de bord et indicateurs d'activité.",
+      "- Vous transmettrez les données chiffrées de l'activité globale de l'ADRET et/ou des statistiques à la hiérarchie et à l'ODPE.",
+      "- Vous soutiendrez les agents en cas d'intensification de l'activité ou les remplacerez si nécessaire afin de garantir la continuité de service",
+      "- Vous remplacerez le responsable en cas d'absence (conseil technique, organisation du service, supervision, validation des écrits professionnels)."
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "- Vous maîtrisez les dispositifs de protection de l'enfance ainsi que le cadre réglementaire. - - Vous coordonnez des équipes et gérez des situations complexes. - - Vous animez des réunions et conduisez des projets. - - Vous maîtrisez les outils bureautiques et de suivi. - - Vous faites preuve de sens de la médiation, d'écoute et de capacité à travailler en partenariat et réseau. - - Vous exercez un leadership affirmé et assumez vos responsabilités. - - Vous travaillez avec rigueur, autonomie et réactivité. - - Vous démontrez une capacité d'analyse et de synthèse. - - Vous respectez la confidentialité et faites preuve de discrétion.",
+     "items": [
+      "- Vous coordonnez des équipes et gérez des situations complexes.",
+      "- Vous animez des réunions et conduisez des projets.",
+      "- Vous maîtrisez les outils bureautiques et de suivi.",
+      "- Vous faites preuve de sens de la médiation, d'écoute et de capacité à travailler en partenariat et réseau.",
+      "- Vous exercez un leadership affirmé et assumez vos responsabilités.",
+      "- Vous travaillez avec rigueur, autonomie et réactivité.",
+      "- Vous démontrez une capacité d'analyse et de synthèse.",
+      "- Vous respectez la confidentialité et faites preuve de discrétion."
+     ]
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "Temps de travail : conforme au protocole sur le temps de travail 35 heures hebdomadaire - Déplacements ponctuels dans le cadre des missions",
+     "items": [
+      "Déplacements ponctuels dans le cadre des missions"
+     ]
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction de l'enfance - Centre administratif des Alpes-Maritimes (CADAM)",
+     "items": [
+      "Centre administratif des Alpes-Maritimes (CADAM)"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires -",
+     "items": []
+    },
+    "cadre_emploi": "Conseiller socio éducatif, Assistant socio-éducatif, Attaché",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8829"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "assistant-de-service-social-msd-le-cannet-dt1-hf-20358",
+   "titre": "Assistant de service social MSD Le Cannet DT1 H/F (20358)",
+   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-msd-le-cannet-dt1-hf-20358",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein de la MSD, l'assistant social rattaché à l'équipe pluridisciplinaire, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique, posés par différents publics en difficulté, dans le cadre de la politique…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "Au sein de la MSD, l'assistant social rattaché à l'équipe pluridisciplinaire, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique, posés par différents publics en difficulté, dans le cadre de la politique départementale de protection et de prévention de la famille et de l'enfant",
+     "items": []
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous analyserez et évaluerez des situations matérielles, familiales, psychologiques et financières lors de permanences et au domicile, afin d'élaborer et de mettre en œuvre un plan d'aide. - - Vous engagerez les interventions de médiation nécessaires (courriers, dossiers, enquêtes, demandes administratives, accompagnements…) auprès des organismes concernés (administrations, banques, centres de formation…) - - Vous constituerez des dossiers à caractère social et accompagnerez les projets d'insertion des personnes en difficulté - - Vous rédigerez des rapports et des comptes rendus",
+     "items": [
+      "- Vous engagerez les interventions de médiation nécessaires (courriers, dossiers, enquêtes, demandes administratives, accompagnements…) auprès des organismes concernés (administrations, banques, centres de formation…)",
+      "- Vous constituerez des dossiers à caractère social et accompagnerez les projets d'insertion des personnes en difficulté",
+      "- Vous rédigerez des rapports et des comptes rendus"
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "- Assistant social diplômé, vous connaissez, appliquez les lois et réglementations sociales (RSA, handicaps, maltraitances, surendettement, maladies mentales...) - - Vous êtes doté(e) d'une bonne écoute et d'un bon relationnel, vous avez également l'esprit d'équipe et le sens de la négociation - - En cas d'urgence, vous savez réagir de manière pertinente - - Sur le plan administratif, vous savez réaliser des enquêtes sociales et rédiger des rapports tout en respectant le secret professionnel - - Dans le cadre de vos missions, vous serez amené à vous déplacer régulièrement, vous êtes donc titulaire du permis B",
+     "items": [
+      "- Vous êtes doté(e) d'une bonne écoute et d'un bon relationnel, vous avez également l'esprit d'équipe et le sens de la négociation",
+      "- En cas d'urgence, vous savez réagir de manière pertinente",
+      "- Sur le plan administratif, vous savez réaliser des enquêtes sociales et rédiger des rapports tout en respectant le secret professionnel",
+      "- Dans le cadre de vos missions, vous serez amené à vous déplacer régulièrement, vous êtes donc titulaire du permis B"
+     ]
+    },
+    "prerequis": {
+     "titre": "Prérequis",
+     "texte": "Permis B",
+     "items": []
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "Temps de travail : conforme au protocole sur le temps de travail 35 heures hebdomadaire avec une disponibilité demandée.",
+     "items": []
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction des territoires, de l'inclusion sociale et de la proximit� - Maison des solidarités départementales (MSD) - MSD Le Cannet DT1",
+     "items": [
+      "Maison des solidarités départementales (MSD)",
+      "MSD Le Cannet DT1"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires -",
+     "items": []
+    },
+    "cadre_emploi": "Assistant socio-éducatif",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8831"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "chef-dequipe-mecanique-poids-lourds-30626",
+   "titre": "Chef d'équipe mécanique poids lourds (30626)",
+   "url": "https://www.departement06.fr/offres-demploi/chef-dequipe-mecanique-poids-lourds-30626",
+   "domaine": "Infrastructures et réseaux",
+   "categorie": "C",
+   "categories": [
+    "C",
+    "B"
+   ],
+   "filiere": "TECHNIQUE",
+   "filieres": [
+    "TECHNIQUE"
+   ],
+   "deadline": "2026-10-03",
+   "deadline_label": "3 octobre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein du service du parc des véhicules techniques, le chef d'équipe mécanique poids lourds assure l'organisation, la coordination et le suivi de l'activité de maintenance de l'atelier afin de garantir la disponibilité, la fiabilité et la sécurité…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "Au sein du service du parc des véhicules techniques, le chef d'équipe mécanique poids lourds assure l'organisation, la coordination et le suivi de l'activité de maintenance de l'atelier afin de garantir la disponibilité, la fiabilité et la sécurité des engins, tout en encadrant l'équipe de mécaniciens et en optimisant les moyens humains, matériels et administratifs mis à disposition.",
+     "items": []
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous organiserez les activités de l'équipe et rendrez compte au responsable de l'atelier de l'activité des agents ainsi que de vos propres activités. - - Vous gérerez les moyens nécessaires au fonctionnement de l'atelier (stocks, inventaires, approvisionnements, matériels, etc.). - - Vous gérerez l'activité de l'atelier en élaborant le planning prévisionnel et en assurant le suivi des réparations des engins confiés. - - Vous programmerez, planifierez et contrôlerez le travail des mécaniciens, tout en veillant au respect des règles de sécurité. - - Vous participerez, en tant que de besoin, aux travaux de maintenance et de réparation. - - Vous assurerez le rôle de chef d'astreinte dans le cadre du service hivernal. - - Vous assurerez la formation et l'accompagnement des nouveaux mécaniciens dans le cadre du compagnonnage. - - Vous assurerez le suivi administratif de l'activité de votre équipe (temps de travail, consommation de carburant, matériel, indicateurs d'activité, etc.).",
+     "items": [
+      "- Vous gérerez les moyens nécessaires au fonctionnement de l'atelier (stocks, inventaires, approvisionnements, matériels, etc.).",
+      "- Vous gérerez l'activité de l'atelier en élaborant le planning prévisionnel et en assurant le suivi des réparations des engins confiés.",
+      "- Vous programmerez, planifierez et contrôlerez le travail des mécaniciens, tout en veillant au respect des règles de sécurité.",
+      "- Vous participerez, en tant que de besoin, aux travaux de maintenance et de réparation.",
+      "- Vous assurerez le rôle de chef d'astreinte dans le cadre du service hivernal.",
+      "- Vous assurerez la formation et l'accompagnement des nouveaux mécaniciens dans le cadre du compagnonnage.",
+      "- Vous assurerez le suivi administratif de l'activité de votre équipe (temps de travail, consommation de carburant, matériel, indicateurs d'activité, etc.)."
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "- Vous êtes titulaire d'une formation initiale de niveau Bac professionnel ou BTS en mécanique. - - Vous détenez les permis B et C, indispensables à l'exercice de vos fonctions. - - Vous maîtrisez les connaissances techniques en mécanique nécessaires à l'entretien et à la réparation des engins. - - Vous travaillez efficacement en équipe et faites preuve de dynamisme dans l'exercice de vos missions.",
+     "items": [
+      "- Vous détenez les permis B et C, indispensables à l'exercice de vos fonctions.",
+      "- Vous maîtrisez les connaissances techniques en mécanique nécessaires à l'entretien et à la réparation des engins.",
+      "- Vous travaillez efficacement en équipe et faites preuve de dynamisme dans l'exercice de vos missions."
+     ]
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "• Temps de travail conforme que protocole sur le temps de travail avec régime d'astreinte durant la période de viabilité hivernale ;",
+     "items": []
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction des routes et des infrastructures de transport - Site extérieur - Parc des véhicules Carros",
+     "items": [
+      "Site extérieur",
+      "Parc des véhicules Carros"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires",
+     "items": []
+    },
+    "modalites-de-recrutement": {
+     "titre": "Modalités de recrutement",
+     "texte": "Par voie statutaire (Liste d'aptitude, mutation, détachement) ou exceptionnellement par voie contractuelle -",
+     "items": []
+    },
+    "cadre_emploi": "Technicien, Agent de maîtrise",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8832"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "conseillers-numeriques-dtisp-hf-32987",
+   "titre": "Conseillers numériques DTISP H/F (32987)",
+   "url": "https://www.departement06.fr/offres-demploi/conseillers-numeriques-dtisp-hf-32987",
+   "domaine": "Affaires générales",
+   "categorie": "C",
+   "categories": [
+    "C"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein du service des Maisons du Département, le conseiller numérique sensibilise le public aux enjeux du numérique et de l'intelligence artificielle, et favorise des usages responsables, citoyens et critiques (lutte contre les fausses informations…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "Au sein du service des Maisons du Département, le conseiller numérique sensibilise le public aux enjeux du numérique et de l'intelligence artificielle, et favorise des usages responsables, citoyens et critiques (lutte contre les fausses informations en s'informant et en apprenant à vérifier les sources, protection des données personnelles, maitrise des réseaux sociaux, compréhension et usage des outils d'IA, usages numériques des enfants et des adolescents, mécanismes excessifs ou addictifs liés au numérique, etc.). Il soutient les Maralpins dans leurs usages quotidiens du numérique : découvrir et utiliser les outils de messagerie électronique (envoi classique, envoi de pièces jointes, réception, réponse et gestion), découvrir et utiliser les outils de communication du quotidien (WhatsApp, Messenger, appels vidéo, groupes familiaux, partage de photos, etc.), acheter en ligne en toute sécurité, travailler à distance, consulter un médecin, etc... - Il accompagne les usagers pour les rendre autonomes dans la réalisation de démarches administratives en ligne (trouver un emploi ou une formation, suivre la scolarité de son enfant, accéder aux services en ligne communaux de l'enfance, etc.)",
+     "items": [
+      "Il accompagne les usagers pour les rendre autonomes dans la réalisation de démarches administratives en ligne (trouver un emploi ou une formation, suivre la scolarité de son enfant, accéder aux services en ligne communaux de l'enfance, etc.)"
+     ]
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous accueillerez et informerez le public et répondrez à ses besoins - - Vous présenterez aux usagers les services et dispositifs disponibles - - Vous accompagnerez vers l'autonomie numérique les usagers individuellement - - Vous concevrez, organiserez et animerez des ateliers thématiques, en lien avec le/la responsable de la structure - - Vous concevrez des scénarios d'animations et des méthodes pédagogiques autour de la culture numérique et de l'usage des technologies de l'information et de la communication en fonction des besoins des publics et de l'offre déjà disponible localement, et sensibiliserez aux règles de droit, de sécurité et de civilité sur Internet - - Vous proposerez des projets en synergie avec les autres acteurs sociaux et culturels du territoire - - Vous fournirez les éléments de suivi sur votre activité",
+     "items": [
+      "- Vous présenterez aux usagers les services et dispositifs disponibles",
+      "- Vous accompagnerez vers l'autonomie numérique les usagers individuellement",
+      "- Vous concevrez, organiserez et animerez des ateliers thématiques, en lien avec le/la responsable de la structure",
+      "- Vous concevrez des scénarios d'animations et des méthodes pédagogiques autour de la culture numérique et de l'usage des technologies de l'information et de la communication en fonction des besoins des publics et de l'offre déjà disponible localement, et sensibiliserez aux règles de droit, de sécurité et de civilité sur Internet",
+      "- Vous proposerez des projets en synergie avec les autres acteurs sociaux et culturels du territoire",
+      "- Vous fournirez les éléments de suivi sur votre activité"
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "- Vous possédez une très bonne connaissance du domaine numérique, une expérience ou un diplôme dans le secteur de la médiation numérique serait un plus - - Vous maîtrisez les outils informatiques et numériques du quotidien - - Vous avez une bonne connaissance de l'environnement institutionnel et local - - Vous avez une bonne connaissance de la réglementation en matière de droits d'auteur, protection de bases des données - - Vous êtes doté d'excellentes capacités d'organisation, et en mesure d'assurer un reporting fiable de votre activité. Vous maîtrisez par ailleurs les outils et techniques de communication permettant de promouvoir les actions menées et de développer leur visibilité - - Vous avez un très bon sens relationnel et le sens du contact, de l'accueil, de la pédagogie, vous aimez transmettre vos connaissances et animer des groupes et êtes à l'aise pour prendre la parole devant différents publics - - Vous avez un bon esprit d'équipe et de travail en réseau - - Vous êtes en capacité d'intervenir hors-les-murs de l'établissement - - Vous êtes organisé, méthodique et autonome",
+     "items": [
+      "- Vous maîtrisez les outils informatiques et numériques du quotidien",
+      "- Vous avez une bonne connaissance de l'environnement institutionnel et local",
+      "- Vous avez une bonne connaissance de la réglementation en matière de droits d'auteur, protection de bases des données",
+      "- Vous êtes doté d'excellentes capacités d'organisation, et en mesure d'assurer un reporting fiable de votre activité. Vous maîtrisez par ailleurs les outils et techniques de communication permettant de promouvoir les actions menées et de développer leur visibilité",
+      "- Vous avez un très bon sens relationnel et le sens du contact, de l'accueil, de la pédagogie, vous aimez transmettre vos connaissances et animer des groupes et êtes à l'aise pour prendre la parole devant différents publics",
+      "- Vous avez un bon esprit d'équipe et de travail en réseau",
+      "- Vous êtes en capacité d'intervenir hors-les-murs de l'établissement",
+      "- Vous êtes organisé, méthodique et autonome"
+     ]
+    },
+    "prerequis": {
+     "titre": "Prérequis",
+     "texte": "Permis B indispensable",
+     "items": []
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "Temps de travail : 35 heures hebdomadaires, conforme au protocole sur le temps de travail - 2 jours de télétravail / mois - Disponibilité occasionnelle en dehors des heures de travail pour des animations et événementiels - Déplacements réguliers dans le 06 : Le conseiller numérique sera amené à se déplacer très régulièrement dans différents lieux du territoire d'affectation pour réaliser son activité.",
+     "items": [
+      "2 jours de télétravail / mois",
+      "Disponibilité occasionnelle en dehors des heures de travail pour des animations et événementiels",
+      "Déplacements réguliers dans le 06 : Le conseiller numérique sera amené à se déplacer très régulièrement dans différents lieux du territoire d'affectation pour réaliser son activité."
+     ]
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction des territoires, de l'inclusion sociale et de la proximit� - Site extérieur - Maisons du Département (MDD) et Maisons départementales des seniors (MDDS)",
+     "items": [
+      "Site extérieur",
+      "Maisons du Département (MDD) et Maisons départementales des seniors (MDDS)"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires -",
+     "items": []
+    },
+    "cadre_emploi": "Adjoint administratif",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8827"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "infirmier-dispositif-de-prevention-et-dexploitation-sexuelle-au-carrefour-sante",
+   "titre": "Infirmier Dispositif de Prévention et d'Exploitation Sexuelle au Carrefour Santé Jeunes SDPMI H/F (33359)",
+   "url": "https://www.departement06.fr/offres-demploi/infirmier-dispositif-de-prevention-et-dexploitation-sexuelle-au-carrefour-sante",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "L'infirmier au sein du Dispositif de Prévention et d'Exploitation Sexuelle au Carrefour Santé Jeunes en SDPMI contribue à la prévention et à la promotion de la santé la santé auprès de divers publics selon les orientations définies au sein de la…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "L'infirmier au sein du Dispositif de Prévention et d'Exploitation Sexuelle au Carrefour Santé Jeunes en SDPMI contribue à la prévention et à la promotion de la santé la santé auprès de divers publics selon les orientations définies au sein de la direction et dans le domaine de compétence du Conseil Départemental des Alpes-Maritimes.",
+     "items": []
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous repérerez des conduites à risque grâce à un recueil des données cliniques lors de l'entretien des mineurs pour permettre la prise en charge par le dispositif - - Vous réaliserez les entretiens préalables de consultations médicales ou gynécologiques : recueil de données, relevé des paramètres biométriques, mise à jour du dossier des jeunes du dispositif - - Vous réaliserez des consultations infirmières de planification, de prévention et d'éducation à la santé pour les jeunes du dispositif et selon les protocoles : délivrance de contraception d'urgence, renouvellement de contraception orale, test de grossesse - - Vous réaliserez sur protocole, les entretiens pré IVG (différent de l'entretien psychosocial), accompagnerez et expliquerez les modalités de soin et de prise en charge et réaliserez les bilans sanguins pré IVG et programmer les RDV avec les professionnels médicaux pour les mineurs du dispositif",
+     "items": [
+      "- Vous réaliserez les entretiens préalables de consultations médicales ou gynécologiques : recueil de données, relevé des paramètres biométriques, mise à jour du dossier des jeunes du dispositif",
+      "- Vous réaliserez des consultations infirmières de planification, de prévention et d'éducation à la santé pour les jeunes du dispositif et selon les protocoles : délivrance de contraception d'urgence, renouvellement de contraception orale, test de grossesse",
+      "- Vous réaliserez sur protocole, les entretiens pré IVG (différent de l'entretien psychosocial), accompagnerez et expliquerez les modalités de soin et de prise en charge et réaliserez les bilans sanguins pré IVG et programmer les RDV avec les professionnels médicaux pour les mineurs du dispositif"
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "Infirmier diplômé, vous avez une bonne connaissance de la législation afférente à la protection et à la promotion de la santé maternelle et infantile et des actions de prévention concernant l'enfant. - Vous êtes doté d'un bon relationnel.",
+     "items": [
+      "Vous êtes doté d'un bon relationnel."
+     ]
+    },
+    "prerequis": {
+     "titre": "Prérequis",
+     "texte": "Titulaire du diplôme d'état d'Infirmier - Permis B",
+     "items": [
+      "Permis B"
+     ]
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "Temps de travail : conforme au protocole sur le temps de travail 35 heures hebdomadaire. - Horaires en fonction des besoins du service et de la demande du public (notamment les adolescents et les jeunes).",
+     "items": [
+      "Horaires en fonction des besoins du service et de la demande du public (notamment les adolescents et les jeunes)."
+     ]
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction de l'enfance - Centre de Protection Maternelle Infantile (PMI) - Carrefour Santé Jeunes SDPMI DE",
+     "items": [
+      "Centre de Protection Maternelle Infantile (PMI)",
+      "Carrefour Santé Jeunes SDPMI DE"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires -",
+     "items": []
+    },
+    "cadre_emploi": "Infirmier en soins généraux",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8828"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "psychologue-placement-familialadoption-renfort-de-hf",
+   "titre": "Psychologue placement familial/adoption Renfort /DE (H/F)",
+   "url": "https://www.departement06.fr/offres-demploi/psychologue-placement-familialadoption-renfort-de-hf",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein du service placement familial et adoption, le psychologue participe à la mise en œuvre de la politique du Département en faveur de la famille et de l'enfance, conçoit un travail clinique auprès des enfants et des adultes, met en œuvre les…",
+   "detail": {
+    "missions": {
+     "titre": "Missions",
+     "texte": "Au sein du service placement familial et adoption, le psychologue participe à la mise en œuvre de la politique du Département en faveur de la famille et de l'enfance, conçoit un travail clinique auprès des enfants et des adultes, met en œuvre les méthodes et les moyens nécessaires, évalue et analyse les situations et propose un avis en vue de l'obtention d'un agrément.",
+     "items": []
+    },
+    "activites": {
+     "titre": "Activités",
+     "texte": "- Vous participerez à la mise en œuvre de la politique du Département en faveur de la famille et de l'enfance - - Vous conduirez des entretiens cliniques - - Vous évaluerez les situations et les besoins des personnes en vue d'une décision d'attribution d'une allocation ou d'un agrément - - Vous participerez à la procédure d'agrément, au suivi et à la formation des assistants maternels, assistants familiaux ou accueillants familiaux - - Vous participerez à l'évaluation des situations et des besoins des personnes et proposerez un plan d'aide par objectifs - - Vous participerez à la procédure d'adoption - - Vous soutiendrez la fonction parentale",
+     "items": [
+      "- Vous conduirez des entretiens cliniques",
+      "- Vous évaluerez les situations et les besoins des personnes en vue d'une décision d'attribution d'une allocation ou d'un agrément",
+      "- Vous participerez à la procédure d'agrément, au suivi et à la formation des assistants maternels, assistants familiaux ou accueillants familiaux",
+      "- Vous participerez à l'évaluation des situations et des besoins des personnes et proposerez un plan d'aide par objectifs",
+      "- Vous participerez à la procédure d'adoption",
+      "- Vous soutiendrez la fonction parentale"
+     ]
+    },
+    "profil-du-candidat": {
+     "titre": "Profil du candidat",
+     "texte": "- Vous connaissez le code de l'action sociale et des familles et des conditions et critères d'agrément - - Vous faites preuve d'empathie - - Vous pouvez gérer les situations de stress et la maîtrise de soi - - Vous savez faire preuve d'éthique, et de conscience professionnelle - - Vous savez évaluer les capacités d'un candidat à l'agrément et son environnement familial - - Vous faites preuve d'un bon esprit de synthèse - - Vous avez de bonnes capacités rédactionnelles pour rédiger des évaluations médico-sociales - - Vous savez observer, écouter et analyser la situation et le discours des enfants et des adultes",
+     "items": [
+      "- Vous faites preuve d'empathie",
+      "- Vous pouvez gérer les situations de stress et la maîtrise de soi",
+      "- Vous savez faire preuve d'éthique, et de conscience professionnelle",
+      "- Vous savez évaluer les capacités d'un candidat à l'agrément et son environnement familial",
+      "- Vous faites preuve d'un bon esprit de synthèse",
+      "- Vous avez de bonnes capacités rédactionnelles pour rédiger des évaluations médico-sociales",
+      "- Vous savez observer, écouter et analyser la situation et le discours des enfants et des adultes"
+     ]
+    },
+    "prerequis": {
+     "titre": "Prérequis",
+     "texte": "Permis B",
+     "items": []
+    },
+    "conditions-de-travail": {
+     "titre": "Conditions de travail",
+     "texte": "Temps de travail : conforme au protocole sur le temps de travail 35 heures hebdomadaire",
+     "items": []
+    },
+    "lieu-de-travail": {
+     "titre": "Lieu de travail",
+     "texte": "Direction de l'enfance - Centre administratif des Alpes-Maritimes (CADAM)",
+     "items": [
+      "Centre administratif des Alpes-Maritimes (CADAM)"
+     ]
+    },
+    "remuneration": {
+     "titre": "Rémunération",
+     "texte": "Rémunération et régime indemnitaire statutaires -",
+     "items": []
+    },
+    "cadre_emploi": "Psychologue",
+    "url_candidature": "https://www.departement06.fr/stratis-external-link/8830"
+   },
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "adjoint-au-directeur-du-secretariat-general-hf-31494",
+   "titre": "Adjoint au directeur du Secrétariat Général H/F (31494)",
+   "url": "https://www.departement06.fr/offres-demploi/adjoint-au-directeur-du-secretariat-general-hf-31494",
    "domaine": "Affaires générales",
    "categorie": "A",
    "categories": [
@@ -327,8 +794,8 @@
    "filieres": [
     "MEDICO-SOCIALE"
    ],
-   "deadline": "2026-10-03",
-   "deadline_label": "3 octobre 2026",
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "Au sein des CeGIDD l'infirmier en soins généraux assure les consultations post-médicales, participe aux actions de prévention et de promotion de la santé sexuelle, évalue les situations individuelles, identifie les besoins des usagers et contribue à…",
    "detail": {
@@ -432,8 +899,8 @@
     "CULTURELLE",
     "ADMINISTRATIVE"
    ],
-   "deadline": "2026-10-03",
-   "deadline_label": "3 octobre 2026",
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "Sous l'autorité du Directeur de la Culture et de la responsable de la section cinéma, le responsable assure le pilotage, l'exploitation et le développement du cinéma départemental Jean-Paul Belmondo afin de garantir la qualité du service public, le…",
    "detail": {
@@ -1078,8 +1545,9 @@
     "url_candidature": "https://www.departement06.fr/stratis-external-link/8797"
    },
    "dcip": true,
-   "service": "",
-   "appariement": "domaine",
+   "service": "Énergie et fluides",
+   "poste_dcip_id": "ingenieur-charge-detudes-courants-forts-et-faibles-dcip-hf-30269",
+   "appariement": "url",
    "candidature_permanente": false
   },
   {
@@ -1907,8 +2375,9 @@
     "url_candidature": "https://www.departement06.fr/stratis-external-link/8734"
    },
    "dcip": true,
-   "service": "",
-   "appariement": "domaine",
+   "service": "Études et travaux",
+   "poste_dcip_id": "ingenieur-conduite-doperations-de-batiments-opc-suivi-de-chantier-hf-30249",
+   "appariement": "url",
    "candidature_permanente": false
   },
   {
@@ -3255,8 +3724,9 @@
     "url_candidature": "https://www.departement06.fr/stratis-external-link/7428"
    },
    "dcip": true,
-   "service": "",
-   "appariement": "domaine",
+   "service": "Maintenance des collèges",
+   "poste_dcip_id": "charge-de-projets-etudes-et-marches-hf-33932",
+   "appariement": "url",
    "candidature_permanente": false
   },
   {
