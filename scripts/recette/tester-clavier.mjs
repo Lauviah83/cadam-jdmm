@@ -1,13 +1,14 @@
 /* Navigation au clavier : ordre de tabulation, focus visible, piège de focus
    dans la feuille modale, raccourcis des quiz. */
 import { chromium } from 'playwright-core';
+const BASE = process.env.URL_BASE || 'http://127.0.0.1:8123/';
 const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox','--disable-gpu'] });
 const ctx = await b.newContext({ viewport: { width: 1440, height: 900 }, locale: 'fr-FR' });
 const p = await ctx.newPage();
 let ko = 0;
 const ok = (n, c, d = '') => { console.log((c ? '  ✔ ' : '  ✘ ') + n + (c ? '' : '  → ' + d)); if (!c) ko++; };
 
-await p.goto('http://127.0.0.1:8123/', { waitUntil: 'networkidle' });
+await p.goto(BASE, { waitUntil: 'networkidle' });
 await p.waitForTimeout(700);
 
 console.log('\n— Lien d\'évitement —');

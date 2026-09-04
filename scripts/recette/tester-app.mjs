@@ -1,7 +1,7 @@
 /* Recette de l'application dans un vrai navigateur. */
 import { chromium } from 'playwright-core';
 
-const BASE = 'http://127.0.0.1:8123/';
+const BASE = process.env.URL_BASE || 'http://127.0.0.1:8123/';
 const navigateur = await chromium.launch({
   executablePath: '/usr/bin/chromium',
   args: ['--no-sandbox', '--disable-gpu'],

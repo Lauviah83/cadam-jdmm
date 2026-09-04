@@ -7,7 +7,7 @@ export const A = {
   devise: 'La charte des fichiers du projet, systématisée',
 
   // Polices — Fraunces / Manrope / JetBrains Mono, reprises des sources.
-  fontesGoogle: 'family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500',
+  fontesGoogle: 'family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500',
   titre: "'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif",
   texte: "'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif",
   mono: "'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace",
