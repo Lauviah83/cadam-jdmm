@@ -51,6 +51,11 @@ CHROME_PATH=/usr/bin/chromium npx lighthouse@12 http://127.0.0.1:8123/ \
 
 | | Performance | Accessibilité | Bonnes pratiques | SEO |
 |---|---|---|---|---|
-Les relevés d'avant la scission en deux applications ne valent plus : à remesurer.
+Sur le site déployé, profil mobile, le 4 septembre 2026 :
+
+| | Performance | Accessibilité | Bonnes pratiques | SEO |
+|---|---|---|---|---|
+| Postes | 93 | 100 | 100 | 100 |
+| Quiz | 100 | 100 | 100 | 100 |
 
 axe-core : **0 violation** sur 9 écrans × 2 formats, dans les deux habillages.

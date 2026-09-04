@@ -32,12 +32,14 @@ obtient son score et son verdict. Aucune inscription, rien à installer.
 
 ## Qualité mesurée
 
+Relevés sur le site déployé, profil mobile :
+
 | | Performance | Accessibilité | Bonnes pratiques | SEO |
 |---|---|---|---|---|
-| Postes, mobile | à remesurer | 100 | 100 | 100 |
-| Quiz, mobile | à remesurer | 100 | 100 | 100 |
+| Postes | 93 | 100 | 100 | 100 |
+| Quiz | 100 | 100 | 100 | 100 |
 
-axe-core (WCAG 2.1 AA) : **0 violation** sur 9 écrans × 2 formats.
+axe-core (WCAG 2.1 AA) : **0 violation** sur 9 écrans × 2 formats, en local et en production.
 Recette complète dans `scripts/recette/` — parcours, clavier, hors ligne, accessibilité.
 
 ---
