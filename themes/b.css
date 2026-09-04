@@ -1,0 +1,141 @@
+/* ==========================================================================
+   b.css — Design B « Signature »
+   --------------------------------------------------------------------------
+   Charte dérivée de l'héraldique départementale : encre, or, gueules.
+
+   ⚠️ RÉSERVE — les valeurs ci-dessous ont été construites à partir des
+   couleurs héraldiques décrites (azur, or, gueules), et NON prélevées sur le
+   fichier du logo officiel, qui n'a pas été fourni. Elles sont accessibles et
+   cohérentes en l'état, mais devront être recalées sur les valeurs exactes du
+   logo dès sa réception. Voir docs/CHARTE.md § « Ce qui reste à caler ».
+
+   CONTRASTES : tous les couples texte/fond ont été mesurés (WCAG 2.1) et sont
+   annotés. Le fond de référence est --papier (#FBFAF7).
+   ========================================================================== */
+
+[data-theme="b"] {
+
+  /* --- Bleus d'encre -------------------------------------------------------- */
+  --encre9: #0B2E4F;   /* aplats, en-têtes — blanc dessus : 13,8:1 ✔ AAA */
+  --encre7: #123A5C;   /* survol d'un aplat — blanc dessus : 11,8:1 ✔ AAA */
+  --encre3: #AFC4D6;   /* bordures, séparateurs colorés */
+  --encre0: #EAF0F5;   /* fonds de blocs informatifs */
+
+  /* --- Or héraldique --------------------------------------------------------
+     Deux valeurs, et le choix n'est pas cosmétique : l'or clair est lisible
+     sur l'encre mais pas sur le papier. Les confondre casse l'accessibilité. */
+  --or: #D4A24A;         /* 6,0:1 sur --encre9 ✔ AA — accent sur fond sombre,
+                            filets, aplats. JAMAIS en texte sur fond clair (2,2:1) */
+  --or-texte: #8A6410;   /* 5,1:1 sur papier ✔ AA — texte et libellés sur clair */
+  --or-fond: #F7EFDD;    /* aplat discret */
+
+  /* --- Gueules — l'alerte, et rien d'autre ---------------------------------
+     Le rouge du blason ne sert pas de couleur décorative : il signale une
+     échéance dépassée, une erreur, une donnée manquante. Le banaliser en
+     ornement lui ferait perdre sa fonction. */
+  --gueules: #B02026;      /* 6,5:1 sur papier ✔ AA — blanc dessus : 6,8:1 ✔ AA */
+  --gueules-fond: #F9E9E9;
+
+  /* --- Vert de validation --------------------------------------------------- */
+  --vert: #0F5B44;         /* 7,7:1 ✔ AAA */
+  --vert-fond: #E4F0EA;
+
+  /* --- Fonds ---------------------------------------------------------------- */
+  --papier: #FBFAF7;
+  --papier-alt: #F2F0EA;
+  --surface: #FFFFFF;
+  --voile: rgba(11, 46, 79, 0.58);
+
+  /* --- Rôles sémantiques ----------------------------------------------------
+     Mêmes noms que dans a.css : c'est ce qui rend les deux thèmes
+     interchangeables sans toucher au code applicatif. */
+  --fond: var(--papier);
+  --fond-alt: var(--papier-alt);
+  --texte: #14293D;                 /* ardoise — 14,2:1 ✔ AAA */
+  --texte-doux: #4A5B6B;            /*  6,7:1 ✔ AA */
+  --texte-faible: #5C6B77;          /*  5,3:1 ✔ AA */
+  --texte-inverse: #FFFFFF;
+  --lien: var(--encre9);            /* 13,3:1 — souligné, pas seulement coloré */
+  --lien-survol: var(--encre7);
+  --bordure: #DAD6CB;
+  --bordure-forte: var(--encre3);
+  --accent: var(--or);
+  --accent-texte: var(--or-texte);
+  --succes: var(--vert);
+  --alerte: var(--gueules);
+  --info: var(--encre9);
+
+  --marque: var(--encre9);
+  --marque-fond: var(--encre9);
+  --marque-texte: #FFFFFF;
+
+  /* --- Typographies ---------------------------------------------------------
+     Archivo est un grotesque de signalétique : il évoque le panneau
+     administratif plutôt que l'application grand public, et se distingue
+     nettement du couple serif/sans du Design A. IBM Plex Sans porte la
+     lecture — dessinée pour l'écran, très lisible en petits corps. */
+  --police-titre: "Archivo", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --police-texte: "IBM Plex Sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, "Helvetica Neue", Arial, sans-serif;
+  --police-mono:  "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo,
+                  Consolas, "Liberation Mono", monospace;
+
+  /* Réglages de titrage propres à Archivo (police variable : largeur + graisse). */
+  --titre-graisse: 800;
+  --titre-largeur: 88;              /* font-variation-settings: "wdth" */
+  --titre-interlettre: -0.03em;
+
+  /* --- Géométrie ------------------------------------------------------------
+     Angles francs, assumés : 4 px là où le Design A en met 16. La forme fait
+     ici une part du travail de différenciation, à couleurs comparables. */
+  --rayon-xs: 2px;
+  --rayon-sm: 3px;
+  --rayon-md: 4px;
+  --rayon-lg: 4px;
+  --rayon-xl: 6px;
+  --rayon-plein: 3px;               /* même les « pastilles » restent anguleuses */
+
+  /* --- Ombres ---------------------------------------------------------------
+     Beaucoup plus sèches que dans le Design A : la hiérarchie passe par le
+     trait et l'aplat, pas par la profondeur. */
+  --ombre-sm: 0 1px 1px rgba(11, 46, 79, 0.06);
+  --ombre-md: 0 1px 2px rgba(11, 46, 79, 0.08);
+  --ombre-lg: 0 4px 16px rgba(11, 46, 79, 0.14);
+  --ombre-focus: 0 0 0 var(--trait-focus) rgba(11, 46, 79, 0.35);
+
+  --focus-couleur: var(--encre9);
+  --focus-decalage: 2px;
+
+  /* ======================================================================
+     Ambiances des quiz — identiques au Design A.
+     Les fonds sombres par thème font partie du contenu validé du projet,
+     ils ne relèvent pas de la charte : ils ne changent pas d'un thème à
+     l'autre. Seuls les accents de texte sont vérifiés pour l'accessibilité.
+     ====================================================================== */
+
+  --quiz-feu-fond:    #0F0E0C;
+  --quiz-feu-accent:  #E94B1F;      /* 5,0:1 ✔ AA */
+  --quiz-feu-surface: #1A1815;
+  --quiz-feu-texte:   #F5F2ED;      /* 17,3:1 ✔ AAA */
+  --quiz-feu-doux:    #B9B4AC;      /*  9,4:1 ✔ AAA */
+
+  --quiz-gard-fond:    #0B0E14;
+  --quiz-gard-accent:  #3B82F6;     /* 5,3:1 ✔ AA */
+  --quiz-gard-surface: #151A24;
+  --quiz-gard-texte:   #EEF2F8;     /* 17,2:1 ✔ AAA */
+  --quiz-gard-doux:    #B9B4AC;
+
+  --quiz-sur-fond:    #0A0D14;
+  --quiz-sur-surface: #141A26;
+  --quiz-sur-texte:   #EEF2F8;      /* 17,3:1 ✔ AAA */
+  --quiz-sur-doux:    #B9B4AC;
+  --quiz-sur-accent:       #3D6FE8; /* 4,3:1 — surfaces et bordures uniquement */
+  --quiz-sur-accent-texte: #4C7BEC; /* 5,0:1 ✔ AA — texte */
+
+  --quiz-juste:       #34D399;
+  --quiz-juste-fond:  rgba(52, 211, 153, 0.12);
+  --quiz-faux:        #F87171;
+  --quiz-faux-fond:   rgba(248, 113, 113, 0.12);
+  --quiz-neutre-fond: rgba(255, 255, 255, 0.05);
+  --quiz-bordure:     rgba(255, 255, 255, 0.14);
+}

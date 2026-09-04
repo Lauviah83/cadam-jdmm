@@ -11,3 +11,8 @@ Thumbs.db
 __pycache__/
 *.pyc
 .venv/
+# Sortie du générateur de maquettes (régénérable par `node design/generer.mjs`)
+design/sortie/
+design/apercu/
+design/ctrl/
+design/captures/
