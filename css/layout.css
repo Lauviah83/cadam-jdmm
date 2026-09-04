@@ -112,7 +112,11 @@
 }
 .tabbar__item {
   position: relative;
-  flex: 1;
+  /* flex-basis 0 : les cinq colonnes se partagent la largeur à parts égales,
+     quelle que soit la longueur des libellés. Sans cela, « Sélection » prend
+     plus de place que « Quiz » et la barre perd sa régularité. */
+  flex: 1 1 0;
+  min-width: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -124,7 +128,15 @@
   font-size: 0.65rem;
   font-weight: var(--graisse-moyenne);
   letter-spacing: -0.01em;
+  text-align: center;
   touch-action: manipulation;
+}
+/* Un libellé trop long est resserré plutôt que tronqué ou replié. */
+.tabbar__item > span:last-child {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .tabbar__item[aria-current="page"] {
   color: var(--marque);
@@ -141,7 +153,7 @@
 .tabbar__pastille {
   position: absolute;
   top: 2px;
-  right: calc(50% - 22px);
+  right: calc(50% - 20px);
   min-width: 17px; height: 17px;
   padding: 0 4px;
   border-radius: var(--rayon-plein);

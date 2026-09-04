@@ -168,8 +168,9 @@ await pc.goto(BASE, { waitUntil: 'networkidle' });
 await pc.waitForTimeout(500);
 ok('la barre d\'onglets basse disparaît', !(await pc.locator('.tabbar').isVisible()));
 ok('la navigation haute apparaît', await pc.locator('.topnav').isVisible());
-ok('les 4 entrées sont dans la navigation haute',
-   await pc.locator('.topnav__lien').count() === 4);
+ok('les 5 entrées sont dans la navigation haute',
+   await pc.locator('.topnav__lien').count() === 5,
+   String(await pc.locator('.topnav__lien').count()));
 const largeur = await pc.locator('#vue-accueil .section').first().evaluate((el) => el.getBoundingClientRect().width);
 ok('le contenu est borné à 1100 px', largeur <= 1100, `${Math.round(largeur)}px`);
 

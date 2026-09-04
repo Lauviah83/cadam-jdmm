@@ -19,17 +19,20 @@ import * as vuePostes from './views/postes.js';
 import * as vueSelection from './views/selection.js';
 
 const ONGLETS = [
-  { id: 'metiers',   libelle: 'Métiers',      route: '#/metiers' },
-  { id: 'quiz',      libelle: 'Quiz',         route: '#/quiz' },
-  { id: 'postes',    libelle: 'Postes',       route: '#/postes' },
-  { id: 'selection', libelle: 'Ma sélection', route: '#/selection' },
+  { id: 'accueil',   libelle: 'Accueil',   route: '#/accueil' },
+  { id: 'metiers',   libelle: 'Métiers',   route: '#/metiers' },
+  { id: 'quiz',      libelle: 'Quiz',      route: '#/quiz' },
+  { id: 'postes',    libelle: 'Postes',    route: '#/postes' },
+  // Libellé court : à cinq entrées sur 390 px, « Ma sélection » débordait de
+  // sa colonne. Le titre de la vue, lui, reste « Ma sélection ».
+  { id: 'selection', libelle: 'Sélection', route: '#/selection' },
 ];
 
 /* Chaque route nomme la vue à afficher, l'onglet à marquer comme courant,
    et la fonction qui la rend. `motif` capture les paramètres. */
 const ROUTES = [
-  { motif: /^#?\/?$/,                   vue: 'accueil',    onglet: 'metiers',   rendu: (a) => rendreAccueil(a) },
-  { motif: /^#\/accueil$/,              vue: 'accueil',    onglet: 'metiers',   rendu: (a) => rendreAccueil(a) },
+  { motif: /^#?\/?$/,                   vue: 'accueil',    onglet: 'accueil',   rendu: (a) => rendreAccueil(a) },
+  { motif: /^#\/accueil$/,              vue: 'accueil',    onglet: 'accueil',   rendu: (a) => rendreAccueil(a) },
   { motif: /^#\/metiers$/,              vue: 'metiers',    onglet: 'metiers',   rendu: vueMetiers.rendreListe },
   { motif: /^#\/phase\/(\d+)$/,         vue: 'phase',      onglet: 'metiers',   rendu: vueMetiers.rendrePhase },
   { motif: /^#\/quiz$/,                 vue: 'quiz',       onglet: 'quiz',      rendu: vueQuiz.rendreHub },

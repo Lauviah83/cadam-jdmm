@@ -20,6 +20,7 @@ export const ICONES = {
   camera:     (t) => svg('<path d="M3 8.5h11.5v7H3z"/><path d="m14.5 12 6-3v9l-6-3"/><circle cx="7" cy="12" r="1.6"/>', t),
 
   // Navigation
+  accueil:    (t) => svg('<path d="M3.5 10.5 12 3.5l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M9.75 20v-5.5h4.5V20"/>', t),
   metiers:    (t) => svg('<path d="M4 5.5h16"/><path d="M4 12h16"/><path d="M4 18.5h16"/><circle cx="8" cy="5.5" r="1.8" fill="currentColor" stroke="none"/><circle cx="14" cy="12" r="1.8" fill="currentColor" stroke="none"/><circle cx="10" cy="18.5" r="1.8" fill="currentColor" stroke="none"/>', t),
   quiz:       (t) => svg('<circle cx="12" cy="12" r="9"/><path d="M9.4 9.2a2.7 2.7 0 0 1 5.2.9c0 1.8-2.6 2.2-2.6 4"/><circle cx="12" cy="17.2" r="1" fill="currentColor" stroke="none"/>', t),
   postes:     (t) => svg('<rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5"/><path d="M3 13h18"/>', t),

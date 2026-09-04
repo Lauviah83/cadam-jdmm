@@ -39,9 +39,10 @@ console.log('\n— Démarrage —');
 await aller('');
 ok('la page se charge sans erreur console', erreurs.length === 0, erreurs.slice(0, 2).join(' | '));
 ok('le titre de l\'accueil est présent', await page.locator('#titre-accueil').isVisible());
-ok('la barre d\'onglets a 4 entrées', await page.locator('.tabbar__item').count() === 4);
+ok('la barre d\'onglets a 5 entrées', await page.locator('.tabbar__item').count() === 5,
+   String(await page.locator('.tabbar__item').count()));
 ok('les libellés des onglets sont rendus',
-   (await page.locator('.tabbar__item').first().textContent()).includes('Métiers'));
+   (await page.locator('.tabbar__item').first().textContent()).includes('Accueil'));
 ok('le bandeau de fraîcheur des offres apparaît',
    await page.locator('#accueil-fraicheur .bandeau').isVisible());
 

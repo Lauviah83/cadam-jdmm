@@ -104,7 +104,7 @@ function plancheArbitrage() {
   const corps = `
     <div style="padding:38px 40px 44px;display:flex;flex-direction:column;gap:30px">
       <div style="padding-bottom:20px;border-bottom:3px solid ${A.encre}">
-        ${eyebrow(A, 'Journée des métiers et de la mobilité · CADAM · 25 septembre 2026', A.accentTexte)}
+        ${eyebrow(A, 'Journée des métiers et de la mobilité · CADAM · 23 septembre 2026', A.accentTexte)}
         <div style="margin-top:8px">${titre(A, 'Deux directions à départager', 38)}</div>
         <div style="margin-top:9px;font-size:14.5px;line-height:1.6;color:${A.texteDoux};max-width:820px">
           Même contenu, même structure, mêmes écrans : seule la couche visuelle change. Les couleurs et

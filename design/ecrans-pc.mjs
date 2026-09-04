@@ -33,7 +33,7 @@ function navHaute(T, actif, compteur = 2) {
         }).join('')}
       </div>
       <span style="font-family:${T.mono};font-size:10px;letter-spacing:${T.eyebrowEspace};
-        text-transform:uppercase;color:rgba(255,255,255,.34)">CADAM · 25 sept. 2026</span>
+        text-transform:uppercase;color:rgba(255,255,255,.34)">CADAM · 23 sept. 2026</span>
     </div>
   </div>`;
 }

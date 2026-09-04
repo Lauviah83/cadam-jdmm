@@ -121,7 +121,6 @@ uniquement au moment d'un envoi.
 ## Points ouverts
 
 - **Logo officiel** — les icônes sont provisoires ; le SVG reste à réclamer
-- **Date du 25 septembre 2026** à confirmer (`config.json` → `evenement.date_confirmee`)
 - **Clés Web3Forms et EmailJS** à créer (`docs/EXPLOITATION.md` §5) — sans elles, l'application
   fonctionne en plan B : téléchargement du récapitulatif et lien `mailto:`
 - **Validation du DPO** sur les prestataires d'envoi (`docs/RGPD.md`)
