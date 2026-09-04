@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="fr" data-theme="a">
+<head>
+<meta charset="utf-8">
+<!-- viewport-fit=cover : sans lui, env(safe-area-inset-*) vaut 0 et la barre
+     d'onglets passe sous la barre de geste de l'iPhone. -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Métiers &amp; Mobilité DCIP — Département des Alpes-Maritimes</title>
+<meta name="description" content="Découvrir les métiers de la Direction de la Construction, de l'Immobilier et du Patrimoine, tester ses connaissances et retrouver les postes ouverts au Département des Alpes-Maritimes.">
+<meta name="theme-color" content="#042C53">
+<meta name="color-scheme" content="light">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="assets/icons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Métiers DCIP">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Les polices ne doivent pas retarder le premier affichage : la feuille est
+     chargée en tâche de fond puis appliquée. Les piles de repli des thèmes
+     (Georgia pour Fraunces, système pour Manrope) ont des métriques proches,
+     ce qui limite le décalage à la bascule. -->
+<link rel="preload" as="style"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" media="print" onload="this.media='all';this.onload=null"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<noscript><link rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"></noscript>
+
+<link rel="stylesheet" href="themes/tokens.css">
+<link rel="stylesheet" href="themes/a.css">
+<!-- THEME SWITCHER — à supprimer après arbitrage (Design A retenu le 04/09/2026).
+     Cette feuille est sans effet tant que <html data-theme> ne vaut pas "b". -->
+<link rel="stylesheet" href="themes/b.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+
+<body>
+<a class="evitement" href="#contenu">Aller au contenu</a>
+
+<!-- Signale une perte de réseau. Masqué tant que la connexion tient. -->
+<div class="bandeau-reseau" id="bandeau-reseau" role="status" hidden></div>
+
+<div class="appli">
+
+  <!-- Navigation haute — visible au-delà de 1024 px (borne du stand, bureau) -->
+  <header class="topnav">
+    <div class="topnav__interieur">
+      <a class="topnav__marque" href="#/accueil">
+        <span class="topnav__blason" aria-hidden="true">06</span>
+        <span>Métiers <em>&amp; mobilité</em></span>
+      </a>
+      <nav class="topnav__liens" aria-label="Navigation principale">
+        <a class="topnav__lien" href="#/metiers"   data-onglet="metiers"></a>
+        <a class="topnav__lien" href="#/quiz"      data-onglet="quiz"></a>
+        <a class="topnav__lien" href="#/postes"    data-onglet="postes"></a>
+        <a class="topnav__lien" href="#/selection" data-onglet="selection"></a>
+      </nav>
+      <span class="surtitre" id="topnav-evenement"></span>
+    </div>
+  </header>
+
+  <main class="contenu" id="contenu">
+    <!-- Chaque vue est rendue par son module ; une seule porte .active -->
+    <section class="vue" id="vue-accueil"   aria-labelledby="titre-accueil"></section>
+    <section class="vue" id="vue-metiers"   aria-labelledby="titre-metiers"></section>
+    <section class="vue" id="vue-phase"     aria-labelledby="titre-phase"></section>
+    <section class="vue" id="vue-quiz"      aria-labelledby="titre-quiz"></section>
+    <section class="vue" id="vue-partie"></section>
+    <section class="vue" id="vue-postes"    aria-labelledby="titre-postes"></section>
+    <section class="vue" id="vue-poste"></section>
+    <section class="vue" id="vue-selection" aria-labelledby="titre-selection"></section>
+    <section class="vue" id="vue-formulaire"></section>
+
+    <footer class="pied" id="pied">
+      <nav aria-label="Liens de bas de page">
+        <a href="mentions.html?doc=rgpd">Données personnelles</a>
+        <a href="mentions.html?doc=accessibilite">Accessibilité</a>
+        <a href="https://www.departement06.fr/offres-demploi" rel="noopener">Offres du Département</a>
+      </nav>
+      <p id="pied-fraicheur"></p>
+      <p>Département des Alpes-Maritimes — DCIP. Aucun traceur, aucune mesure d'audience.</p>
+
+      <!-- THEME SWITCHER — à supprimer après arbitrage (Design A retenu le 04/09/2026).
+           Retirer ce bloc, le <link> de themes/b.css dans le <head>, et le fichier
+           themes/b.css lui-même. Rien d'autre n'en dépend. -->
+      <div class="selecteur-theme">
+        <span id="etiquette-theme">Habillage&nbsp;:</span>
+        <button type="button" class="puce" data-theme-choix="a" aria-pressed="true">A — Institutionnel</button>
+        <button type="button" class="puce" data-theme-choix="b" aria-pressed="false">B — Signature</button>
+      </div>
+      <!-- FIN THEME SWITCHER -->
+
+      <div class="selecteur-theme">
+        <button type="button" class="puce" id="bouton-lisibilite" aria-pressed="false">
+          Mode haute lisibilité
+        </button>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Barre d'onglets — navigation principale sous 1024 px -->
+  <nav class="tabbar" aria-label="Navigation principale">
+    <a class="tabbar__item" href="#/metiers"   data-onglet="metiers"></a>
+    <a class="tabbar__item" href="#/quiz"      data-onglet="quiz"></a>
+    <a class="tabbar__item" href="#/postes"    data-onglet="postes"></a>
+    <a class="tabbar__item" href="#/selection" data-onglet="selection"></a>
+  </nav>
+</div>
+
+<!-- Feuille modale, réutilisée par les filtres et les confirmations -->
+<div class="voile" id="voile" hidden></div>
+<div class="feuille" id="feuille" role="dialog" aria-modal="true" aria-labelledby="feuille-titre" hidden>
+  <div class="feuille__poignee" aria-hidden="true"></div>
+  <div id="feuille-contenu"></div>
+</div>
+
+<!-- Annonces destinées aux lecteurs d'écran (changement de vue, résultat d'envoi) -->
+<p class="lecteur-seul" id="annonce" role="status" aria-live="polite"></p>
+
+<noscript>
+  <div class="section">
+    <div class="bandeau bandeau--alerte">
+      Cette application a besoin de JavaScript. Les offres d'emploi du Département restent
+      consultables sur <a href="https://www.departement06.fr/offres-demploi">departement06.fr</a>.
+    </div>
+  </div>
+</noscript>
+
+<script type="module" src="js/app.js"></script>
+</body>
+</html>

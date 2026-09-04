@@ -129,6 +129,10 @@ export function ajouterALaSelection(offre) {
                           ? offre.detail['lieu-de-travail'].texte : ''),
     deadline: offre.deadline || '',
     deadline_label: offre.deadline_label || '',
+    // Le statut réel accompagne l'entrée : un poste dont l'annonce est retirée
+    // doit apparaître comme tel dans le récapitulatif reçu, pas comme ouvert.
+    statut_libelle: (offre.statut && offre.statut.libelle) || '',
+    statut_expiree: Boolean(offre.statut && offre.statut.expiree),
     source: offre.dcip === undefined ? 'poste-dcip' : 'offre-departement',
     ajoute_le: new Date().toISOString(),
   });

@@ -35,6 +35,7 @@ const RESSOURCES_SOCLE = [
   './js/store.js',
   './js/offers.js',
   './js/mailer.js',
+  './js/icones.js',
   './js/views/metiers.js',
   './js/views/quiz.js',
   './js/views/postes.js',
@@ -45,7 +46,19 @@ const RESSOURCES_SOCLE = [
   './data/postes-dcip.json',
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
+  './assets/icons/favicon-32.png',
+  // La visionneuse de mentions et les documents qu'elle affiche : une
+  // déclaration d'accessibilité inaccessible hors ligne serait paradoxale.
+  './mentions.html',
+  './js/mentions.js',
+  './docs/RGPD.md',
+  './docs/ACCESSIBILITE.md',
 ];
+
+/* Volontairement ABSENT du socle : data/offers-details.json (296 ko).
+   Il n'est utile qu'à l'ouverture d'une fiche d'offre, et la stratégie
+   « réseau d'abord » le met en cache dès la première consultation. Le
+   précharger multiplierait par sept le poids de l'installation. */
 
 /* -------------------------------------------------------------------------
    Installation — on précharge le socle.

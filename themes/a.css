@@ -10,8 +10,8 @@
    sont signalées par « ⚠ CORRECTION ».
    ========================================================================== */
 
-:root,
-[data-theme="a"] {
+:root:not([data-theme]),
+:root[data-theme="a"] {
 
   /* --- Bleus institutionnels (palette d'origine, inchangée) ---------------- */
   --b9: #042C53;   /* bleu nuit    — texte principal : 13.5:1 sur papier ✔ AAA */
@@ -53,18 +53,26 @@
   --texte-faible: #616D82;               /* 5.0:1 ✔ AA  — mentions discrètes.
                                             #67748A tombait à 4.52:1, sans marge. */
   --texte-inverse: #FFFFFF;              /* 14.1:1 sur --b9 ✔ AAA */
+  /* Texte secondaire POSÉ SUR un aplat de marque. Le gris --texte-faible est
+     fait pour les fonds clairs : sur le navy il tombe à 2,7:1. */
+  --texte-inverse-doux: var(--b1);       /* 9.2:1 sur --b9 ✔ AAA */
   --lien: var(--b6);
   --lien-survol: var(--b8);
   --bordure: #D9DFE7;
   --bordure-forte: var(--b1);
+  --glace: var(--b0);                    /* fond des blocs informatifs */
   --accent: var(--a2);
   --accent-texte: var(--a2-texte);
+  --accent-fond: #FAEEDA;                /* --a0 des sources */
   --succes: var(--t6);
+  --succes-fond: #E1F5EE;                /* --t0 des sources */
   --alerte: var(--c6);
+  --alerte-fond: #FAECE7;                /* --c0 des sources */
   --info: var(--b6);
 
   /* --- Marque -------------------------------------------------------------- */
   --marque: var(--b8);
+  --marque-degrade: linear-gradient(150deg, #031F3D 0%, #0C447C 100%);
   --marque-fond: var(--b9);
   --marque-texte: #FFFFFF;
 
@@ -128,6 +136,12 @@
   /* --- États de réponse (communs aux trois quiz) ---------------------------
      Le vert et le rouge ne portent jamais l'information seuls : ils sont
      toujours doublés d'une icône et d'un libellé (RGAA 3.1). */
+  /* Texte posé sur un accent vif de quiz (le bouton « Valider »).
+     Mesuré sur les trois accents : le quasi-noir #0B0B0B tombait à 4,35:1
+     sur le bleu de la sûreté, sous le seuil AA. Le noir pur passe partout —
+     feu 5,5:1 · gardiennage 5,7:1 · sûreté 4,6:1. Le blanc échouerait
+     sur les trois (3,8 / 3,7 / 4,5). */
+  --quiz-texte-sur-accent: #000000;
   --quiz-juste:       #34D399;   /* sur fond sombre */
   --quiz-juste-fond:  rgba(52, 211, 153, 0.12);
   --quiz-faux:        #F87171;

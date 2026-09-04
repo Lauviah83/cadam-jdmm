@@ -1,0 +1,289 @@
+/* ==========================================================================
+   layout.css — Coque de l'application, navigation, points de rupture
+   --------------------------------------------------------------------------
+   Le mobile est le cas par défaut : la barre d'onglets basse et le contenu
+   pleine largeur sont écrits sans média-query. Le PC est une amélioration
+   progressive au-delà de 1024 px, où la barre d'onglets devient une
+   navigation haute.
+   ========================================================================== */
+
+/* --- Coque ---------------------------------------------------------------- */
+.appli {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  /* Marges de sécurité latérales sur les écrans à encoche en paysage. */
+  padding-left: var(--sûr-gauche);
+  padding-right: var(--sûr-droite);
+}
+
+.contenu {
+  flex: 1;
+  /* Au moins la hauteur de l'écran. Les vues sont rendues en JavaScript :
+     sans cette réserve, le pied de page s'affichait en haut d'une page encore
+     vide puis était repoussé d'un écran entier à l'arrivée du contenu — à lui
+     seul 0,41 de décalage cumulé, l'essentiel du CLS mesuré. */
+  min-height: 100dvh;
+  /* Colonne flexible pour que le pied de page puisse être poussé en bas :
+     une simple min-height sur le conteneur ne déplace pas son dernier enfant. */
+  display: flex;
+  flex-direction: column;
+  /* Réserve la place de la barre d'onglets : sans cela, le dernier bouton
+     d'une vue se retrouve dessous et devient inatteignable. */
+  padding-bottom: calc(var(--hauteur-tabbar) + var(--sûr-bas) + var(--pas-4));
+}
+
+.vue { display: none; }
+.vue.active { display: block; }
+
+.section { padding: var(--pas-4) var(--pas-5); }
+.section + .section { padding-top: 0; }
+
+.pile { display: flex; flex-direction: column; gap: var(--pas-3); }
+.pile-serree { display: flex; flex-direction: column; gap: var(--pas-2); }
+.rangee { display: flex; align-items: center; gap: var(--pas-3); }
+.rangee-fin { margin-left: auto; }
+
+/* --- En-tête de vue -------------------------------------------------------- */
+.entete-vue {
+  padding: var(--pas-4) var(--pas-5) var(--pas-3);
+  background: var(--surface);
+  border-bottom: var(--trait) solid var(--bordure);
+}
+.entete-vue h1 { font-size: var(--txt-lg); margin-top: var(--pas-1); }
+.entete-vue .sous { margin-top: var(--pas-1); font-size: var(--txt-sm); color: var(--texte-doux); }
+
+/* --- En-tête de détail (avec retour) --------------------------------------- */
+.entete-detail {
+  position: sticky;
+  top: 0;
+  z-index: var(--plan-sticky);
+  display: flex;
+  align-items: center;
+  gap: var(--pas-3);
+  min-height: var(--hauteur-entete);
+  padding: 0 var(--pas-3);
+  padding-top: var(--sûr-haut);
+  background: var(--surface);
+  border-bottom: var(--trait) solid var(--bordure);
+}
+.entete-detail .titre { font-size: var(--txt-base); font-weight: var(--graisse-demi); }
+
+/* --- Bandeau de marque ----------------------------------------------------- */
+.hero {
+  position: relative;
+  overflow: hidden;
+  padding: var(--pas-6) var(--pas-5);
+  padding-top: calc(var(--pas-6) + var(--sûr-haut));
+  background: var(--marque-degrade);
+  color: var(--marque-texte);
+}
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -70px; top: -70px;
+  width: 300px; height: 300px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(239, 159, 39, .10) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero > * { position: relative; }
+.hero h1 { color: var(--marque-texte); font-size: var(--txt-2xl); }
+.hero h1 em { font-style: italic; color: var(--accent); }
+.hero .sous {
+  margin-top: var(--pas-2);
+  max-width: 42ch;
+  font-size: var(--txt-sm);
+  color: var(--texte-inverse-doux);
+}
+.hero .metas .meta { color: var(--texte-inverse-doux); }
+
+/* --- Barre d'onglets (mobile) ----------------------------------------------
+   Position fixe : elle reste atteignable quelle que soit la longueur de la
+   vue. Le padding bas absorbe la barre de geste de l'iPhone. */
+.tabbar {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: var(--plan-tabbar);
+  display: flex;
+  background: var(--surface);
+  border-top: var(--trait) solid var(--bordure);
+  padding-bottom: max(var(--sûr-bas), 6px);
+}
+.tabbar__item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  min-height: var(--hauteur-tabbar);
+  color: var(--texte-faible);
+  text-decoration: none;
+  font-size: 0.65rem;
+  font-weight: var(--graisse-moyenne);
+  letter-spacing: -0.01em;
+  touch-action: manipulation;
+}
+.tabbar__item[aria-current="page"] {
+  color: var(--marque);
+  font-weight: var(--graisse-demi);
+}
+.tabbar__item[aria-current="page"]::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  width: 26px; height: 3px;
+  border-radius: 0 0 3px 3px;
+  background: var(--accent);
+}
+.tabbar__pastille {
+  position: absolute;
+  top: 2px;
+  right: calc(50% - 22px);
+  min-width: 17px; height: 17px;
+  padding: 0 4px;
+  border-radius: var(--rayon-plein);
+  background: var(--alerte);
+  color: var(--texte-inverse);
+  font-size: 0.625rem;
+  font-weight: var(--graisse-grasse);
+  line-height: 17px;
+  text-align: center;
+}
+.tabbar__pastille[hidden] { display: none; }
+
+/* --- Navigation haute (PC) — masquée sous 1024 px -------------------------- */
+.topnav { display: none; }
+
+/* --- Bandeau hors-ligne ----------------------------------------------------
+   Au-dessus de tout : c'est une information sur l'état de l'application. */
+.bandeau-reseau {
+  position: sticky;
+  top: 0;
+  z-index: var(--plan-annonce);
+  display: flex;
+  align-items: center;
+  gap: var(--pas-2);
+  padding: var(--pas-2) var(--pas-4);
+  background: var(--alerte);
+  color: var(--texte-inverse);
+  font-size: var(--txt-sm);
+}
+.bandeau-reseau[hidden] { display: none; }
+
+/* ==========================================================================
+   Au-delà de 1024 px — borne du stand et consultation bureau
+   ========================================================================== */
+@media (min-width: 1024px) {
+
+  .tabbar { display: none; }
+
+  .topnav {
+    display: block;
+    position: sticky;
+    top: 0;
+    z-index: var(--plan-entete);
+    background: var(--marque-fond);
+    color: var(--marque-texte);
+  }
+  .topnav__interieur {
+    max-width: var(--largeur-contenu);
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    gap: var(--pas-6);
+    height: 62px;
+    padding: 0 var(--pas-5);
+  }
+  .topnav__marque {
+    display: flex;
+    align-items: center;
+    gap: var(--pas-2);
+    font-family: var(--police-titre);
+    font-size: var(--txt-md);
+    color: var(--marque-texte);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .topnav__marque em { font-style: italic; color: var(--accent); }
+  .topnav__blason {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px; height: 32px;
+    border-radius: var(--rayon-sm);
+    background: var(--accent);
+    color: var(--marque-fond);
+    font-family: var(--police-mono);
+    font-weight: var(--graisse-grasse);
+    font-size: var(--txt-sm);
+  }
+  .topnav .surtitre { color: var(--texte-inverse-doux); }
+  .topnav__liens { display: flex; gap: 2px; flex: 1; }
+  .topnav__lien {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--pas-2);
+    height: 62px;
+    padding: 0 var(--pas-4);
+    color: rgba(255, 255, 255, .58);
+    text-decoration: none;
+    font-size: var(--txt-sm);
+    font-weight: var(--graisse-moyenne);
+  }
+  .topnav__lien:hover { color: rgba(255, 255, 255, .9); }
+  .topnav__lien[aria-current="page"] {
+    color: var(--texte-inverse);
+    font-weight: var(--graisse-demi);
+    box-shadow: inset 0 -3px 0 var(--accent);
+  }
+  .topnav__pastille {
+    min-width: 19px; height: 19px;
+    padding: 0 5px;
+    border-radius: var(--rayon-plein);
+    background: var(--accent);
+    color: var(--marque-fond);
+    font-size: 0.66rem;
+    font-weight: var(--graisse-grasse);
+    line-height: 19px;
+    text-align: center;
+  }
+
+  .contenu { padding-bottom: var(--pas-7); min-height: calc(100dvh - 62px); }
+  .section { max-width: var(--largeur-contenu); margin: 0 auto; padding: var(--pas-5); }
+  .entete-vue {
+    max-width: var(--largeur-contenu);
+    margin: 0 auto;
+    background: transparent;
+    border-bottom: none;
+    padding: var(--pas-6) var(--pas-5) var(--pas-2);
+  }
+  .entete-vue h1 { font-size: var(--txt-xl); }
+  .entete-detail { display: none; }   /* la navigation haute suffit */
+
+  .hero { padding: var(--pas-7) var(--pas-5); }
+  .hero__interieur {
+    max-width: var(--largeur-contenu);
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-end;
+    gap: var(--pas-7);
+  }
+  .hero h1 { font-size: var(--txt-3xl); }
+
+  /* Deux colonnes : la liste à gauche, le détail à droite. Sur un écran de
+     borne, on ne fait pas disparaître la liste pour afficher une fiche. */
+  .duo {
+    display: grid;
+    grid-template-columns: 400px 1fr;
+    gap: var(--pas-5);
+    align-items: start;
+  }
+  .duo--formulaire { grid-template-columns: 1fr 400px; }
+}
+
+@media (min-width: 1400px) {
+  .duo { grid-template-columns: 440px 1fr; }
+}

@@ -11,6 +11,7 @@
    ========================================================================== */
 
 const CHEMIN_OFFRES = './data/offers.json';
+const CHEMIN_DETAILS = './data/offers-details.json';
 const CHEMIN_POSTES = './data/postes-dcip.json';
 const CHEMIN_CONFIG = './data/config.json';
 
@@ -18,6 +19,8 @@ const CHEMIN_CONFIG = './data/config.json';
 let cacheOffres = null;
 let cachePostes = null;
 let cacheConfig = null;
+let cacheDetails = null;
+let promesseDetails = null;
 
 /* -------------------------------------------------------------------------
    Chargement
@@ -85,9 +88,35 @@ export async function chargerOffres() {
   return cacheOffres;
 }
 
+/**
+ * Charge le corps des fiches d'offres — 296 ko, contre 44 ko pour la liste.
+ * Volontairement séparé et chargé à la demande : l'accueil et la liste n'en
+ * ont pas besoin, et le télécharger d'emblée coûtait plusieurs secondes de
+ * chargement initial sur un réseau de hall d'exposition.
+ *
+ * Renvoie null si le fichier est indisponible : la fiche affiche alors le
+ * résumé et renvoie vers le site du Département, plutôt que de rester vide.
+ */
+export async function chargerDetail(id) {
+  if (!cacheDetails) {
+    if (!promesseDetails) {
+      promesseDetails = chargerJSON(CHEMIN_DETAILS)
+        .then(({ donnees }) => { cacheDetails = donnees.details || {}; })
+        .catch((err) => {
+          console.warn('[offers] offers-details.json indisponible', err);
+          cacheDetails = {};
+        });
+    }
+    await promesseDetails;
+  }
+  return cacheDetails[id] || null;
+}
+
 /** Force un rechargement (bouton « Actualiser » de la vue Postes). */
 export function invaliderCache() {
   cacheOffres = null;
+  cacheDetails = null;
+  promesseDetails = null;
 }
 
 /* -------------------------------------------------------------------------

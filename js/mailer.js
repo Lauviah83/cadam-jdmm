@@ -83,6 +83,12 @@ function echapper(texte) {
   ));
 }
 
+/** Ce qu'il faut écrire à la place d'une date : l'état réel de l'annonce. */
+function etatCandidature(offre) {
+  if (offre.statut_expiree) return `${offre.statut_libelle || 'Annonce close'} — retenue pour information`;
+  return offre.deadline_label || offre.statut_libelle || 'voir la fiche officielle';
+}
+
 function ligneOffreTexte(offre, index) {
   const morceaux = [
     `${index + 1}. ${offre.titre}`,
@@ -90,7 +96,7 @@ function ligneOffreTexte(offre, index) {
     (offre.categorie || offre.filiere)
       ? `   Catégorie ${offre.categorie || '—'} · Filière ${offre.filiere || '—'}` : '',
     offre.lieu ? `   Lieu : ${offre.lieu}` : '',
-    `   Candidature : ${offre.deadline_label || 'voir la fiche'}`,
+    `   Candidature : ${etatCandidature(offre)}`,
     `   Fiche officielle : ${offre.url}`,
   ];
   return morceaux.filter(Boolean).join('\n');
@@ -140,7 +146,7 @@ export function recapitulatifHTML(offres, config = {}, options = {}) {
               ${offre.categorie ? `Catégorie ${echapper(offre.categorie)}` : ''}
               ${offre.filiere ? ` &middot; Filière ${echapper(offre.filiere)}` : ''}
               ${offre.lieu ? `<br>Lieu : ${echapper(offre.lieu)}` : ''}
-              <br><strong>${echapper(offre.deadline_label || 'Voir la fiche')}</strong>
+              <br><strong style="color:${offre.statut_expiree ? '#993C1D' : NAVY}">${echapper(etatCandidature(offre))}</strong>
             </p>
             <a href="${echapper(offre.url)}"
                style="display:inline-block;padding:9px 16px;background:${NAVY};color:#FFFFFF;

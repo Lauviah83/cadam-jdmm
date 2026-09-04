@@ -13,7 +13,7 @@
    annotés. Le fond de référence est --papier (#FBFAF7).
    ========================================================================== */
 
-[data-theme="b"] {
+:root[data-theme="b"] {
 
   /* --- Bleus d'encre -------------------------------------------------------- */
   --encre9: #0B2E4F;   /* aplats, en-têtes — blanc dessus : 13,8:1 ✔ AAA */
@@ -55,17 +55,23 @@
   --texte-doux: #4A5B6B;            /*  6,7:1 ✔ AA */
   --texte-faible: #5C6B77;          /*  5,3:1 ✔ AA */
   --texte-inverse: #FFFFFF;
+  --texte-inverse-doux: var(--encre3);   /* 7,7:1 sur --encre9 ✔ AAA */
   --lien: var(--encre9);            /* 13,3:1 — souligné, pas seulement coloré */
   --lien-survol: var(--encre7);
   --bordure: #DAD6CB;
   --bordure-forte: var(--encre3);
+  --glace: var(--encre0);
   --accent: var(--or);
+  --accent-fond: var(--or-fond);
+  --succes-fond: var(--vert-fond);
+  --alerte-fond: var(--gueules-fond);
   --accent-texte: var(--or-texte);
   --succes: var(--vert);
   --alerte: var(--gueules);
   --info: var(--encre9);
 
   --marque: var(--encre9);
+  --marque-degrade: var(--encre9);   /* aplat franc, pas de dégradé */
   --marque-fond: var(--encre9);
   --marque-texte: #FFFFFF;
 
@@ -132,6 +138,12 @@
   --quiz-sur-accent:       #3D6FE8; /* 4,3:1 — surfaces et bordures uniquement */
   --quiz-sur-accent-texte: #4C7BEC; /* 5,0:1 ✔ AA — texte */
 
+  /* Texte posé sur un accent vif de quiz (le bouton « Valider »).
+     Mesuré sur les trois accents : le quasi-noir #0B0B0B tombait à 4,35:1
+     sur le bleu de la sûreté, sous le seuil AA. Le noir pur passe partout —
+     feu 5,5:1 · gardiennage 5,7:1 · sûreté 4,6:1. Le blanc échouerait
+     sur les trois (3,8 / 3,7 / 4,5). */
+  --quiz-texte-sur-accent: #000000;
   --quiz-juste:       #34D399;
   --quiz-juste-fond:  rgba(52, 211, 153, 0.12);
   --quiz-faux:        #F87171;

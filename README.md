@@ -19,14 +19,25 @@ scanne le QR code du stand :
 
 | Étape | État |
 |---|---|
-| Socle technique (thèmes, service worker, manifest, modules JS) | ✅ fait |
-| Robot de synchronisation des offres + GitHub Actions | ✅ fait et testé sur les données réelles |
-| Documentation (RGPD, exploitation) | ✅ fait |
-| Chartes graphiques Design A / Design B (Claude Design) | ⏳ en attente des fichiers sources |
-| Extraction du contenu vers `data/*.json` | ⏳ en attente des fichiers sources |
-| Vues mobile puis PC | ⏳ après validation des maquettes |
+| Socle technique (thèmes, service worker, manifest, modules JS) | ✅ |
+| Robot de synchronisation des offres + GitHub Actions | ✅ testé sur les données réelles |
+| Chartes graphiques Design A et Design B, 35 planches | ✅ **Design A retenu** |
+| Contenu extrait vers `data/*.json` | ✅ sauf la timeline (roll-up non fourni) |
+| Vues mobile puis PC | ✅ |
+| Accessibilité, performance, recette navigateur | ✅ voir ci-dessous |
+| QR code et planche A5 | ✅ à régénérer avec l'URL définitive |
+| Contenu des 10 phases du parcours | ⛔ **bloqué** — `timeline_rollup_60x160cm.pdf` non fourni |
+| Logo officiel | ⛔ non fourni — icônes provisoires |
 
-Les fichiers de référence attendus sont listés dans `sources/A-DEPOSER-ICI.md`.
+## Qualité mesurée
+
+| | Performance | Accessibilité | Bonnes pratiques | SEO |
+|---|---|---|---|---|
+| Mobile | 94 | 100 | 100 | 100 |
+| Bureau | 99 | 100 | 100 | 100 |
+
+axe-core (WCAG 2.1 AA) : **0 violation** sur 10 écrans × 2 formats × 2 habillages.
+Relevés en local, où rien n'est compressé : la production sera meilleure.
 
 ---
 
@@ -47,6 +58,9 @@ node scripts/test-logique.mjs            # 24 assertions sur la logique métier
 python3 scripts/sync_offers.py --dry-run # collecte des offres, sans écriture
 ```
 
+Recette dans un vrai navigateur (parcours, clavier, hors ligne, accessibilité) :
+voir `scripts/recette/LISEZMOI.md`.
+
 ## Régénérer les offres à la main
 
 Onglet **Actions** du dépôt → « Synchronisation des offres » → **Run workflow**.
@@ -57,15 +71,32 @@ Sinon, en local : `python3 scripts/sync_offers.py`.
 ## Organisation du dépôt
 
 ```
-data/          contenu éditorial (JSON) — c'est ici qu'on modifie les textes
-  offers.json    ⚠️ généré par le robot, ne jamais éditer à la main
-themes/        tokens de couleur et de typographie — aucune couleur ailleurs
-css/           mise en page et composants
-js/            application (ES modules, sans framework ni bundler)
-scripts/       robot de synchronisation des offres + contrôles
-docs/          RGPD, exploitation, charte
-sources/       fichiers de référence d'origine (non publiés en ligne)
+index.html         coque de l'application
+mentions.html      visionneuse des documents de docs/ (RGPD, accessibilité)
+b/                 prévisualisation de l'habillage B — à supprimer après arbitrage
+data/              contenu éditorial (JSON) — c'est ici qu'on modifie les textes
+  offers.json        ⚠️ généré par le robot, ne jamais éditer à la main
+  offers-details.json ⚠️ idem — chargé seulement à l'ouverture d'une fiche
+themes/            tokens de couleur et de typographie — aucune couleur ailleurs
+css/               mise en page et composants
+js/                application (ES modules, sans framework ni bundler)
+  views/             une vue par onglet
+assets/            icônes PWA, QR code, planche A5
+scripts/           robot de synchronisation, générateur de QR, recette
+design/            générateur des maquettes (hors application)
+docs/              RGPD, accessibilité, exploitation, charte
+sources/           fichiers de référence d'origine (non publiés en ligne)
 ```
+
+## Le Design A est retenu
+
+L'habillage B reste livré et fonctionnel (`themes/b.css`, prévisualisation sur `/b/`).
+Pour l'effacer définitivement, trois suppressions suffisent — tous les blocs concernés
+portent le commentaire `THEME SWITCHER` :
+
+1. le sélecteur en pied de page dans `index.html` et le `<link>` de `themes/b.css` ;
+2. la fonction `brancherSelecteurTheme()` dans `js/app.js` et son appel ;
+3. les fichiers `themes/b.css` et `b/index.html`.
 
 ## Choix techniques
 
@@ -80,16 +111,21 @@ uniquement au moment d'un envoi.
 
 ## Points ouverts
 
-- Date de l'événement à confirmer (`data/config.json` → `evenement.date`)
-- Clés Web3Forms et EmailJS à créer (voir `docs/EXPLOITATION.md` §5)
-- Validation du DPO sur les prestataires d'envoi (voir `docs/RGPD.md`)
-- Logo officiel en SVG à réclamer — les icônes actuelles sont provisoires
+- **Contenu des 10 phases** du parcours — le roll-up n'a pas été fourni ; l'écran l'annonce
+- **Logo officiel** — les icônes sont provisoires ; le SVG reste à réclamer
+- **Date du 25 septembre 2026** à confirmer (`config.json` → `evenement.date_confirmee`)
+- **Clés Web3Forms et EmailJS** à créer (`docs/EXPLOITATION.md` §5) — sans elles, l'application
+  fonctionne en plan B : téléchargement du récapitulatif et lien `mailto:`
+- **Validation du DPO** sur les prestataires d'envoi (`docs/RGPD.md`)
+- **Adresse nominative** dans `config.json`, servie en clair (`docs/EXPLOITATION.md` §5 bis)
+- **3 fiches de poste sur 7** sont encore en ligne ; 4 offres DCIP publiées n'ont pas de fiche
 
 ## Documentation
 
 - [`docs/EXPLOITATION.md`](docs/EXPLOITATION.md) — mettre à jour le contenu, les clés, le robot
 - [`docs/RGPD.md`](docs/RGPD.md) — données personnelles, durée de conservation, arbitrage DPO
-- `docs/CHARTE.md` — chartes graphiques (à produire avec les sources)
+- [`docs/ACCESSIBILITE.md`](docs/ACCESSIBILITE.md) — ce qui a été contrôlé, et ce qui ne l'a pas été
+- [`docs/CHARTE.md`](docs/CHARTE.md) — les deux chartes, palettes annotées et corrections
 
 ---
 

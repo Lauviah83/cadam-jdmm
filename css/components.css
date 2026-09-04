@@ -1,0 +1,583 @@
+/* ==========================================================================
+   components.css — Cartes, boutons, champs, badges, quiz, modale
+   Reprend les composants dessinés sur la planche « Composants » du canvas.
+   ========================================================================== */
+
+/* --- Boutons ---------------------------------------------------------------
+   48 px de haut : cible tactile minimale retenue pour ce public (§3.2). */
+.bouton {
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pas-2);
+  min-height: var(--cible-tactile);
+  padding: 0 var(--pas-4);
+  border: var(--trait) solid transparent;
+  border-radius: var(--rayon-sm);
+  font-size: var(--txt-base);
+  font-weight: var(--graisse-demi);
+  text-decoration: none;
+  text-align: center;
+  touch-action: manipulation;
+  transition: background var(--duree-rapide) var(--courbe),
+              border-color var(--duree-rapide) var(--courbe);
+}
+.bouton--large { width: 100%; }
+.bouton--compact { min-height: 40px; padding: 0 var(--pas-3); font-size: var(--txt-sm); }
+
+.bouton--primaire { background: var(--marque-fond); border-color: var(--marque-fond); color: var(--texte-inverse); }
+.bouton--primaire:hover { background: var(--lien-survol); border-color: var(--lien-survol); color: var(--texte-inverse); }
+
+.bouton--secondaire { background: transparent; border-color: var(--bordure); color: var(--texte); }
+.bouton--secondaire:hover { border-color: var(--bordure-forte); background: var(--fond-alt); color: var(--texte); }
+
+.bouton--danger { background: var(--alerte); border-color: var(--alerte); color: var(--texte-inverse); }
+.bouton--fantome { color: var(--texte-doux); }
+.bouton--fantome:hover { background: var(--fond-alt); color: var(--texte); }
+
+.bouton[disabled], .bouton[aria-disabled="true"] {
+  opacity: .42;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+.bouton svg { flex: 0 0 auto; }
+
+/* Bouton d'icône seule — porte toujours un aria-label. */
+.bouton-icone {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--cible-tactile);
+  height: var(--cible-tactile);
+  border-radius: var(--rayon-sm);
+  color: var(--texte-doux);
+  touch-action: manipulation;
+}
+.bouton-icone:hover { background: var(--fond-alt); color: var(--texte); }
+
+/* --- Cartes ----------------------------------------------------------------- */
+.carte {
+  background: var(--surface);
+  border: var(--trait) solid rgba(0, 0, 0, .07);
+  border-radius: var(--rayon-lg);
+  padding: var(--pas-4);
+  box-shadow: var(--ombre-sm);
+}
+.carte--plate { box-shadow: none; }
+.carte--action {
+  /* Une carte entière cliquable ne se souligne pas : le soulignement est
+     réservé aux liens dans une phrase, où il distingue le lien du texte. */
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: var(--pas-4);
+  width: 100%;
+  text-align: left;
+  transition: border-color var(--duree-rapide) var(--courbe),
+              box-shadow var(--duree-rapide) var(--courbe),
+              transform var(--duree-instant) var(--courbe);
+}
+.carte--action:hover {
+  border-color: var(--bordure-forte);
+  box-shadow: var(--ombre-md);
+}
+/* Le retour au doigt passe par l'enfoncement, pas par le survol :
+   un :hover ne se produit jamais sur un écran tactile. */
+.carte--action:active { transform: scale(.988); }
+
+.carte__corps { flex: 1; min-width: 0; }
+.carte__titre {
+  font-size: var(--txt-base);
+  font-weight: var(--graisse-demi);
+  line-height: var(--interligne-titre);
+}
+.carte__sous { margin-top: 2px; font-size: var(--txt-sm); color: var(--texte-doux); }
+.carte__pied {
+  margin-top: var(--pas-3);
+  padding-top: var(--pas-3);
+  border-top: var(--trait) solid rgba(0, 0, 0, .07);
+  display: flex;
+  align-items: center;
+  gap: var(--pas-2);
+  font-size: var(--txt-sm);
+  color: var(--texte-doux);
+}
+.carte__pied--alerte { color: var(--alerte); }
+
+/* --- Pastille de service ----------------------------------------------------- */
+.pastille-service {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px; height: 40px;
+  flex: 0 0 40px;
+  border-radius: 50%;
+  background: var(--glace);
+  color: var(--marque);
+}
+.pastille-service--petite { width: 32px; height: 32px; flex-basis: 32px; }
+
+/* --- Badges ------------------------------------------------------------------ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border: var(--trait) solid transparent;
+  border-radius: var(--rayon-plein);
+  font-family: var(--police-mono);
+  font-size: 0.625rem;
+  font-weight: var(--graisse-moyenne);
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.badge--neutre { background: var(--fond-alt); color: var(--texte-doux); border-color: var(--bordure); }
+.badge--accent { background: var(--accent-fond); color: var(--accent-texte); }
+.badge--succes { background: var(--succes-fond); color: var(--succes); }
+.badge--alerte { background: var(--alerte-fond); color: var(--alerte); }
+.badge--encre  { background: var(--glace); color: var(--marque); border-color: var(--bordure-forte); }
+
+/* --- Métadonnées ------------------------------------------------------------- */
+.metas { display: flex; flex-wrap: wrap; gap: var(--pas-1) var(--pas-3); }
+.meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: var(--txt-xs);
+  color: var(--texte-faible);
+}
+
+/* --- Bandeaux ----------------------------------------------------------------- */
+.bandeau {
+  display: flex;
+  align-items: center;
+  gap: var(--pas-2);
+  padding: var(--pas-2) var(--pas-3);
+  border: var(--trait) solid;
+  border-radius: var(--rayon-sm);
+  font-size: var(--txt-sm);
+  line-height: 1.4;
+}
+.bandeau--info   { background: var(--glace); color: var(--marque); border-color: var(--bordure-forte); }
+.bandeau--succes { background: var(--succes-fond); color: var(--succes); border-color: currentColor; }
+.bandeau--alerte { background: var(--alerte-fond); color: var(--alerte); border-color: currentColor; }
+.bandeau svg { flex: 0 0 auto; }
+
+/* --- Segments (bascule à deux états) -------------------------------------- */
+.segments {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: var(--fond-alt);
+  border-radius: var(--rayon-md);
+}
+.segments__item {
+  flex: 1;
+  min-height: 40px;
+  padding: 0 var(--pas-3);
+  border-radius: var(--rayon-sm);
+  font-size: var(--txt-sm);
+  font-weight: var(--graisse-moyenne);
+  color: var(--texte-doux);
+}
+.segments__item[aria-selected="true"] {
+  background: var(--surface);
+  color: var(--texte);
+  font-weight: var(--graisse-demi);
+  box-shadow: var(--ombre-sm);
+}
+
+/* --- Puces de filtre --------------------------------------------------------- */
+.filtres {
+  display: flex;
+  gap: var(--pas-2);
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Le défilement horizontal des filtres ne doit pas emporter la page. */
+  overscroll-behavior-x: contain;
+  padding-bottom: 2px;
+}
+.filtres::-webkit-scrollbar { display: none; }
+.puce {
+  flex: 0 0 auto;
+  min-height: 36px;
+  padding: 0 var(--pas-3);
+  border: var(--trait) solid var(--bordure);
+  border-radius: var(--rayon-plein);
+  background: transparent;
+  color: var(--texte-doux);
+  font-size: var(--txt-sm);
+  white-space: nowrap;
+}
+.puce[aria-pressed="true"] {
+  background: var(--marque-fond);
+  border-color: var(--marque-fond);
+  color: var(--texte-inverse);
+}
+
+/* --- Champs -------------------------------------------------------------------
+   Le libellé est un vrai <label>, jamais un placeholder seul (RGAA 11.1). */
+.champ { display: flex; flex-direction: column; gap: var(--pas-2); }
+.champ__libelle { font-size: var(--txt-sm); font-weight: var(--graisse-demi); }
+.champ__obligatoire { color: var(--alerte); }
+.champ__aide { font-size: var(--txt-xs); color: var(--texte-faible); line-height: 1.45; }
+.champ input, .champ textarea {
+  width: 100%;
+  min-height: var(--cible-tactile);
+  padding: var(--pas-3);
+  background: var(--surface);
+  border: 1.5px solid var(--bordure);
+  border-radius: var(--rayon-sm);
+  /* 16 px minimum : en dessous, iOS zoome à la mise au point du champ. */
+  font-size: var(--txt-base);
+}
+.champ textarea { min-height: 96px; resize: vertical; }
+.champ input:focus-visible, .champ textarea:focus-visible {
+  border-color: var(--marque);
+  outline-offset: 0;
+}
+.champ input[aria-invalid="true"] { border-color: var(--alerte); }
+.champ__erreur {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: var(--txt-sm);
+  color: var(--alerte);
+}
+.champ__erreur[hidden] { display: none; }
+
+/* Le leurre anti-robot : invisible pour l'œil ET pour le lecteur d'écran,
+   mais rempli par les automates qui remplissent tout. */
+.leurre {
+  position: absolute !important;
+  left: -9999px;
+  width: 1px; height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.case {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--pas-3);
+  cursor: pointer;
+}
+.case input {
+  width: 21px; height: 21px;
+  flex: 0 0 21px;
+  margin-top: 2px;
+  accent-color: var(--marque);
+}
+.case__texte { flex: 1; font-size: var(--txt-sm); color: var(--texte-doux); line-height: 1.5; }
+
+.mention-rgpd {
+  margin-top: var(--pas-3);
+  padding-top: var(--pas-3);
+  border-top: var(--trait) solid rgba(0, 0, 0, .07);
+  font-size: var(--txt-xs);
+  line-height: 1.5;
+  color: var(--texte-faible);
+}
+
+/* --- Timeline ------------------------------------------------------------------ */
+.etape__entete {
+  display: flex;
+  align-items: center;
+  gap: var(--pas-2);
+  padding-top: var(--pas-1);
+}
+.etape__puce { width: 9px; height: 9px; border-radius: 50%; flex: 0 0 9px; }
+.etape__nom {
+  font-family: var(--police-mono);
+  font-size: var(--txt-xs);
+  letter-spacing: var(--interlettre-eyebrow);
+  text-transform: uppercase;
+  font-weight: var(--graisse-moyenne);
+}
+.etape__filet { flex: 1; height: 1px; background: var(--bordure); }
+
+.phase {
+  display: flex;
+  align-items: center;
+  gap: var(--pas-3);
+  width: 100%;
+  min-height: var(--cible-tactile);
+  padding: var(--pas-3);
+  background: var(--surface);
+  border: var(--trait) solid rgba(0, 0, 0, .07);
+  border-left: 3px solid var(--marque);
+  border-radius: var(--rayon-sm);
+  text-align: left;
+}
+.phase:hover { border-color: var(--bordure-forte); }
+.phase__num {
+  font-family: var(--police-mono);
+  font-size: var(--txt-sm);
+  font-weight: var(--graisse-moyenne);
+  min-width: 22px;
+}
+.phase__titre { flex: 1; font-size: var(--txt-sm); font-weight: var(--graisse-moyenne); }
+
+.citation {
+  padding: var(--pas-4);
+  background: var(--glace);
+  border-left: 3px solid var(--marque);
+  border-radius: 0 var(--rayon-sm) var(--rayon-sm) 0;
+  font-family: var(--police-titre);
+  font-style: italic;
+  font-size: var(--txt-md);
+  line-height: 1.45;
+  color: var(--marque);
+}
+
+/* --- Liste à puces cochées ------------------------------------------------------ */
+.points { display: flex; flex-direction: column; gap: var(--pas-2); }
+.points li { display: flex; gap: var(--pas-2); align-items: flex-start; }
+.points svg { flex: 0 0 auto; margin-top: 3px; color: var(--accent-texte); }
+.points span { flex: 1; font-size: var(--txt-sm); line-height: 1.5; color: var(--texte-doux); }
+
+/* ==========================================================================
+   Quiz — fonds sombres par thème
+   La vue pose data-quiz="feu|gard|surt" sur la coque, et les variables
+   suivent. Un seul jeu de règles pour les trois quiz.
+   ========================================================================== */
+.quiz {
+  --q-fond: var(--quiz-feu-fond);
+  --q-surface: var(--quiz-feu-surface);
+  --q-accent: var(--quiz-feu-accent);
+  --q-accent-texte: var(--quiz-feu-accent);
+  --q-texte: var(--quiz-feu-texte);
+  --q-doux: var(--quiz-feu-doux);
+
+  min-height: 100dvh;
+  background: var(--q-fond);
+  color: var(--q-texte);
+}
+.quiz[data-quiz="gard"] {
+  --q-fond: var(--quiz-gard-fond); --q-surface: var(--quiz-gard-surface);
+  --q-accent: var(--quiz-gard-accent); --q-accent-texte: var(--quiz-gard-accent);
+  --q-texte: var(--quiz-gard-texte); --q-doux: var(--quiz-gard-doux);
+}
+.quiz[data-quiz="surt"] {
+  --q-fond: var(--quiz-sur-fond); --q-surface: var(--quiz-sur-surface);
+  --q-accent: var(--quiz-sur-accent);
+  /* L'accent sûreté n'atteint 4,5:1 qu'éclairci : les textes l'utilisent,
+     les bordures gardent la teinte d'origine. */
+  --q-accent-texte: var(--quiz-sur-accent-texte);
+  --q-texte: var(--quiz-sur-texte); --q-doux: var(--quiz-sur-doux);
+}
+.quiz .entete-detail {
+  background: var(--q-fond);
+  border-bottom-color: transparent;
+  color: var(--q-texte);
+}
+.quiz h1, .quiz h2 { color: var(--q-texte); }
+
+.quiz__progression {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, .12);
+  overflow: hidden;
+}
+.quiz__progression > div {
+  height: 100%;
+  background: var(--q-accent);
+  border-radius: 2px;
+  transition: width var(--duree-normale) var(--courbe);
+}
+.quiz__compteur { font-family: var(--police-mono); font-size: var(--txt-sm); color: var(--q-doux); }
+.quiz__compteur strong { color: var(--q-texte); }
+.quiz__categorie {
+  padding: 3px 9px;
+  border-radius: var(--rayon-plein);
+  background: color-mix(in srgb, var(--q-accent) 12%, transparent);
+  color: var(--q-accent-texte);
+  font-family: var(--police-mono);
+  font-size: 0.6rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.quiz__question {
+  font-family: var(--police-titre);
+  font-variation-settings: "opsz" 144;
+  font-size: var(--txt-lg);
+  line-height: 1.32;
+  color: var(--q-texte);
+}
+
+/* --- Options de réponse -------------------------------------------------------- */
+.options { display: flex; flex-direction: column; gap: var(--pas-2); }
+.option {
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  width: 100%;
+  min-height: var(--cible-tactile);
+  padding: 13px var(--pas-3);
+  border: 1.5px solid var(--quiz-bordure);
+  border-radius: var(--rayon-sm);
+  background: var(--quiz-neutre-fond);
+  color: var(--q-texte);
+  text-align: left;
+  transition: border-color var(--duree-rapide) var(--courbe),
+              background var(--duree-rapide) var(--courbe);
+}
+.option:hover:not([disabled]) { border-color: var(--q-accent); }
+.option__marque {
+  width: 19px; height: 19px;
+  flex: 0 0 19px;
+  margin-top: 2px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;      /* réponse unique */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--quiz-bordure);
+}
+/* Une case carrée annonce qu'on peut cocher plusieurs réponses, avant
+   même de lire la consigne. */
+.option[data-multi="true"] .option__marque { border-radius: 4px; }
+.option__texte { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+.option__libelle { font-size: var(--txt-sm); line-height: 1.45; }
+.option__verdict {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 0.69rem;
+  font-weight: var(--graisse-demi);
+}
+
+.option[aria-checked="true"] { border-color: var(--q-accent); background: rgba(255, 255, 255, .10); }
+.option[aria-checked="true"] .option__marque { color: var(--q-accent); }
+
+.option[data-etat="juste"] {
+  border-color: var(--quiz-juste);
+  background: var(--quiz-juste-fond);
+}
+.option[data-etat="juste"] .option__marque,
+.option[data-etat="juste"] .option__verdict { color: var(--quiz-juste); }
+
+.option[data-etat="fausse"] {
+  border-color: var(--quiz-faux);
+  background: var(--quiz-faux-fond);
+}
+.option[data-etat="fausse"] .option__marque,
+.option[data-etat="fausse"] .option__verdict { color: var(--quiz-faux); }
+
+/* --- Correction et verdict ------------------------------------------------------ */
+.correction {
+  padding: var(--pas-4);
+  border: var(--trait) solid color-mix(in srgb, var(--q-accent) 24%, transparent);
+  border-radius: var(--rayon-sm);
+  background: color-mix(in srgb, var(--q-accent) 8%, transparent);
+  font-size: var(--txt-sm);
+  line-height: 1.6;
+  color: var(--q-doux);
+}
+.correction strong { color: var(--q-texte); }
+.correction em { color: var(--q-accent-texte); font-style: italic; }
+
+.score {
+  font-family: var(--police-mono);
+  font-weight: var(--graisse-moyenne);
+  color: var(--q-texte);
+  line-height: 1;
+}
+.score__grand { font-size: 3.6rem; }
+.score__total { font-size: 1.5rem; color: var(--q-doux); }
+
+.bouton--quiz {
+  background: var(--q-accent);
+  border-color: var(--q-accent);
+  color: var(--quiz-texte-sur-accent);
+  font-weight: var(--graisse-grasse);
+}
+.bouton--quiz-secondaire {
+  background: transparent;
+  border-color: rgba(255, 255, 255, .22);
+  color: var(--q-texte);
+}
+
+/* --- Feuille modale (mobile) ------------------------------------------------------ */
+.voile {
+  position: fixed;
+  inset: 0;
+  z-index: var(--plan-voile);
+  background: var(--voile);
+  animation: apparait var(--duree-rapide) var(--courbe) both;
+}
+.voile[hidden] { display: none; }
+
+.feuille {
+  position: fixed;
+  left: 0; right: 0; bottom: 0;
+  z-index: var(--plan-modale);
+  max-height: 85dvh;
+  overflow-y: auto;
+  padding: var(--pas-3) var(--pas-5) calc(var(--pas-5) + var(--sûr-bas));
+  background: var(--surface);
+  border-radius: var(--rayon-lg) var(--rayon-lg) 0 0;
+  box-shadow: var(--ombre-lg);
+}
+.feuille[hidden] { display: none; }
+.feuille__poignee {
+  width: 38px; height: 4px;
+  margin: 0 auto var(--pas-4);
+  border-radius: 2px;
+  background: var(--bordure);
+}
+
+@media (min-width: 1024px) {
+  .feuille {
+    left: 50%; bottom: auto; top: 50%; right: auto;
+    width: min(520px, 92vw);
+    transform: translate(-50%, -50%);
+    border-radius: var(--rayon-lg);
+    padding: var(--pas-5);
+  }
+  .feuille__poignee { display: none; }
+}
+
+/* --- États vides et chargement -------------------------------------------------- */
+.vide {
+  padding: var(--pas-7) var(--pas-5);
+  text-align: center;
+  color: var(--texte-doux);
+}
+.squelette {
+  height: 84px;
+  border-radius: var(--rayon-lg);
+  background: linear-gradient(90deg, var(--fond-alt) 25%, var(--surface) 50%, var(--fond-alt) 75%);
+  background-size: 200% 100%;
+  animation: glisse 1.4s infinite linear;
+}
+@keyframes glisse { to { background-position: -200% 0; } }
+
+/* --- Sélecteur de thème ------------------------------------------------------------ */
+.selecteur-theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--pas-2);
+  padding: var(--pas-4);
+  font-size: var(--txt-xs);
+  color: var(--texte-faible);
+}
+
+/* --- Pied de page -------------------------------------------------------------------- */
+.pied {
+  /* Poussé en bas de la zone de contenu : sinon il s'affiche en haut d'une
+     page encore vide, puis saute d'un écran quand les vues se remplissent. */
+  margin-top: auto;
+  padding: var(--pas-5);
+  border-top: var(--trait) solid var(--bordure);
+  font-size: var(--txt-xs);
+  line-height: 1.7;
+  color: var(--texte-faible);
+  text-align: center;
+}
+.pied a { color: var(--texte-doux); }
+.pied nav { display: flex; flex-wrap: wrap; gap: var(--pas-2) var(--pas-4); justify-content: center; }

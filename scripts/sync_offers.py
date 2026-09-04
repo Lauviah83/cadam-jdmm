@@ -39,6 +39,7 @@ RACINE = Path(__file__).resolve().parent.parent
 CHEMIN_CONFIG = RACINE / "data" / "config.json"
 CHEMIN_POSTES = RACINE / "data" / "postes-dcip.json"
 CHEMIN_SORTIE = RACINE / "data" / "offers.json"
+CHEMIN_DETAILS = RACINE / "data" / "offers-details.json"
 DOSSIER_CACHE = RACINE / "data" / ".cache"
 
 BASE = "https://www.departement06.fr"
@@ -473,17 +474,32 @@ def main() -> int:
     nb_dcip = sum(1 for o in offres if o["dcip"])
     log(f"{nb_dcip} offre(s) rattachée(s) à la DCIP sur {len(offres)}")
 
-    # --- 5. Écriture idempotente ------------------------------------------
+    # --- 5. Séparation de la liste et des détails --------------------------
+    # Le corps des fiches (missions, activités, profil…) pèse l'essentiel du
+    # poids : 342 ko contre 40 ko pour la liste seule. L'écran d'accueil et la
+    # liste n'en ont pas besoin — seule l'ouverture d'une fiche l'exige. On
+    # écrit donc deux fichiers, et l'application ne charge le second qu'à la
+    # demande. Sans cela, un visiteur téléchargeait 342 ko pour lire « 52 offres ».
+    details = {}
+    liste = []
+    for offre in offres:
+        detail = offre.pop("detail", None)
+        if detail:
+            details[offre["id"]] = detail
+        liste.append(offre)
+
+    horodatage = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
     charge_utile = {
-        "generated_at": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+        "generated_at": horodatage,
         "source": URL_LISTE,
-        "count": len(offres),
+        "count": len(liste),
         "count_dcip": nb_dcip,
-        "offers": offres,
+        "offers": liste,
     }
+    charge_details = {"generated_at": horodatage, "details": details}
 
     if options.dry_run:
-        log("--dry-run : rien n'est écrit")
+        log(f"--dry-run : rien n'est écrit ({len(details)} détail(s) mis de côté)")
         print(json.dumps(charge_utile, ensure_ascii=False, indent=2)[:2000])
         return 0
 
@@ -501,7 +517,12 @@ def main() -> int:
     CHEMIN_SORTIE.write_text(
         json.dumps(charge_utile, ensure_ascii=False, indent=1) + "\n", encoding="utf-8"
     )
-    log(f"offers.json écrit : {len(offres)} offre(s), {nb_dcip} DCIP")
+    CHEMIN_DETAILS.write_text(
+        json.dumps(charge_details, ensure_ascii=False, indent=1) + "\n", encoding="utf-8"
+    )
+    poids = lambda c: c.stat().st_size // 1024
+    log(f"offers.json écrit : {len(liste)} offre(s), {nb_dcip} DCIP ({poids(CHEMIN_SORTIE)} ko)")
+    log(f"offers-details.json écrit : {len(details)} fiche(s) ({poids(CHEMIN_DETAILS)} ko)")
     return 0
 
 
