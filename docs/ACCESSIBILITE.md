@@ -28,13 +28,12 @@ Moteur **axe-core**, règles WCAG 2.1 niveaux A et AA — le socle technique du 
 
 | Périmètre | Résultat |
 |---|---|
-| 10 écrans × 2 formats (390 px et 1440 px) | **0 violation** |
+| 9 écrans × 2 formats (390 px et 1440 px) | **0 violation** |
 | Les mêmes écrans en habillage B | **0 violation** |
-| Les mêmes écrans sur le **site déployé** | **0 violation** |
 
-Écrans contrôlés : accueil, parcours, hub des quiz, question de quiz (fond sombre),
-correction de quiz, liste des postes DCIP, toutes les offres, fiche de poste, ma sélection,
-formulaire.
+Écrans contrôlés — application **Postes** : liste, liste filtrée par service, fiche de poste,
+formulaire, formulaire en erreur. Application **Quiz** : hub, question sur fond sombre,
+correction. Plus la visionneuse des mentions.
 
 **Lighthouse**, catégorie Accessibilité :
 
@@ -85,16 +84,16 @@ Vérifiée par test automatisé sur navigateur :
   avant même la consigne.
 - Résultats et changements d'état annoncés par une zone `aria-live="polite"`.
 - `prefers-reduced-motion` respecté : toutes les animations deviennent instantanées.
-- Formulaire : `<label>` réels, jamais un placeholder seul ; `autocomplete="email"` et
-  `inputmode="email"` ; erreurs annoncées et reliées au champ par `aria-describedby` ;
-  champ marqué `aria-invalid`.
+- Formulaire : `<label>` réels, jamais un placeholder seul ; `autocomplete` sur chaque champ
+  (`given-name`, `family-name`, `organization`, `email`) et `inputmode="email"` ; les quatre
+  champs obligatoires sont signalés en texte comme en `aria-label` ; les erreurs sont
+  annoncées une par une, reliées au champ par `aria-describedby`, et le focus est porté sur
+  le premier champ fautif, qui reçoit `aria-invalid`.
 - **Aucune icône ne porte seule une information** : les émojis des fichiers d'origine
   (⚡ 🏫 🔒 📐) ont été remplacés par des tracés SVG décoratifs (`aria-hidden`), toujours
   accompagnés de leur libellé en texte.
 - Cibles tactiles d'au moins **48 px** — au-delà des 44 px recommandés, pour un public qui
   inclut des agents de plus de 50 ans, debout, dans le bruit d'un hall.
-- **Mode haute lisibilité** activable en pied de page : corps et interlignage augmentés sans
-  déplacer les éléments.
 - **Aucune requête ne quitte le domaine au chargement** : les polices sont servies par
   l'application. Un lecteur d'écran ou un navigateur derrière un filtre d'entreprise n'a donc
   aucune dépendance externe pour afficher la page.

@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="fr" data-theme="a">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Trois quiz — DCIP, Département des Alpes-Maritimes</title>
+<meta name="description" content="Prévention incendie, gardiennage, sûreté : trois quiz du stand de la DCIP au Département des Alpes-Maritimes.">
+<meta name="theme-color" content="#042C53">
+<meta name="color-scheme" content="light">
+
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="../assets/icons/favicon-32.png" type="image/png" sizes="32x32">
+<link rel="icon" href="../assets/icons/favicon.ico" sizes="any">
+<link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Quiz DCIP">
+
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/fraunces-normal-latin.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../assets/fonts/manrope-normal-latin.woff2">
+<link rel="stylesheet" href="../css/polices.css">
+<link rel="stylesheet" href="../themes/tokens.css">
+<link rel="stylesheet" href="../themes/a.css">
+<link rel="stylesheet" href="../themes/b.css">
+<link rel="stylesheet" href="../css/base.css">
+<link rel="stylesheet" href="../css/layout.css">
+<link rel="stylesheet" href="../css/components.css">
+</head>
+
+<body>
+<a class="evitement" href="#vue">Aller au contenu</a>
+
+<div class="bandeau-reseau" id="bandeau-reseau" role="status" hidden></div>
+
+<div class="appli appli--simple">
+
+  <header class="barre">
+    <div class="barre__interieur">
+      <a class="barre__marque" href="#/">DCIP <em>06</em></a>
+      <nav class="nav-filtres" aria-label="Navigation">
+        <a class="nf-btn on" href="#/">Les quiz</a>
+        <a class="nf-btn" href="../postes/">Les postes vacants</a>
+      </nav>
+      <span class="barre__tag" id="nav-tag"></span>
+    </div>
+  </header>
+
+  <main class="contenu">
+    <!-- Une seule zone : l'application n'a que trois écrans, rendus tour à tour. -->
+    <div id="vue"></div>
+
+    <footer class="pied">
+      <nav aria-label="Liens de bas de page">
+        <a href="../postes/">Les postes vacants</a>
+        <a href="../mentions.html?doc=rgpd">Données personnelles</a>
+        <a href="../mentions.html?doc=accessibilite">Accessibilité</a>
+        <a href="https://www.departement06.fr/offres-demploi" rel="noopener">Offres du Département</a>
+      </nav>
+      <p>Département des Alpes-Maritimes — DCIP. Aucun traceur, aucune mesure d'audience.</p>
+    </footer>
+  </main>
+</div>
+
+<p class="lecteur-seul" id="annonce" role="status" aria-live="polite"></p>
+
+<noscript>
+  <div class="section">
+    <div class="bandeau bandeau--alerte">
+      Les quiz ont besoin de JavaScript pour fonctionner.
+    </div>
+  </div>
+</noscript>
+
+<script type="module" src="../js/quiz/app.js"></script>
+</body>
+</html>

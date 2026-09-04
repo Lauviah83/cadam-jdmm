@@ -10,10 +10,14 @@
    affiché plutôt que masqué.
    ========================================================================== */
 
-const CHEMIN_OFFRES = './data/offers.json';
-const CHEMIN_DETAILS = './data/offers-details.json';
-const CHEMIN_POSTES = './data/postes-dcip.json';
-const CHEMIN_CONFIG = './data/config.json';
+/* Chemins résolus depuis l'emplacement de CE module, pas depuis la page :
+   les deux applications sont servies depuis /postes/ et /quiz/, à des
+   profondeurs différentes, et un chemin « ./data/… » y serait faux. */
+const DONNEES = (nom) => new URL(`../../data/${nom}`, import.meta.url).href;
+const CHEMIN_OFFRES = DONNEES('offers.json');
+const CHEMIN_DETAILS = DONNEES('offers-details.json');
+const CHEMIN_POSTES = DONNEES('postes-dcip.json');
+const CHEMIN_CONFIG = DONNEES('config.json');
 
 /** Cache mémoire : les vues peuvent appeler ces fonctions plusieurs fois par navigation. */
 let cacheOffres = null;
@@ -240,64 +244,4 @@ export function croiserPostesEtOffres(postes, charge) {
 function cleDepuisUrl(url) {
   if (!url) return '';
   return String(url).split('?')[0].replace(/\/+$/, '').split('/').pop().toLowerCase();
-}
-
-/* -------------------------------------------------------------------------
-   Filtres de la vue « Toutes les offres du Département »
-   ------------------------------------------------------------------------- */
-
-/** Valeurs distinctes présentes dans les données, pour construire les filtres. */
-export function facettes(offres) {
-  const collecter = (extracteur) => {
-    const valeurs = new Set();
-    offres.forEach((offre) => extracteur(offre).forEach((v) => v && valeurs.add(v)));
-    return [...valeurs].sort((a, b) => a.localeCompare(b, 'fr'));
-  };
-  return {
-    domaines:   collecter((o) => [o.domaine]),
-    categories: collecter((o) => o.categories || [o.categorie]),
-    filieres:   collecter((o) => o.filieres || [o.filiere]),
-  };
-}
-
-/**
- * Applique les filtres actifs.
- * Un filtre vide ou absent ne filtre rien — on ne surprend jamais l'utilisateur
- * avec une liste vide sans qu'il ait choisi un critère.
- */
-export function filtrer(offres, criteres = {}) {
-  const { domaine, categorie, filiere, recherche, masquerExpirees } = criteres;
-  const texte = (recherche || '').trim().toLowerCase();
-
-  return offres.filter((offre) => {
-    if (domaine && offre.domaine !== domaine) return false;
-    if (categorie && !(offre.categories || [offre.categorie]).includes(categorie)) return false;
-    if (filiere && !(offre.filieres || [offre.filiere]).includes(filiere)) return false;
-    if (masquerExpirees && statutEcheance(offre).expiree) return false;
-    if (texte) {
-      const corpus = `${offre.titre} ${offre.resume} ${offre.domaine}`.toLowerCase();
-      if (!corpus.includes(texte)) return false;
-    }
-    return true;
-  });
-}
-
-/**
- * Tri d'affichage : les offres qui ferment bientôt d'abord, les recrutements
- * permanents ensuite, les offres closes en dernier. Un visiteur de stand a
- * quelques minutes : ce qui est urgent doit être en haut.
- */
-export function trierParUrgence(offres) {
-  const rang = (offre) => {
-    const s = statutEcheance(offre);
-    if (s.expiree) return 3;
-    if (s.code === 'permanente') return 2;
-    return s.urgent ? 0 : 1;
-  };
-  return [...offres].sort((a, b) => {
-    const ecart = rang(a) - rang(b);
-    if (ecart !== 0) return ecart;
-    if (a.deadline && b.deadline) return a.deadline.localeCompare(b.deadline);
-    return a.titre.localeCompare(b.titre, 'fr');
-  });
 }

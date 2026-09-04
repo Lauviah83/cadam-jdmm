@@ -3,6 +3,11 @@
    --------------------------------------------------------------------------
    Deux stratégies, délibérément distinctes :
 
+   Un seul service worker à la racine pour les DEUX applications (/postes/ et
+   /quiz/) : elles partagent leurs polices, leurs feuilles de style et la
+   moitié de leur code. Deux services workers auraient mis tout cela en cache
+   en double.
+
    • APP SHELL (HTML, CSS, JS, polices, icônes) → cache d'abord.
      C'est ce qui rend l'application utilisable en mode avion, exigence du §3.2 :
      le wifi d'un hall d'exposition est toujours mauvais.
@@ -20,55 +25,66 @@
    changement de structure.
    ========================================================================== */
 
-const CACHE_VERSION = 'v3';
+const CACHE_VERSION = 'v4';
 const CACHE_SOCLE   = `jdmm-socle-${CACHE_VERSION}`;
 const CACHE_DONNEES = `jdmm-donnees-${CACHE_VERSION}`;
 
 // Chemins relatifs : l'application est servie depuis un sous-chemin sur
 // GitHub Pages (/<depot>/), un chemin absolu « /index.html » y serait faux.
 const RESSOURCES_SOCLE = [
-  './',
+  // Les deux applications, chacune sa coque et son manifeste.
+  './postes/',
+  './postes/index.html',
+  './postes/manifest.webmanifest',
+  './quiz/',
+  './quiz/index.html',
+  './quiz/manifest.webmanifest',
   './index.html',
-  './manifest.webmanifest',
+
+  // Le socle partagé : un seul exemplaire pour les deux applications, ce qui
+  // est précisément la raison d'un service worker unique à la racine.
   './css/polices.css',
-  // Les deux faces du premier rendu. Les autres (italique, latin-ext, mono)
-  // sont mises en cache à la première rencontre, par la stratégie « cache
-  // d'abord » : les précharger alourdirait l'installation sans nécessité.
-  './assets/fonts/fraunces-normal-latin.woff2',
-  './assets/fonts/manrope-normal-latin.woff2',
-  './themes/tokens.css',
-  './themes/a.css',
   './css/base.css',
   './css/layout.css',
   './css/components.css',
-  './js/app.js',
-  './js/store.js',
-  './js/offers.js',
-  './js/mailer.js',
-  './js/icones.js',
-  './js/views/metiers.js',
-  './js/views/quiz.js',
-  './js/views/postes.js',
-  './js/views/selection.js',
+  './themes/tokens.css',
+  './themes/a.css',
+  './themes/b.css',
+
+  // Les deux faces du premier rendu. Les autres (italique, latin-ext, mono)
+  // sont mises en cache à la première rencontre.
+  './assets/fonts/fraunces-normal-latin.woff2',
+  './assets/fonts/manrope-normal-latin.woff2',
+
+  './js/commun/icones.js',
+  './js/commun/interface.js',
+  './js/commun/store.js',
+  './js/commun/offers.js',
+  './js/commun/mailer.js',
+  './js/commun/mentions.js',
+  './js/postes/app.js',
+  './js/quiz/app.js',
+  './js/quiz/moteur.js',
+
   './data/config.json',
   './data/quiz.json',
-  './data/timeline.json',
   './data/postes-dcip.json',
+
   './assets/icons/icon-192.png',
   './assets/icons/icon-512.png',
   './assets/icons/favicon-32.png',
-  // La visionneuse de mentions et les documents qu'elle affiche : une
-  // déclaration d'accessibilité inaccessible hors ligne serait paradoxale.
+
+  // La visionneuse de mentions et ses documents : une déclaration
+  // d'accessibilité inaccessible hors ligne serait paradoxale.
   './mentions.html',
-  './js/mentions.js',
   './docs/RGPD.md',
   './docs/ACCESSIBILITE.md',
 ];
 
-/* Volontairement ABSENT du socle : data/offers-details.json (296 ko).
-   Il n'est utile qu'à l'ouverture d'une fiche d'offre, et la stratégie
-   « réseau d'abord » le met en cache dès la première consultation. Le
-   précharger multiplierait par sept le poids de l'installation. */
+/* Volontairement ABSENT du socle : data/offers.json et data/offers-details.json.
+   Le premier doit rester frais (stratégie « réseau d'abord »), le second pèse
+   296 ko pour un usage que l'application n'a plus — seul le statut des sept
+   fiches est consulté. */
 
 /* -------------------------------------------------------------------------
    Installation — on précharge le socle.

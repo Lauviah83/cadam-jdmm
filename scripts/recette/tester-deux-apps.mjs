@@ -1,0 +1,138 @@
+/* Recette des deux applications distinctes. */
+import { chromium } from 'playwright-core';
+const BASE = process.env.URL_BASE || 'http://127.0.0.1:8123/';
+const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox','--disable-gpu'] });
+let ko = 0;
+const ok = (n, c, d = '') => { console.log((c ? '  ✔ ' : '  ✘ ') + n + (c ? '' : '  → ' + d)); if (!c) ko++; };
+
+/* innerText restitue le text-transform:uppercase des surtitres, et les
+   apostrophes typographiques diffèrent de celles du code source du test. */
+const normal = (t) => String(t).toLowerCase().replace(/[’']/g, "'").replace(/\s+/g, ' ');
+const contient = (texte, ...morceaux) => morceaux.every((m) => normal(texte).includes(normal(m)));
+
+const ctx = await b.newContext({ viewport: { width: 390, height: 844 }, deviceScaleFactor: 2,
+  isMobile: true, hasTouch: true, locale: 'fr-FR' });
+const p = await ctx.newPage();
+const erreurs = [];
+p.on('console', (m) => { if (m.type() === 'error') erreurs.push(m.text()); });
+p.on('pageerror', (e) => erreurs.push('EXCEPTION ' + e.message));
+
+console.log('\n— Application POSTES —');
+await p.goto(BASE + 'postes/', { waitUntil: 'networkidle' });
+await p.waitForTimeout(900);
+ok('la page se charge sans erreur', erreurs.length === 0, erreurs.slice(0,2).join(' | '));
+ok('la marque est « DCIP 06 »', (await p.locator('.barre__marque').textContent()).replace(/\s+/g,' ').trim() === 'DCIP 06');
+ok('le titre reprend « Rejoindre la DCIP »', (await p.locator('h1').first().textContent()).includes('Rejoindre la DCIP'));
+ok('la pastille reprend « Postes vacants · Mobilité interne »',
+   (await p.locator('.hero-pill').first().textContent()).includes('Postes vacants'));
+const filtres = await p.locator('.nf-btn').count();
+ok('les filtres par service sont générés (1 + 4)', filtres === 5, String(filtres));
+ok('« Tous les postes » est le premier filtre',
+   (await p.locator('.nf-btn').first().textContent()).includes('Tous les postes'));
+ok('les libellés sont raccourcis',
+   (await p.locator('.nav-filtres').innerText()).includes('Sécurité & Sûreté'));
+ok('les 7 fiches sont listées', await p.locator('.poste-row').count() === 7,
+   String(await p.locator('.poste-row').count()));
+ok('aucun onglet Métiers', !(await p.locator('body').innerText()).includes('Vie d\'un projet'));
+ok('aucune notion de sélection', !/ma sélection|panier/i.test(await p.locator('body').innerText()));
+await p.screenshot({ path: 'app-postes-liste.png' });
+
+console.log('\n— Filtrage par service —');
+await p.locator('.nf-btn').nth(1).click();
+await p.waitForTimeout(500);
+const apres = await p.locator('.poste-row').count();
+ok('le filtre réduit la liste', apres > 0 && apres < 7, `${apres} sur 7`);
+ok('le filtre actif est marqué', await p.locator('.nf-btn').nth(1).getAttribute('aria-pressed') === 'true');
+await p.locator('.nf-btn').first().click();
+await p.waitForTimeout(400);
+ok('« Tous les postes » rétablit la liste', await p.locator('.poste-row').count() === 7);
+
+console.log('\n— Fiche de poste —');
+await p.locator('.poste-row').first().click();
+await p.waitForTimeout(600);
+const fiche = await p.locator('#vue').innerText();
+ok('la fiche s\'ouvre', (await p.locator('.hero h1').textContent()).length > 12);
+ok('elle porte Description, Missions, Profil',
+   contient(fiche, 'Description', 'Missions principales', 'Profil recherché'));
+ok('le bouton « Je suis intéressé(e) — recevoir la fiche » est là',
+   contient(fiche, 'Je suis intéressé(e) — recevoir la fiche'));
+ok('le bouton « Postuler en ligne » est là', fiche.includes('Postuler en ligne'));
+ok('le bouton « Voir les autres postes » est là', fiche.includes('Voir les autres postes'));
+await p.screenshot({ path: 'app-postes-fiche.png' });
+
+console.log('\n— Formulaire —');
+await p.locator('a[href^="#/demande/"]').click();
+await p.waitForTimeout(600);
+const form = await p.locator('#vue').innerText();
+ok('le titre est « Je suis intéressé(e) »', contient(form, 'Je suis intéressé(e)'));
+ok('le poste sélectionné est rappelé', contient(form, 'Poste sélectionné'));
+for (const c of ['prenom','nom','direction','email']) {
+  ok(`le champ ${c} est présent`, await p.locator('#' + c).count() === 1);
+}
+ok('les 4 projets de mobilité sont proposés', await p.locator('[data-projet]').count() === 4);
+ok('la mention RGPD est affichée', contient(form, 'Conservation 12 mois'));
+await p.screenshot({ path: 'app-postes-form.png' });
+
+console.log('\n— Champs obligatoires —');
+await p.locator('#envoyer').click();
+await p.waitForTimeout(300);
+ok('le prénom manquant est signalé', await p.locator('#err-prenom').isVisible());
+await p.locator('#prenom').fill('Camille');
+await p.locator('#envoyer').click(); await p.waitForTimeout(250);
+ok('le nom manquant est signalé', await p.locator('#err-nom').isVisible());
+await p.locator('#nom').fill('Durand');
+await p.locator('#envoyer').click(); await p.waitForTimeout(250);
+ok('la direction manquante est signalée', await p.locator('#err-direction').isVisible());
+await p.locator('#direction').fill('DRH');
+await p.locator('#envoyer').click(); await p.waitForTimeout(250);
+ok('l\'adresse manquante est signalée', await p.locator('#err-email').isVisible());
+await p.locator('#email').fill('camille.durand@departement06.fr');
+await p.locator('#envoyer').click(); await p.waitForTimeout(250);
+ok('le consentement manquant est signalé', await p.locator('#err-rgpd').isVisible());
+
+console.log('\n— Envoi (aucune clé : plan B) —');
+await p.locator('#rgpd').check();
+await p.locator('[data-projet]').nth(1).click();
+await p.waitForTimeout(3200);
+await p.locator('#envoyer').click();
+await p.waitForTimeout(900);
+const conf = await p.locator('#vue').innerText();
+ok('la confirmation s\'affiche', conf.includes('Encore une étape') || conf.includes('Demande enregistrée'));
+ok('elle dit que l\'envoi n\'est pas activé', conf.includes('pas encore activé'), conf.slice(0,120));
+ok('le poste d\'intérêt est rappelé', contient(conf, "Poste d'intérêt"));
+ok('le téléchargement est proposé', await p.locator('#conf-telecharger').isVisible());
+const mailto = await p.locator('#conf-mailto').getAttribute('href');
+ok('le mailto vise le demandeur', mailto.startsWith('mailto:camille.durand%40departement06.fr'));
+await p.screenshot({ path: 'app-postes-conf.png' });
+
+console.log('\n— Application QUIZ —');
+erreurs.length = 0;
+await p.goto(BASE + 'quiz/', { waitUntil: 'networkidle' });
+await p.waitForTimeout(900);
+ok('la page se charge sans erreur', erreurs.length === 0, erreurs.slice(0,2).join(' | '));
+ok('les 3 quiz sont proposés', await p.locator('a.quiz').count() === 3, String(await p.locator('a.quiz').count()));
+ok('les compteurs annoncent 8, 6 et 6',
+   (await p.locator('.hero .sous').textContent()).includes('20 questions'));
+ok('un lien mène aux postes', await p.locator('a[href="../postes/"]').count() >= 1);
+await p.screenshot({ path: 'app-quiz-hub.png' });
+
+await p.locator('a.quiz').first().click();
+await p.waitForTimeout(700);
+ok('le quiz démarre', await p.locator('#quiz-question').isVisible());
+ok('le compteur dit 1 / 8',
+   (await p.locator('.quiz__compteur').textContent()).replace(/\s+/g,' ').includes('1 / 8'));
+await p.locator('.option').first().click();
+await p.locator('#quiz-action').click();
+await p.waitForTimeout(400);
+ok('la correction s\'affiche', await p.locator('.correction').isVisible());
+ok('aucun résidu QF_/QG_/QS_', !/Q[FGS]_/.test(await p.locator('body').innerText()));
+await p.screenshot({ path: 'app-quiz-question.png' });
+
+console.log('\n— Racine —');
+await p.goto(BASE, { waitUntil: 'networkidle' });
+await p.waitForTimeout(1200);
+ok('la racine redirige vers les postes', p.url().includes('/postes/'), p.url());
+
+await b.close();
+console.log(ko === 0 ? '\n✔ tous les contrôles passent\n' : `\n✘ ${ko} contrôle(s) en échec\n`);
+process.exit(ko ? 1 : 0);

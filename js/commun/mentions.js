@@ -16,6 +16,7 @@ const DOCUMENTS = {
   rgpd: { fichier: 'docs/RGPD.md', titre: 'Protection des données personnelles' },
   accessibilite: { fichier: 'docs/ACCESSIBILITE.md', titre: "Déclaration d'accessibilité" },
   exploitation: { fichier: 'docs/EXPLOITATION.md', titre: "Guide d'exploitation" },
+  cles: { fichier: 'docs/CLES.md', titre: "Activer l'envoi par courriel" },
 };
 
 const echapper = (t) => String(t)
@@ -124,7 +125,7 @@ async function afficher() {
   document.getElementById('titre-document').textContent = doc.titre;
 
   try {
-    const reponse = await fetch(`./${doc.fichier}`, { cache: 'no-cache' });
+    const reponse = await fetch(new URL(`../../${doc.fichier}`, import.meta.url), { cache: 'no-cache' });
     if (!reponse.ok) throw new Error(`HTTP ${reponse.status}`);
     const markdown = await reponse.text();
     // Le premier titre de niveau 1 fait doublon avec celui de la page.

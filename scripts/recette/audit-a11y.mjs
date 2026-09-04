@@ -8,31 +8,32 @@ const axe = fs.readFileSync('node_modules/axe-core/axe.min.js', 'utf8');
 const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox','--disable-gpu'] });
 
 const ECRANS = [
-  ['Accueil', '', null],
-  ['Parcours', '#/metiers', null],
-  ['Hub des quiz', '#/quiz', null],
-  ['Question de quiz (fond sombre)', '#/quiz/feu', null],
-  ['Correction de quiz', '#/quiz/feu', async (p) => {
+  ['Postes · liste', 'postes/', null],
+  ['Postes · liste filtrée', 'postes/', async (p) => {
+    await p.locator('.nf-btn').nth(1).click(); await p.waitForTimeout(400);
+  }],
+  ['Postes · fiche', 'postes/', async (p) => {
+    await p.locator('.poste-row').first().click(); await p.waitForTimeout(500);
+  }],
+  ['Postes · formulaire', 'postes/', async (p) => {
+    await p.locator('.poste-row').first().click(); await p.waitForTimeout(400);
+    await p.locator('a[href^="#/demande/"]').click(); await p.waitForTimeout(500);
+  }],
+  ['Postes · formulaire en erreur', 'postes/', async (p) => {
+    await p.locator('.poste-row').first().click(); await p.waitForTimeout(400);
+    await p.locator('a[href^="#/demande/"]').click(); await p.waitForTimeout(400);
+    await p.locator('#envoyer').click(); await p.waitForTimeout(300);
+  }],
+  ['Quiz · hub', 'quiz/', null],
+  ['Quiz · question (fond sombre)', 'quiz/', async (p) => {
+    await p.locator('a.quiz').first().click(); await p.waitForTimeout(600);
+  }],
+  ['Quiz · correction', 'quiz/', async (p) => {
+    await p.locator('a.quiz').first().click(); await p.waitForTimeout(500);
     await p.locator('.option').nth(1).click();
-    await p.locator('#quiz-action').click(); await p.waitForTimeout(300);
+    await p.locator('#quiz-action').click(); await p.waitForTimeout(400);
   }],
-  ['Liste des postes', '#/postes', null],
-  ['Toutes les offres', '#/postes', async (p) => {
-    await p.locator('[data-onglet-liste="tous"]').click(); await p.waitForTimeout(500);
-  }],
-  ['Fiche de poste', '#/postes', async (p) => {
-    await p.locator('#postes-liste a.carte--action').first().click(); await p.waitForTimeout(400);
-  }],
-  ['Ma sélection', '#/postes', async (p) => {
-    await p.locator('#postes-liste a.carte--action').first().click(); await p.waitForTimeout(300);
-    await p.locator('#vue-poste [data-selection]').click(); await p.waitForTimeout(200);
-    await p.evaluate(() => { window.location.hash = '#/selection'; }); await p.waitForTimeout(400);
-  }],
-  ['Formulaire', '#/postes', async (p) => {
-    await p.locator('#postes-liste a.carte--action').first().click(); await p.waitForTimeout(300);
-    await p.locator('#vue-poste [data-selection]').click(); await p.waitForTimeout(200);
-    await p.evaluate(() => { window.location.hash = '#/formulaire'; }); await p.waitForTimeout(400);
-  }],
+  ['Mentions · RGPD', 'mentions.html?doc=rgpd', null],
 ];
 
 const tousLesProblemes = [];
@@ -44,9 +45,9 @@ for (const largeur of [390, 1440]) {
   console.log(`\n═══ ${largeur === 390 ? 'MOBILE 390' : 'PC 1440'} ═══`);
 
   for (const [nom, hash, avant] of ECRANS) {
-    await page.goto(process.env.URL_BASE || 'http://127.0.0.1:8123/', { waitUntil: 'networkidle' });
-    if (hash) await page.evaluate((h) => { window.location.hash = h; }, hash);
-    await page.waitForTimeout(600);
+    const base = process.env.URL_BASE || 'http://127.0.0.1:8123/';
+    await page.goto(base + hash, { waitUntil: 'networkidle' });
+    await page.waitForTimeout(700);
     if (avant) await avant(page);
     await page.waitForTimeout(200);
 

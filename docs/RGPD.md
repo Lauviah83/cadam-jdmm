@@ -10,11 +10,11 @@ Département des Alpes-Maritimes — Direction de la Construction, de l'Immobili
 ## ⚠️ Point à faire valider par le DPO avant mise en production
 
 Cette application est un site **statique**, sans serveur ni base de données. Elle ne peut donc
-pas envoyer de courriel par elle-même : l'envoi est délégué à un service tiers
-(**Web3Forms** pour la notification interne, **EmailJS** pour l'accusé au visiteur).
+pas envoyer de courriel par elle-même : l'envoi est délégué à un service tiers, **EmailJS**,
+seul à savoir écrire à une adresse arbitraire — celle que le visiteur vient de saisir.
 
-**Conséquence** : l'adresse électronique saisie par le visiteur, ainsi que la liste des offres
-qu'il a retenues, **transitent par les serveurs de ces prestataires**, dont l'hébergement peut
+**Conséquence** : les coordonnées saisies par le visiteur — prénom, nom, direction, adresse —
+et la fiche demandée **transitent par les serveurs de ce prestataire**, dont l'hébergement peut
 se situer **hors Union européenne**.
 
 Ce point doit être **arbitré et validé par le Délégué à la protection des données du
@@ -22,9 +22,9 @@ Département avant toute mise en ligne**. Trois issues possibles :
 
 | Option | Ce que ça implique |
 |---|---|
-| Valider les prestataires actuels | Vérifier les clauses contractuelles types, inscrire le traitement au registre, mentionner le transfert hors UE dans l'information des personnes |
-| Choisir un prestataire européen | Remplacer l'implémentation de `js/mailer.js` (l'abstraction à deux fournisseurs est prévue pour ça) |
-| Renoncer à l'envoi automatique | Ne conserver que le **plan B** : téléchargement du récapitulatif et lien `mailto:`. Aucune donnée ne quitte alors le navigateur du visiteur. C'est l'option la plus sobre, et elle fonctionne déjà. |
+| Valider le prestataire | Vérifier les clauses contractuelles types, inscrire le traitement au registre, mentionner le transfert hors UE dans l'information des personnes |
+| Choisir un prestataire européen | Remplacer la fonction `envoyerParEmailJS` de `js/commun/mailer.js` — c'est le seul point de contact avec le service |
+| Renoncer à l'envoi automatique | Ne conserver que le **plan B** : téléchargement de la fiche et lien `mailto:`. Aucune donnée ne quitte alors le navigateur du visiteur. C'est l'option la plus sobre, et elle fonctionne déjà. |
 
 Tant que l'arbitrage n'est pas rendu, l'application fonctionne en **plan B** : les clés ne sont
 pas renseignées dans `data/config.json`, donc aucune donnée n'est transmise à qui que ce soit.
@@ -51,11 +51,12 @@ qu'il a sélectionnées, et permettre à la DCIP d'assurer le suivi de cette dem
 
 | Donnée | Caractère | Origine |
 |---|---|---|
-| Adresse électronique | **Obligatoire** | Saisie par le visiteur |
-| Prénom, nom | Facultatif | Saisie par le visiteur |
-| Direction d'affectation actuelle | Facultatif | Saisie par le visiteur |
-| Message libre | Facultatif | Saisie par le visiteur |
-| Liste des offres retenues | Déduite | Sélection du visiteur dans l'application |
+| Prénom | **Obligatoire** | Saisi par le visiteur |
+| Nom | **Obligatoire** | Saisi par le visiteur |
+| Direction d'affectation actuelle | **Obligatoire** | Saisie par le visiteur |
+| Projet de mobilité | Facultatif | Choisi par le visiteur |
+| Message libre | Facultatif | Saisi par le visiteur |
+| Poste concerné | Déduite | La fiche ouverte au moment de la demande |
 | Horodatage de la demande | Déduite | Généré à l'envoi |
 
 **Aucune autre donnée n'est collectée.** Pas d'adresse IP conservée par l'application, pas de
@@ -63,10 +64,9 @@ profil, pas de données sensibles au sens de l'article 9.
 
 ## 4. Destinataires
 
-- Les agents de la DCIP destinataires de la notification interne, listés dans
-  `data/config.json` → `emails_internes` ;
-- le visiteur lui-même, pour son propre récapitulatif ;
-- les prestataires techniques d'envoi (voir l'avertissement en tête de document).
+- le visiteur lui-même, destinataire principal de la fiche qu'il demande ;
+- la DCIP, en **copie** de chaque envoi, à l'adresse de `data/config.json` → `emails_copie` ;
+- le prestataire technique d'envoi (voir l'avertissement en tête de document).
 
 Aucune cession, aucune revente, aucun transfert à un tiers non listé ici.
 
@@ -95,7 +95,6 @@ visiteur, que l'application ne transmet à personne — pour trois choses seulem
 
 | Clé | Contenu | Pourquoi |
 |---|---|---|
-| `jdmm.selection` | Les offres retenues | Conserver le panier d'un onglet à l'autre |
 | `jdmm.preferences` | Thème, mode haute lisibilité | Ne pas redemander à chaque visite |
 | `jdmm.quiz` | Scores des quiz | Afficher sa progression |
 | `jdmm.file-envois` | Demande en attente d'envoi | Rejouer l'envoi au retour du réseau |
@@ -117,7 +116,7 @@ document.
 
 - Site servi exclusivement en **HTTPS** (GitHub Pages, TLS 1.3).
 - Aucune donnée personnelle stockée dans le dépôt, aucune clé privée versionnée.
-- La clé Web3Forms est une **clé publique d'accès** : elle n'autorise que le dépôt d'un message
-  vers la boîte configurée sur le compte, jamais la lecture des messages reçus.
+- La **Public Key** d'EmailJS est publique par conception : elle n'autorise que l'envoi via
+  les gabarits du compte, jamais la lecture de quoi que ce soit.
 - Mesures anti-abus : champ leurre, délai minimum avant soumission, plafond de 3 envois par
   navigateur et par heure.

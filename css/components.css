@@ -593,3 +593,141 @@
 }
 .pied a { color: var(--texte-doux); }
 .pied nav { display: flex; flex-wrap: wrap; gap: var(--pas-2) var(--pas-4); justify-content: center; }
+
+/* ==========================================================================
+   Composants propres à l'application « Postes »
+   Repris de sources/dcip_postes.html.
+   ========================================================================== */
+
+/* --- Filtres par service, dans la barre haute ----------------------------- */
+.nav-filtres {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex: 1;
+  overflow-x: auto;
+  scrollbar-width: none;
+  /* Le défilement horizontal des filtres ne doit pas emporter la page. */
+  overscroll-behavior-x: contain;
+}
+.nav-filtres::-webkit-scrollbar { display: none; }
+
+.nf-btn {
+  /* C'est un <button> dans l'application Postes, un <a> dans l'application
+     Quiz : sans cela, la seconde affiche ses entrées soulignées. */
+  text-decoration: none;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 36px;
+  padding: 6px 14px;
+  border: none;
+  border-radius: var(--rayon-plein);
+  background: none;
+  color: rgba(255, 255, 255, .55);
+  font-size: var(--txt-sm);
+  font-weight: var(--graisse-moyenne);
+  white-space: nowrap;
+  transition: color var(--duree-rapide) var(--courbe),
+              background var(--duree-rapide) var(--courbe);
+}
+.nf-btn:hover { color: rgba(255, 255, 255, .9); background: rgba(255, 255, 255, .08); }
+.nf-btn.on { color: var(--texte-inverse); background: rgba(255, 255, 255, .14); }
+.nf-btn.on::after {
+  content: '';
+  position: absolute;
+  bottom: 6px;
+  width: 22px;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--accent);
+}
+.nf-btn { position: relative; }
+
+/* --- Ligne de poste dans la liste ------------------------------------------ */
+.poste-row {
+  display: flex;
+  align-items: center;
+  gap: var(--pas-4);
+  padding: var(--pas-4);
+  background: var(--surface);
+  border: var(--trait) solid rgba(0, 0, 0, .07);
+  border-radius: var(--rayon-lg);
+  text-decoration: none;
+  color: inherit;
+  box-shadow: var(--ombre-sm);
+  transition: border-color var(--duree-rapide) var(--courbe),
+              box-shadow var(--duree-rapide) var(--courbe),
+              transform var(--duree-instant) var(--courbe);
+}
+.poste-row:hover { border-color: var(--bordure-forte); box-shadow: var(--ombre-md); }
+/* Le retour au doigt passe par l'enfoncement : un :hover ne se produit
+   jamais sur un écran tactile. */
+.poste-row:active { transform: scale(.988); }
+
+.poste-row__info { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 3px; }
+.poste-row__titre {
+  font-size: var(--txt-base);
+  font-weight: var(--graisse-demi);
+  line-height: var(--interligne-titre);
+}
+.poste-row__svc { font-size: var(--txt-sm); color: var(--texte-doux); }
+.poste-row__info .metas { margin-top: var(--pas-1); }
+.poste-row__tags { flex: 0 0 auto; }
+.poste-row__fleche { flex: 0 0 auto; color: var(--texte-faible); }
+
+@media (max-width: 480px) {
+  /* Sur un écran étroit, le badge passe sous le titre plutôt que de comprimer
+     l'intitulé du poste sur cinq lignes. */
+  .poste-row { flex-wrap: wrap; }
+  .poste-row__tags { order: 3; width: 100%; }
+  .poste-row__fleche { order: 2; }
+}
+
+/* --- Pastille du bandeau de marque ------------------------------------------ */
+.hero-pill {
+  display: inline-block;
+  padding: 4px 12px;
+  border: var(--trait) solid rgba(239, 159, 39, .28);
+  border-radius: var(--rayon-plein);
+  background: rgba(239, 159, 39, .10);
+  font-family: var(--police-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--interlettre-eyebrow);
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+/* --- En-tête de liste --------------------------------------------------------- */
+.entete-liste { margin-bottom: var(--pas-3); }
+.entete-liste h2 { font-size: var(--txt-lg); }
+
+/* --- Rappel du poste dans le formulaire ---------------------------------------- */
+.recap-poste { border-left: 3px solid var(--accent); }
+
+/* --- Deux champs côte à côte (prénom / nom) ------------------------------------- */
+.duo-champs { display: grid; grid-template-columns: 1fr 1fr; gap: var(--pas-3); }
+@media (max-width: 380px) {
+  .duo-champs { grid-template-columns: 1fr; }
+}
+
+/* --- Bouton de validation (le « Postuler en ligne » du fichier source) ---------- */
+.bouton--valide {
+  background: var(--succes);
+  border-color: var(--succes);
+  color: var(--texte-inverse);
+}
+.bouton--valide:hover { filter: brightness(1.12); color: var(--texte-inverse); }
+
+/* --- Rond de confirmation --------------------------------------------------------- */
+.rond-succes {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 66px;
+  height: 66px;
+  border-radius: 50%;
+  background: var(--succes-fond);
+  color: var(--succes);
+}

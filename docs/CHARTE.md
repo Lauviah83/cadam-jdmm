@@ -167,6 +167,14 @@ Défaut repéré pendant la conception : les fiches de postes portent un champ `
 
 ## Le canvas de conception
 
+> **Note du 4 septembre 2026** — Ce canvas date de l'arbitrage entre les deux directions.
+> Il décrit une application unique à quatre onglets, structure abandonnée depuis : le projet
+> a été scindé en **deux applications distinctes**, l'onglet Métiers et la sélection multiple
+> ont été retirés. Les **chartes elles-mêmes restent valables** — palettes, contrastes,
+> corrections d'accessibilité — et c'est à ce titre que ce document fait foi. Les planches
+> d'écrans, elles, ne reflètent plus l'application livrée.
+
+
 35 planches réparties en trois pages :
 
 | Page | Contenu |

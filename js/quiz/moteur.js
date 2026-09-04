@@ -14,9 +14,9 @@
      · la progression, le récapitulatif final et les verdicts par palier
    ========================================================================== */
 
-import { ico } from '../icones.js';
-import { enregistrerResultatQuiz, obtenirResultatsQuiz } from '../store.js';
-import { annoncer } from '../app.js';
+import { ico } from '../commun/icones.js';
+import { enregistrerResultatQuiz, obtenirResultatsQuiz } from '../commun/store.js';
+import { annoncer } from '../commun/interface.js';
 
 const ICONE_QUIZ = { feu: 'flamme', gard: 'bouclier', surt: 'camera' };
 
@@ -25,7 +25,7 @@ let catalogue = null;
 async function charger() {
   if (catalogue) return catalogue;
   try {
-    const reponse = await fetch('./data/quiz.json', { cache: 'no-cache' });
+    const reponse = await fetch(new URL('../../data/quiz.json', import.meta.url), { cache: 'no-cache' });
     catalogue = await reponse.json();
   } catch (err) {
     console.error('[quiz] quiz.json illisible', err);
@@ -51,10 +51,14 @@ export async function rendreHub(section) {
   const total = quiz.reduce((n, q) => n + q.questions.length, 0);
 
   section.innerHTML = `
-    <div class="entete-vue">
-      <p class="surtitre">Jouez, gagnez</p>
-      <h1 id="titre-quiz">Trois quiz</h1>
-      <p class="sous">${total} questions · aucune inscription</p>
+    <div class="hero">
+      <div class="hero__interieur">
+        <div>
+          <p class="hero-pill">Jouez et remportez des goodies</p>
+          <h1 id="titre-quiz">Trois <em>quiz</em></h1>
+          <p class="sous">${total} questions · ${quiz.length} métiers · aucune inscription</p>
+        </div>
+      </div>
     </div>
     <div class="section pile">
       ${quiz.map((q) => carteQuiz(q, resultats[q.id])).join('')}
@@ -66,7 +70,7 @@ function carteQuiz(q, resultat) {
     ? `<span class="badge badge--succes">${ico('coche', 12)} ${resultat.meilleur}/${q.questions.length}</span>`
     : '';
   return `
-    <a class="quiz" data-quiz="${q.id}" href="#/quiz/${q.id}"
+    <a class="quiz" data-quiz="${q.id}" href="#/${q.id}"
        style="display:block;min-height:0;border-radius:var(--rayon-lg);overflow:hidden;text-decoration:none">
       <div style="padding:var(--pas-4)">
         <div class="rangee" style="align-items:flex-start">
@@ -110,7 +114,7 @@ export async function rendrePartie(section, idQuiz) {
     reponses: [],
   };
 
-  section.className = 'vue active quiz';
+  section.className = 'vue-quiz quiz';
   section.dataset.quiz = quiz.id;
   afficherQuestion(section);
 
@@ -120,7 +124,8 @@ export async function rendrePartie(section, idQuiz) {
 }
 
 function auClavier(evenement) {
-  if (!partie || !document.getElementById('vue-partie').classList.contains('active')) {
+  // L'écouteur se retire de lui-même dès qu'on quitte une partie.
+  if (!partie || !document.getElementById('quiz-options')) {
     document.removeEventListener('keydown', auClavier);
     return;
   }
@@ -149,7 +154,7 @@ function afficherQuestion(section) {
 
   section.innerHTML = `
     <div class="entete-detail">
-      <a class="bouton-icone" href="#/quiz" aria-label="Quitter le quiz">${ico('retour', 22)}</a>
+      <a class="bouton-icone" href="#/" aria-label="Quitter le quiz">${ico('retour', 22)}</a>
       <span class="titre">${quiz.categorie}</span>
     </div>
     <div class="section pile">
@@ -311,7 +316,7 @@ function afficherResultat(section) {
 
   section.innerHTML = `
     <div class="entete-detail">
-      <a class="bouton-icone" href="#/quiz" aria-label="Retour aux quiz">${ico('retour', 22)}</a>
+      <a class="bouton-icone" href="#/" aria-label="Retour aux quiz">${ico('retour', 22)}</a>
       <span class="titre">${quiz.categorie}</span>
     </div>
     <div class="section pile">
@@ -345,8 +350,8 @@ function afficherResultat(section) {
 
       <div class="pile-serree">
         <button type="button" class="bouton bouton--quiz bouton--large" id="quiz-rejouer">Refaire ce quiz</button>
-        <a class="bouton bouton--quiz-secondaire bouton--large" href="#/postes">Voir les postes de la DCIP</a>
-        <a class="bouton bouton--quiz-secondaire bouton--large" href="#/quiz">Choisir un autre quiz</a>
+        <a class="bouton bouton--quiz-secondaire bouton--large" href="../postes/">Voir les postes de la DCIP</a>
+        <a class="bouton bouton--quiz-secondaire bouton--large" href="#/">Choisir un autre quiz</a>
       </div>
     </div>`;
 

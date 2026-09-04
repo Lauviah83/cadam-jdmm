@@ -4,14 +4,14 @@
    Un seul endroit détient l'état ; les vues s'y abonnent et n'écrivent jamais
    dans localStorage directement.
 
-   RGPD : localStorage ne contient que la sélection d'offres, les préférences
-   d'affichage et les scores de quiz. Aucun identifiant, aucun traceur, aucune
-   donnée transmise à un tiers depuis ce module (voir docs/RGPD.md).
+   RGPD : localStorage ne contient que les préférences d'affichage, les scores
+   de quiz et, le temps d'un envoi manqué, la demande à rejouer. Aucun
+   identifiant, aucun traceur, aucune donnée transmise à un tiers depuis ce
+   module (voir docs/RGPD.md).
    ========================================================================== */
 
 const PREFIXE = 'jdmm.';
 const CLES = {
-  selection:   `${PREFIXE}selection`,
   preferences: `${PREFIXE}preferences`,
   quiz:        `${PREFIXE}quiz`,
   file:        `${PREFIXE}file-envois`,
@@ -95,81 +95,7 @@ function diffuser(evenement, charge) {
 }
 
 /* =========================================================================
-   1. Sélection d'offres (le « panier »)
-   ========================================================================= */
-
-/**
- * Une entrée de sélection est volontairement autonome : elle recopie les
- * champs nécessaires au récapitulatif par courriel. Si l'offre disparaît du
- * site du Département entre la sélection et l'envoi, le visiteur reçoit quand
- * même un récapitulatif exploitable.
- */
-export function obtenirSelection() {
-  const selection = lire(CLES.selection, []);
-  return Array.isArray(selection) ? selection : [];
-}
-
-export function estSelectionnee(id) {
-  return obtenirSelection().some((entree) => entree.id === id);
-}
-
-export function ajouterALaSelection(offre) {
-  const selection = obtenirSelection();
-  if (selection.some((entree) => entree.id === offre.id)) return selection;
-
-  selection.push({
-    id: offre.id,
-    titre: offre.titre,
-    url: offre.url,
-    service: offre.service || '',
-    domaine: offre.domaine || '',
-    categorie: offre.categorie || '',
-    filiere: offre.filiere || '',
-    lieu: offre.lieu || (offre.detail && offre.detail['lieu-de-travail']
-                          ? offre.detail['lieu-de-travail'].texte : ''),
-    deadline: offre.deadline || '',
-    deadline_label: offre.deadline_label || '',
-    // Le statut réel accompagne l'entrée : un poste dont l'annonce est retirée
-    // doit apparaître comme tel dans le récapitulatif reçu, pas comme ouvert.
-    statut_libelle: (offre.statut && offre.statut.libelle) || '',
-    statut_expiree: Boolean(offre.statut && offre.statut.expiree),
-    source: offre.dcip === undefined ? 'poste-dcip' : 'offre-departement',
-    ajoute_le: new Date().toISOString(),
-  });
-
-  ecrire(CLES.selection, selection);
-  diffuser('selection', selection);
-  return selection;
-}
-
-export function retirerDeLaSelection(id) {
-  const selection = obtenirSelection().filter((entree) => entree.id !== id);
-  ecrire(CLES.selection, selection);
-  diffuser('selection', selection);
-  return selection;
-}
-
-/** Ajoute ou retire selon l'état courant. Renvoie true si l'offre est désormais retenue. */
-export function basculerSelection(offre) {
-  if (estSelectionnee(offre.id)) {
-    retirerDeLaSelection(offre.id);
-    return false;
-  }
-  ajouterALaSelection(offre);
-  return true;
-}
-
-export function viderSelection() {
-  ecrire(CLES.selection, []);
-  diffuser('selection', []);
-}
-
-export function nombreSelectionnees() {
-  return obtenirSelection().length;
-}
-
-/* =========================================================================
-   2. Préférences d'affichage
+   1. Préférences d'affichage
    ========================================================================= */
 
 const PREFERENCES_DEFAUT = {
@@ -189,7 +115,7 @@ export function definirPreference(nom, valeur) {
 }
 
 /* =========================================================================
-   3. Résultats de quiz
+   2. Résultats de quiz
    ========================================================================= */
 
 /** Enregistre un résultat. Le meilleur score par quiz est conservé. */
@@ -213,7 +139,7 @@ export function obtenirResultatsQuiz() {
 }
 
 /* =========================================================================
-   4. File d'attente des envois (mode hors-ligne)
+   3. File d'attente des envois (mode hors-ligne)
    ========================================================================= */
 
 /**
@@ -244,7 +170,7 @@ export function depilerEnvoi(idFile) {
 }
 
 /* =========================================================================
-   5. Limitation anti-abus
+   4. Limitation anti-abus
    ========================================================================= */
 
 const FENETRE_MS = 60 * 60 * 1000;   // une heure
@@ -273,7 +199,7 @@ export function enregistrerEnvoi() {
 }
 
 /* =========================================================================
-   6. Utilitaires
+   5. Utilitaires
    ========================================================================= */
 
 /** Efface toutes les traces locales — bouton « Effacer mes données » (RGPD). */
@@ -284,7 +210,6 @@ export function toutEffacer() {
     } catch (err) { /* stockage indisponible : rien à effacer */ }
     memoireDeSecours.delete(cle);
   });
-  diffuser('selection', []);
   diffuser('quiz', {});
   diffuser('file', []);
 }
@@ -293,7 +218,6 @@ export function toutEffacer() {
 export function diagnostic() {
   return {
     stockage: stockageUtilisable() ? 'localStorage' : 'mémoire volatile',
-    selection: nombreSelectionnees(),
     quiz: Object.keys(obtenirResultatsQuiz()).length,
     file_attente: fileEnvois().length,
     preferences: obtenirPreferences(),

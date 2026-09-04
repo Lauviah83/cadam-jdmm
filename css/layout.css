@@ -299,3 +299,59 @@
 @media (min-width: 1400px) {
   .duo { grid-template-columns: 440px 1fr; }
 }
+
+
+/* ==========================================================================
+   Barre haute de l'application « Postes »
+   --------------------------------------------------------------------------
+   Reprise de sources/dcip_postes.html : marque à gauche, filtres par service
+   défilants au centre, date de l'événement à droite sur grand écran. Elle est
+   visible à TOUTES les largeurs — l'application n'a pas de barre d'onglets,
+   la navigation tient dans cette seule barre.
+   ========================================================================== */
+.barre {
+  position: sticky;
+  top: 0;
+  z-index: var(--plan-entete);
+  background: var(--marque-fond);
+  color: var(--marque-texte);
+  padding-top: var(--sûr-haut);
+  border-bottom: var(--trait) solid rgba(255, 255, 255, .07);
+}
+.barre__interieur {
+  max-width: var(--largeur-contenu);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: var(--pas-4);
+  min-height: 58px;
+  padding: 0 var(--pas-4);
+}
+.barre__marque {
+  flex-shrink: 0;
+  font-family: var(--police-titre);
+  font-variation-settings: "opsz" 144;
+  font-size: var(--txt-md);
+  color: var(--marque-texte);
+  text-decoration: none;
+  white-space: nowrap;
+}
+.barre__marque em { font-style: italic; color: var(--accent); }
+.barre__tag {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-family: var(--police-mono);
+  font-size: 0.625rem;
+  letter-spacing: var(--interlettre-eyebrow);
+  text-transform: uppercase;
+  color: var(--texte-inverse-doux);
+  /* Masquée sous 900 px : les filtres ont besoin de toute la largeur. */
+  display: none;
+}
+@media (min-width: 900px) {
+  .barre__tag { display: block; }
+}
+
+/* L'application Postes n'a pas de barre d'onglets : le contenu descend
+   jusqu'en bas. */
+.appli--simple .contenu { padding-bottom: var(--pas-7); }

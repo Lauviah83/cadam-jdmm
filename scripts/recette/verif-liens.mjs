@@ -5,18 +5,17 @@ import { chromium } from 'playwright-core';
 const BASE = process.env.URL_BASE || 'http://127.0.0.1:8123/';
 const b = await chromium.launch({ executablePath: '/usr/bin/chromium', args: ['--no-sandbox','--disable-gpu'] });
 const p = await (await b.newContext({ viewport: { width: 390, height: 844 }, isMobile: true, locale: 'fr-FR' })).newPage();
-const vues = ['', '#/metiers', '#/quiz', '#/postes', '#/selection'];
+const vues = ['postes/', 'quiz/'];
 let total = 0;
 for (const v of vues) {
-  await p.goto(BASE, { waitUntil: 'networkidle' });
-  if (v) await p.evaluate((h) => { window.location.hash = h; }, v);
-  await p.waitForTimeout(700);
+  await p.goto(BASE + v, { waitUntil: 'networkidle' });
+  await p.waitForTimeout(800);
   const soulignes = await p.evaluate(() => {
     const sortie = [];
-    document.querySelectorAll('.vue.active a').forEach((a) => {
-      const s = getComputedStyle(a);
-      const bloc = ['flex','block','grid','inline-flex'].includes(s.display);
-      if (bloc && s.textDecorationLine.includes('underline')) {
+    const SURFACES = '.poste-row, .carte--action, .bouton, .nf-btn, a.quiz, .phase, .tabbar__item';
+    document.querySelectorAll(SURFACES).forEach((a) => {
+      if (a.closest('.pied')) return;      // les liens de bas de page sont soulignés à dessein
+      if (getComputedStyle(a).textDecorationLine.includes('underline')) {
         sortie.push((a.className || a.tagName) + ' — ' + (a.textContent || '').trim().slice(0, 34));
       }
     });

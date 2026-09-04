@@ -1,0 +1,21 @@
+{
+  "name": "Postes vacants — DCIP, Département des Alpes-Maritimes",
+  "short_name": "Postes DCIP",
+  "description": "Les postes ouverts à la Direction de la Construction, de l'Immobilier et du Patrimoine. Consultez une fiche et recevez-la par courriel.",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "id": "/cadam-jdmm/postes/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#FAFAF8",
+  "theme_color": "#042C53",
+  "categories": ["government", "business"],
+  "icons": [
+    { "src": "../assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "../assets/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
