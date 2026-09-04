@@ -89,11 +89,20 @@
 
 .carte__corps { flex: 1; min-width: 0; }
 .carte__titre {
+  /* Ces éléments sont souvent des <span> — une carte entière cliquable est un
+     <a>, qui ne peut pas contenir de <div>. Sans display:block, un titre court
+     et son sous-titre se retrouvent sur la même ligne. */
+  display: block;
   font-size: var(--txt-base);
   font-weight: var(--graisse-demi);
   line-height: var(--interligne-titre);
 }
-.carte__sous { margin-top: 2px; font-size: var(--txt-sm); color: var(--texte-doux); }
+.carte__sous {
+  display: block;
+  margin-top: 2px;
+  font-size: var(--txt-sm);
+  color: var(--texte-doux);
+}
 .carte__pied {
   margin-top: var(--pas-3);
   padding-top: var(--pas-3);
