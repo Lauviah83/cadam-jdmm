@@ -12,8 +12,12 @@
      d'abord servirait des offres périmées pendant des jours — précisément le
      piège signalé au §10.
 
-   Toute modification de la liste RESSOURCES_SOCLE impose d'incrémenter
-   CACHE_VERSION, sinon les anciens fichiers restent servis.
+   L'app shell est en réalité servie en « cache puis rafraîchissement » : la
+   réponse est immédiate, et la version suivante est récupérée en tâche de
+   fond. Une mise en ligne est donc reçue au chargement suivant, sans qu'il
+   faille penser à incrémenter CACHE_VERSION — voir cacheEtRafraichit().
+   CACHE_VERSION ne sert plus qu'à purger tous les caches d'un coup, lors d'un
+   changement de structure.
    ========================================================================== */
 
 const CACHE_VERSION = 'v2';
@@ -144,13 +148,56 @@ self.addEventListener('fetch', (evenement) => {
     return;
   }
 
-  // Tout le reste (CSS, JS, images) : cache d'abord.
-  evenement.respondWith(cacheDAbord(requete, CACHE_SOCLE));
+  // Les polices ne changent jamais : cache d'abord, sans rien revérifier.
+  if (url.pathname.includes('/assets/fonts/')) {
+    evenement.respondWith(cacheDAbord(requete, CACHE_SOCLE));
+    return;
+  }
+
+  // CSS, JS et le reste de la coque : on sert le cache immédiatement ET on
+  // rafraîchit en tâche de fond. Voir la note sur CACHE_VERSION ci-dessous.
+  evenement.respondWith(cacheEtRafraichit(requete, CACHE_SOCLE));
 });
 
 /* -------------------------------------------------------------------------
    Stratégies
    ------------------------------------------------------------------------- */
+
+/**
+ * Sert le cache immédiatement, puis remplace l'entrée par la version du
+ * réseau, sans attendre.
+ *
+ * POURQUOI, plutôt qu'un simple « cache d'abord » : le contenu de cette
+ * application sera mis à jour par un agent de la collectivité, pas par un
+ * développeur. En cache d'abord strict, toute mise en ligne serait invisible
+ * pour quiconque a déjà ouvert l'application, jusqu'à ce que quelqu'un pense à
+ * incrémenter CACHE_VERSION à la main — un oubli garanti, et un défaut qu'on ne
+ * découvre que sur le stand.
+ *
+ * Ici, le premier chargement suivant une mise en ligne affiche encore
+ * l'ancienne version (instantanément), et le suivant est à jour. Aucune
+ * intervention. CACHE_VERSION ne sert plus qu'à purger d'un coup en cas de
+ * changement de structure.
+ */
+async function cacheEtRafraichit(requete, nomCache) {
+  const cache = await caches.open(nomCache);
+  const enCache = await cache.match(requete);
+
+  const rafraichir = fetch(requete)
+    .then((reponse) => {
+      if (reponse && reponse.ok) cache.put(requete, reponse.clone());
+      return reponse;
+    })
+    .catch(() => null);
+
+  if (enCache) {
+    // On ne retient pas la réponse du réseau : elle servira au prochain appel.
+    rafraichir.catch(() => {});
+    return enCache;
+  }
+  const reponse = await rafraichir;
+  return reponse || new Response('', { status: 504, statusText: 'Indisponible hors ligne' });
+}
 
 /** Sert depuis le cache ; sinon va au réseau et met en cache au passage. */
 async function cacheDAbord(requete, nomCache) {
