@@ -8,11 +8,18 @@
   "scope": "./",
   "id": "/cadam-jdmm/",
   "display": "standalone",
-  "display_override": ["standalone", "minimal-ui"],
+  "display_override": [
+    "standalone",
+    "minimal-ui"
+  ],
   "orientation": "portrait-primary",
   "background_color": "#FAFAF8",
   "theme_color": "#042C53",
-  "categories": ["education", "government", "business"],
+  "categories": [
+    "education",
+    "government",
+    "business"
+  ],
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
