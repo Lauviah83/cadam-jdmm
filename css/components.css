@@ -309,6 +309,9 @@
 .etape__filet { flex: 1; height: 1px; background: var(--bordure); }
 
 .phase {
+  /* C'est un <a> : sans cela, l'intitulé de chaque phase est souligné. */
+  text-decoration: none;
+  color: inherit;
   display: flex;
   align-items: center;
   gap: var(--pas-3);

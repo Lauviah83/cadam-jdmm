@@ -20,7 +20,7 @@
    changement de structure.
    ========================================================================== */
 
-const CACHE_VERSION = 'v2';
+const CACHE_VERSION = 'v3';
 const CACHE_SOCLE   = `jdmm-socle-${CACHE_VERSION}`;
 const CACHE_DONNEES = `jdmm-donnees-${CACHE_VERSION}`;
 

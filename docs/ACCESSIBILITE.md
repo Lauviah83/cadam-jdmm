@@ -121,9 +121,13 @@ Ces points doivent être levés avant de pouvoir déclarer un taux de conformit�
 
 ## Contenus non accessibles
 
-À la date de cette déclaration, un contenu est **absent** plutôt qu'inaccessible : le détail
-des 10 phases du parcours « Vie d'un projet immobilier ». L'écran l'annonce explicitement au
-lieu d'afficher une page vide. Il sera intégré dès réception du roll-up.
+Aucun contenu manquant à la date de cette déclaration.
+
+Les couleurs des 8 services sont reprises du roll-up 60×160 cm, pour que le visiteur retrouve
+le même code d'un support à l'autre. Cinq d'entre elles n'atteignent pas le seuil AA en petit
+corps (de 3,0 à 3,6:1) : elles ne servent donc **que de repère décoratif** — un filet de 3 px —
+et jamais à porter du texte. Le nom de chaque service est écrit en couleur de texte normale
+(14,2:1), et la couleur ne transmet aucune information à elle seule.
 
 ---
 

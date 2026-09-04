@@ -24,12 +24,11 @@ scanne le QR code du stand :
 | Socle technique (thèmes, service worker, manifest, modules JS) | ✅ |
 | Robot de synchronisation des offres + GitHub Actions | ✅ testé sur les données réelles |
 | Chartes graphiques Design A et Design B, 35 planches | ✅ **Design A retenu** |
-| Contenu extrait vers `data/*.json` | ✅ sauf la timeline (roll-up non fourni) |
+| Contenu extrait vers `data/*.json` | ✅ y compris le parcours |
 | Vues mobile puis PC | ✅ |
 | Accessibilité, performance, recette navigateur | ✅ voir ci-dessous |
 | QR code et planche A5 | ✅ à régénérer avec l'URL définitive |
 | Déploiement GitHub Pages | ✅ en ligne, workflow de synchronisation testé |
-| Contenu des 10 phases du parcours | ⛔ **bloqué** — `timeline_rollup_60x160cm.pdf` non fourni |
 | Logo officiel | ⛔ non fourni — icônes provisoires |
 
 ## Qualité mesurée
@@ -121,7 +120,6 @@ uniquement au moment d'un envoi.
 
 ## Points ouverts
 
-- **Contenu des 10 phases** du parcours — le roll-up n'a pas été fourni ; l'écran l'annonce
 - **Logo officiel** — les icônes sont provisoires ; le SVG reste à réclamer
 - **Date du 25 septembre 2026** à confirmer (`config.json` → `evenement.date_confirmee`)
 - **Clés Web3Forms et EmailJS** à créer (`docs/EXPLOITATION.md` §5) — sans elles, l'application

@@ -8,6 +8,8 @@ tourner l'application : ils servent à vérifier qu'elle marche encore après un
 | `tester-app.mjs` | Démarrage, navigation, listes, sélection, premier écran de quiz |
 | `tester-parcours.mjs` | Un quiz de bout en bout, la question à réponses multiples, le formulaire en plan B, le mode hors ligne, l'affichage PC |
 | `tester-clavier.mjs` | Ordre de tabulation, focus visible, piège de focus de la modale, raccourcis des quiz |
+| `tester-timeline.mjs` | Le parcours : 10 phases, 3 étapes, 8 services, citations du roll-up, bornes |
+| `verif-liens.mjs` | Aucun bloc cliquable (carte, onglet, phase) n'est souligné |
 | `audit-a11y.mjs` | axe-core (WCAG 2.1 AA) sur 10 écrans × 2 formats |
 
 ## Prérequis
@@ -25,13 +27,17 @@ python3 -m http.server 8123          # dans un premier terminal, à la racine du
 node scripts/recette/tester-app.mjs  # dans un second
 node scripts/recette/tester-parcours.mjs
 node scripts/recette/tester-clavier.mjs
+node scripts/recette/tester-timeline.mjs
+node scripts/recette/verif-liens.mjs
 node scripts/recette/audit-a11y.mjs
 ```
 
 L'audit d'accessibilité accepte une autre adresse, pour contrôler le second habillage :
 
 ```bash
-URL_BASE="http://127.0.0.1:8123/?theme=b" node scripts/recette/audit-a11y.mjs
+URL_BASE="http://127.0.0.1:8123/?theme=b" node scripts/recette/tester-timeline.mjs
+node scripts/recette/verif-liens.mjs
+node scripts/recette/audit-a11y.mjs
 ```
 
 ## Lighthouse

@@ -1,12 +1,17 @@
 /* ==========================================================================
    views/metiers.js — Le parcours « Vie d'un projet immobilier »
    --------------------------------------------------------------------------
-   Données : data/timeline.json (10 phases, 3 étapes, 8 services).
+   Données : data/timeline.json — 10 phases, 3 étapes, 8 services, extraits du
+   roll-up 60×160 cm par scripts/extraire_timeline.py.
 
-   Ce fichier est aujourd'hui un squelette : le roll-up 60×160 cm dont il
-   reprend le contenu n'a pas été fourni. La vue le dit franchement plutôt
-   que d'afficher une page vide ou d'inventer des intitulés — un visiteur du
-   stand ne doit pas repartir avec des phases imaginaires.
+   Le visiteur a le panneau sous les yeux : l'écran reprend ses couleurs et ses
+   intitulés mot pour mot, pour qu'il retrouve d'un support à l'autre ce qu'il
+   vient de lire. Les couleurs du roll-up ne portent jamais l'information
+   seules — chaque service est nommé en texte (voir _note_couleurs dans les
+   données).
+
+   La vue reste capable de fonctionner sans contenu : si `phases` est vide,
+   elle le dit au lieu d'afficher une page blanche.
    ========================================================================== */
 
 import { ico } from '../icones.js';
@@ -19,6 +24,11 @@ async function charger() {
   try {
     const reponse = await fetch('./data/timeline.json', { cache: 'no-cache' });
     timeline = await reponse.json();
+    // Combien de phases chaque service traverse : compté ici, jamais saisi
+    // dans les données, où il se désynchroniserait au premier ajout.
+    (timeline.services || []).forEach((s) => {
+      s.phases = (timeline.phases || []).filter((p) => p.intervenants.includes(s.id)).length;
+    });
   } catch (err) {
     console.error('[metiers] timeline.json illisible', err);
     timeline = { etapes: [], phases: [], services: [] };
@@ -48,7 +58,10 @@ export async function rendreListe(section) {
   const sous = document.getElementById('metiers-sous');
 
   const nbPhases = (t.phases || []).length;
-  const nbServices = (t.services || []).length;
+  // Le roll-up annonce « 8 services » : ce sont les services de la DCIP, pas
+  // les 12 intervenants. La Politique, la Direction, la Mission Énergies
+  // Renouvelables et « tous les services » interviennent sans être des services.
+  const nbServices = (t.services || []).filter((s) => s.est_service).length;
   sous.textContent = nbPhases
     ? `${nbPhases} phases · ${(t.etapes || []).length} étapes · ${nbServices} services`
     : 'Contenu en préparation';
@@ -81,6 +94,7 @@ export async function rendreListe(section) {
           <span class="etape__puce" style="background:${etape.couleur}" aria-hidden="true"></span>
           <h2 class="etape__nom" id="etape-${etape.id}" style="color:${etape.couleur}">${etape.titre}</h2>
           <span class="etape__filet" aria-hidden="true"></span>
+          <span class="texte-faible" style="font-size:var(--txt-xs)">${etape.accroche || ''}</span>
         </div>
         ${phases.map((p) => `
           <a class="phase" href="#/phase/${p.num}" style="border-left-color:${etape.couleur}">
@@ -109,18 +123,34 @@ function rendreEtapes(t) {
 }
 
 function rendreServices(t) {
-  if (!(t.services || []).length) return '';
+  const tous = t.services || [];
+  if (!tous.length) return '';
+
+  const services = tous.filter((s) => s.est_service);
+  const autres = tous.filter((s) => !s.est_service);
+
+  // La couleur est un repère, jamais l'information : le nom est en texte
+  // normal, et la teinte du roll-up n'habille qu'un filet de 3 px.
+  const ligne = (s) => `
+    <li style="display:flex;align-items:center;gap:var(--pas-3);padding:var(--pas-3);
+        background:var(--surface);border:var(--trait) solid rgba(0,0,0,.07);
+        border-left:3px solid ${s.couleur};border-radius:var(--rayon-sm)">
+      <span style="font-size:var(--txt-sm);font-weight:var(--graisse-moyenne)">${s.nom}</span>
+      <span class="rangee-fin texte-faible" style="font-size:var(--txt-xs)">
+        ${s.phases} phase${s.phases > 1 ? 's' : ''}</span>
+    </li>`;
+
   return `
-    <section class="pile-serree" aria-labelledby="titre-services" style="margin-top:var(--pas-4)">
-      <h2 class="surtitre" id="titre-services">Les services de la DCIP</h2>
-      ${t.services.map((s) => `
-        <div class="carte carte--plate" style="display:flex;align-items:center;gap:var(--pas-3);padding:var(--pas-3)">
-          <span class="pastille-service pastille-service--petite" style="color:${s.couleur}" aria-hidden="true">${ico('postes', 16)}</span>
-          <div class="carte__corps">
-            <div class="carte__titre" style="font-size:var(--txt-sm)">${s.nom}</div>
-            ${s.description ? `<div class="carte__sous">${s.description}</div>` : ''}
-          </div>
-        </div>`).join('')}
+    <section aria-labelledby="titre-services" style="margin-top:var(--pas-5)">
+      <h2 class="surtitre" id="titre-services">Les ${services.length} services de la DCIP</h2>
+      <ul class="pile-serree" style="margin-top:var(--pas-2)" role="list">
+        ${services.map(ligne).join('')}
+      </ul>
+      ${autres.length ? `
+        <p class="surtitre" style="margin-top:var(--pas-5)">Ils interviennent aussi</p>
+        <ul class="pile-serree" style="margin-top:var(--pas-2)" role="list">
+          ${autres.map(ligne).join('')}
+        </ul>` : ''}
     </section>`;
 }
 
@@ -177,8 +207,9 @@ export async function rendrePhase(section, num) {
           <div class="pile-serree" style="margin-top:var(--pas-2)">
             ${phase.intervenants.map((id) => {
               const s = services(id);
-              return `<div class="carte carte--plate" style="display:flex;align-items:center;gap:var(--pas-3);padding:var(--pas-3)">
-                <span class="pastille-service pastille-service--petite" aria-hidden="true">${ico('postes', 16)}</span>
+              return `<div style="display:flex;align-items:center;gap:var(--pas-3);padding:var(--pas-3);
+                  background:var(--surface);border:var(--trait) solid rgba(0,0,0,.07);
+                  border-left:3px solid ${s.couleur || 'var(--marque)'};border-radius:var(--rayon-sm)">
                 <span style="font-size:var(--txt-sm);font-weight:var(--graisse-moyenne)">${s.nom}</span>
               </div>`;
             }).join('')}
