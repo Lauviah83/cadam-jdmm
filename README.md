@@ -1,5 +1,7 @@
 # Métiers & Mobilité DCIP
 
+**En ligne : <https://lauviah83.github.io/cadam-jdmm/>**
+
 Application du stand de la **DCIP** (Direction de la Construction, de l'Immobilier et du
 Patrimoine) à la **Journée des Métiers et de la Mobilité** du **CADAM**, Nice —
 Département des Alpes-Maritimes.
@@ -26,6 +28,7 @@ scanne le QR code du stand :
 | Vues mobile puis PC | ✅ |
 | Accessibilité, performance, recette navigateur | ✅ voir ci-dessous |
 | QR code et planche A5 | ✅ à régénérer avec l'URL définitive |
+| Déploiement GitHub Pages | ✅ en ligne, workflow de synchronisation testé |
 | Contenu des 10 phases du parcours | ⛔ **bloqué** — `timeline_rollup_60x160cm.pdf` non fourni |
 | Logo officiel | ⛔ non fourni — icônes provisoires |
 
@@ -33,11 +36,18 @@ scanne le QR code du stand :
 
 | | Performance | Accessibilité | Bonnes pratiques | SEO |
 |---|---|---|---|---|
-| Mobile | 94 | 100 | 100 | 100 |
-| Bureau | 99 | 100 | 100 | 100 |
+| **Production**, mobile | 98 *(médiane sur 3 passages)* | 100 | 100 | 100 |
+| Local, mobile | 95 | 100 | 100 | 100 |
+| Local, bureau | 99 | 100 | 100 | 100 |
+| Habillage B, mobile | 99 | 100 | 100 | 100 |
 
-axe-core (WCAG 2.1 AA) : **0 violation** sur 10 écrans × 2 formats × 2 habillages.
-Relevés en local, où rien n'est compressé : la production sera meilleure.
+axe-core (WCAG 2.1 AA) : **0 violation** sur 10 écrans × 2 formats × 2 habillages,
+en local **et** sur le site déployé.
+
+> La performance varie de 86 à 99 selon la latence du réseau et l'état du cache CDN :
+> le premier chargement après un déploiement est toujours le plus lent. Le code, lui,
+> ne bouge pas — aucune requête ne quitte le domaine au chargement, et le poids initial
+> est de 57 ko de polices plus 44 ko de données, servis compressés.
 
 ---
 

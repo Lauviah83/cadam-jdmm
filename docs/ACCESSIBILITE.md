@@ -30,6 +30,7 @@ Moteur **axe-core**, règles WCAG 2.1 niveaux A et AA — le socle technique du 
 |---|---|
 | 10 écrans × 2 formats (390 px et 1440 px) | **0 violation** |
 | Les mêmes écrans en habillage B | **0 violation** |
+| Les mêmes écrans sur le **site déployé** | **0 violation** |
 
 Écrans contrôlés : accueil, parcours, hub des quiz, question de quiz (fond sombre),
 correction de quiz, liste des postes DCIP, toutes les offres, fiche de poste, ma sélection,
@@ -39,8 +40,8 @@ formulaire.
 
 | Profil | Score |
 |---|---|
-| Mobile | **100** |
-| Bureau | **100** |
+| Production, mobile | **100** |
+| Local, mobile et bureau | **100** |
 | Habillage B, mobile | **100** |
 
 ### Contrastes
@@ -48,7 +49,7 @@ formulaire.
 Tous les couples texte/fond ont été **mesurés** (algorithme WCAG 2.1), pas estimés. Les ratios
 sont annotés dans `themes/a.css` et `themes/b.css`, au regard de chaque valeur.
 
-Cinq corrections ont été nécessaires par rapport à un usage naïf des palettes d'origine :
+Six corrections ont été nécessaires par rapport à un usage naïf des palettes d'origine :
 
 | Cas | Mesure | Correction |
 |---|---|---|
@@ -57,6 +58,7 @@ Cinq corrections ont été nécessaires par rapport à un usage naïf des palett
 | Accent sûreté `#3D6FE8` sur fond sombre | 4,29:1 | éclairci en `#4C7BEC` (5,0:1) pour les textes |
 | Texte du bouton de quiz sur accent vif | 4,35:1 sur le bleu sûreté | noir pur (4,6 à 5,7:1 selon le quiz) |
 | Surtitre gris de la navigation haute sur navy | 2,7:1 | rôle `--texte-inverse-doux` (9,2:1) |
+| Textes secondaires du bandeau de marque | valeurs `rgba()` en dur | remplacés par le même rôle |
 
 Les **fonds sombres des quiz** ont été vérifiés au même titre que le reste : texte principal
 à 17:1, accents entre 4,6 et 5,7:1.
@@ -93,6 +95,9 @@ Vérifiée par test automatisé sur navigateur :
   inclut des agents de plus de 50 ans, debout, dans le bruit d'un hall.
 - **Mode haute lisibilité** activable en pied de page : corps et interlignage augmentés sans
   déplacer les éléments.
+- **Aucune requête ne quitte le domaine au chargement** : les polices sont servies par
+  l'application. Un lecteur d'écran ou un navigateur derrière un filtre d'entreprise n'a donc
+  aucune dépendance externe pour afficher la page.
 - Aucune information transmise par la couleur seule : les états de réponse d'un quiz portent
   une icône et un libellé (« Bonne réponse », « Réponse écartée »).
 
