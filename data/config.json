@@ -1,0 +1,76 @@
+{
+  "evenement": {
+    "nom": "Journée des Métiers et de la Mobilité",
+    "lieu": "CADAM — Nice",
+    "date": "À CONFIRMER",
+    "organisateur": "DCIP — Direction de la Construction, de l'Immobilier et du Patrimoine"
+  },
+  "emails_internes": [
+    "dcip_affaires_generales@departement06.fr",
+    "smonnoyer@departement06.fr"
+  ],
+  "web3forms": {
+    "access_key": "À_RENSEIGNER"
+  },
+  "emailjs": {
+    "public_key": "",
+    "service_id": "",
+    "template_candidat": "",
+    "template_interne": ""
+  },
+  "offres": {
+    "source": "https://www.departement06.fr/offres-demploi",
+    "fraicheur_alerte_heures": 72,
+    "dcip_patterns": [
+      "DCIP",
+      "patrimoine bâti",
+      "bâtiment",
+      "bâtimentaire",
+      "immobilier",
+      "conduite d'opérations",
+      "maîtrise d'ouvrage",
+      "maintenance des collèges",
+      "CVC",
+      "chauffage",
+      "climatisation",
+      "ventilation",
+      "plomberie",
+      "GTB",
+      "GTC",
+      "courants forts",
+      "courants faibles",
+      "énergies thermiques",
+      "fluides",
+      "sûreté",
+      "vidéoprotection",
+      "contrôle d'accès",
+      "gardiennage",
+      "prévention incendie",
+      "sécurité incendie",
+      "SSIAP",
+      "architecte",
+      "économiste de la construction",
+      "dessinateur projeteur",
+      "second œuvre",
+      "gros œuvre",
+      "rénovation globale",
+      "exploitation des bâtiments",
+      "amiante",
+      "accessibilité PMR",
+      "espaces verts"
+    ],
+    "dcip_domaines": [
+      "Patrimoine bâti"
+    ],
+    "_note_marquage": "Ordre de fiabilité du rattachement DCIP : 1) URL d'un des 7 postes de postes-dcip.json, 2) domaine d'activité listé dans dcip_domaines, 3) motif de dcip_patterns trouvé dans l'INTITULÉ ou le domaine. Les motifs ne sont volontairement PAS cherchés dans le résumé : « patrimoine » y confondait le patrimoine bâti et le patrimoine culturel (cinéma, Micro-Folie), « collège » y attrapait un poste de chef de cuisine."
+  },
+  "rgpd": {
+    "duree_conservation_mois": 12,
+    "contact_dpo": "À_RENSEIGNER",
+    "responsable_traitement": "Département des Alpes-Maritimes — DRH / DCIP"
+  },
+  "theme": {
+    "defaut": "a",
+    "switcher_visible": true
+  }
+}

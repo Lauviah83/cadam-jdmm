@@ -1,0 +1,137 @@
+/* ==========================================================================
+   a.css — Design A « Institutionnel »
+   --------------------------------------------------------------------------
+   Palette et typographies reprises à l'identique des fichiers sources du
+   projet (dcip_postes.html, quiz-hub-mobile.html), systématisées en tokens.
+
+   CONTRASTES : tous les couples texte/fond ci-dessous ont été mesurés
+   (algorithme WCAG 2.1). Les ratios sont annotés. Trois corrections ont été
+   nécessaires par rapport à un usage naïf de la palette d'origine — elles
+   sont signalées par « ⚠ CORRECTION ».
+   ========================================================================== */
+
+:root,
+[data-theme="a"] {
+
+  /* --- Bleus institutionnels (palette d'origine, inchangée) ---------------- */
+  --b9: #042C53;   /* bleu nuit    — texte principal : 13.5:1 sur papier ✔ AAA */
+  --b8: #0C447C;   /*              — titres, aplats  :  9.4:1 sur papier ✔ AAA */
+  --b6: #185FA5;   /* bleu moyen   — liens, texte    :  6.2:1 sur papier ✔ AA  */
+  --b4: #378ADD;   /* bleu clair   — 3.4:1 sur papier : INTERDIT en texte courant,
+                                     réservé aux bordures, icônes et composants
+                                     d'interface (seuil 3:1 ✔) et au grand texte */
+  --b1: #B5D4F4;   /* bleu pâle    — fonds de badges, séparateurs */
+  --b0: #E6F1FB;   /* bleu glacé   — fonds de blocs informatifs */
+
+  /* --- Accents (palette d'origine) ----------------------------------------- */
+  --a2: #EF9F27;   /* ambre — 2.1:1 sur papier : JAMAIS en texte sur fond clair.
+                             Usage : aplat de fond, filet, pastille, et texte
+                             sur bleu nuit (6.5:1 ✔ AA) */
+  --t6: #0F6E56;   /* vert  — 5.9:1 sur papier ✔ AA — validation, « à jour » */
+  --c6: #993C1D;   /* rouge — 6.7:1 sur papier ✔ AA — alerte, échéance dépassée */
+
+  /* ⚠ CORRECTION — variantes lisibles en TEXTE sur fond clair.
+     La palette d'origine n'offrait pas d'ambre utilisable en texte : #EF9F27
+     plafonne à 2.1:1. On dérive une version foncée de la même teinte. */
+  --a2-texte: #96590A;   /* 5.4:1 sur papier ✔ AA */
+  --b4-texte: var(--b6); /* on renvoie sur b6 plutôt que d'inventer une teinte */
+
+  /* --- Fonds --------------------------------------------------------------- */
+  --papier: #FAFAF8;       /* fond général */
+  --creme:  #F6F4EF;       /* fond alterné, cartes en retrait */
+  --surface: #FFFFFF;      /* cartes, feuilles modales */
+  --surface-haute: #FFFFFF;
+  --voile: rgba(4, 44, 83, 0.55);   /* derrière les modales */
+
+  /* --- Rôles sémantiques ----------------------------------------------------
+     Le code applicatif n'appelle QUE ces variables-là, jamais --b9 ni --a2
+     directement. Changer de thème revient à redéfinir ce bloc. */
+  --fond: var(--papier);
+  --fond-alt: var(--creme);
+  --texte: var(--b9);                    /* 13.5:1 ✔ AAA */
+  --texte-doux: #455465;                 /* 7.4:1 ✔ AAA — métadonnées */
+  --texte-faible: #616D82;               /* 5.0:1 ✔ AA  — mentions discrètes.
+                                            #67748A tombait à 4.52:1, sans marge. */
+  --texte-inverse: #FFFFFF;              /* 14.1:1 sur --b9 ✔ AAA */
+  --lien: var(--b6);
+  --lien-survol: var(--b8);
+  --bordure: #D9DFE7;
+  --bordure-forte: var(--b1);
+  --accent: var(--a2);
+  --accent-texte: var(--a2-texte);
+  --succes: var(--t6);
+  --alerte: var(--c6);
+  --info: var(--b6);
+
+  /* --- Marque -------------------------------------------------------------- */
+  --marque: var(--b8);
+  --marque-fond: var(--b9);
+  --marque-texte: #FFFFFF;
+
+  /* --- Typographies ---------------------------------------------------------
+     Les trois familles des fichiers sources. Chaque pile se termine par des
+     polices système : si Google Fonts est bloqué (réseau d'un hall d'expo,
+     mode hors-ligne), le rendu reste correct. */
+  --police-titre: "Fraunces", "Iowan Old Style", "Palatino Linotype", Palatino,
+                  Georgia, "Times New Roman", serif;
+  --police-texte: "Manrope", -apple-system, BlinkMacSystemFont, "Segoe UI",
+                  Roboto, "Helvetica Neue", Arial, sans-serif;
+  --police-mono:  "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo,
+                  Consolas, "Liberation Mono", monospace;
+
+  /* --- Ombres ---------------------------------------------------------------
+     Teintées de bleu plutôt que de noir : une ombre grise sur un fond crème
+     salit, une ombre teintée s'intègre. */
+  --ombre-sm: 0 1px 2px rgba(4, 44, 83, 0.06),
+              0 1px 3px rgba(4, 44, 83, 0.05);
+  --ombre-md: 0 2px 6px rgba(4, 44, 83, 0.07),
+              0 6px 16px rgba(4, 44, 83, 0.06);
+  --ombre-lg: 0 8px 24px rgba(4, 44, 83, 0.10),
+              0 16px 48px rgba(4, 44, 83, 0.08);
+  --ombre-focus: 0 0 0 var(--trait-focus) rgba(55, 138, 221, 0.45);
+
+  /* --- Anneau de focus ------------------------------------------------------
+     Toujours visible, jamais supprimé (RGAA 10.7). Le décalage évite que
+     l'anneau colle au texte. */
+  --focus-couleur: var(--b6);
+  --focus-decalage: 2px;
+
+  /* ======================================================================
+     Ambiances des quiz — fonds sombres par thème (conservés des sources)
+     ====================================================================== */
+
+  /* Prévention incendie */
+  --quiz-feu-fond:    #0F0E0C;
+  --quiz-feu-accent:  #E94B1F;   /* 5.0:1 sur son fond ✔ AA */
+  --quiz-feu-surface: #1A1815;
+  --quiz-feu-texte:   #F5F2ED;   /* 17.3:1 ✔ AAA */
+  --quiz-feu-doux:    #B9B4AC;   /*  9.4:1 ✔ AAA */
+
+  /* Gardiennage */
+  --quiz-gard-fond:    #0B0E14;
+  --quiz-gard-accent:  #3B82F6;  /* 5.3:1 sur son fond ✔ AA */
+  --quiz-gard-surface: #151A24;
+  --quiz-gard-texte:   #EEF2F8;  /* 17.2:1 ✔ AAA */
+  --quiz-gard-doux:    #B9B4AC;  /*  9.4:1 ✔ AAA */
+
+  /* Sûreté */
+  --quiz-sur-fond:    #0A0D14;
+  --quiz-sur-surface: #141A26;
+  --quiz-sur-texte:   #EEF2F8;   /* 17.3:1 ✔ AAA */
+  --quiz-sur-doux:    #B9B4AC;   /*  9.4:1 ✔ AAA */
+  /* ⚠ CORRECTION — l'accent d'origine #3D6FE8 plafonne à 4.29:1 sur ce fond,
+     juste sous le seuil AA de 4.5. Conservé pour les bordures et les aplats
+     (seuil composants 3:1), éclairci pour tout ce qui est du texte. */
+  --quiz-sur-accent:       #3D6FE8;   /* 4.3:1 — surfaces et bordures uniquement */
+  --quiz-sur-accent-texte: #4C7BEC;   /* 5.0:1 ✔ AA — texte et libellés */
+
+  /* --- États de réponse (communs aux trois quiz) ---------------------------
+     Le vert et le rouge ne portent jamais l'information seuls : ils sont
+     toujours doublés d'une icône et d'un libellé (RGAA 3.1). */
+  --quiz-juste:       #34D399;   /* sur fond sombre */
+  --quiz-juste-fond:  rgba(52, 211, 153, 0.12);
+  --quiz-faux:        #F87171;
+  --quiz-faux-fond:   rgba(248, 113, 113, 0.12);
+  --quiz-neutre-fond: rgba(255, 255, 255, 0.05);
+  --quiz-bordure:     rgba(255, 255, 255, 0.14);
+}

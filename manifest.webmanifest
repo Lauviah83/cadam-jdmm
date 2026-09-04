@@ -1,0 +1,50 @@
+{
+  "name": "Métiers & Mobilité DCIP — Département des Alpes-Maritimes",
+  "short_name": "Métiers DCIP",
+  "description": "Découvrir les métiers de la Direction de la Construction, de l'Immobilier et du Patrimoine, tester ses connaissances et retrouver les postes ouverts au Département des Alpes-Maritimes.",
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "start_url": "./?source=pwa",
+  "scope": "./",
+  "id": "/cadam-jdmm/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "portrait-primary",
+  "background_color": "#FAFAF8",
+  "theme_color": "#042C53",
+  "categories": ["education", "government", "business"],
+  "icons": [
+    {
+      "src": "assets/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "assets/icons/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Les postes ouverts",
+      "short_name": "Postes",
+      "description": "Voir les postes de la DCIP et les offres du Département",
+      "url": "./#/postes"
+    },
+    {
+      "name": "Les quiz",
+      "short_name": "Quiz",
+      "description": "Prévention incendie, gardiennage, sûreté",
+      "url": "./#/quiz"
+    }
+  ]
+}

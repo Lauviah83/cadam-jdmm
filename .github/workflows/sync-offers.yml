@@ -1,0 +1,96 @@
+# Synchronisation quotidienne des offres d'emploi du Département des Alpes-Maritimes.
+# Le scraper conserve l'ancien offers.json en cas d'échec : ce workflow ouvre alors
+# une issue plutôt que de publier des données dégradées.
+name: Synchronisation des offres
+
+on:
+  schedule:
+    # 04h00 UTC = 06h00 à Paris en heure d'été, 05h00 en heure d'hiver.
+    - cron: "0 4 * * *"
+  workflow_dispatch:        # déclenchement manuel depuis l'onglet Actions
+
+permissions:
+  contents: write           # pour committer data/offers.json
+  issues: write             # pour signaler un échec de collecte
+
+concurrency:
+  group: sync-offers
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Installer les dépendances
+        run: pip install -r scripts/requirements.txt
+
+      # Le cache des fiches détaillées évite de retélécharger 46 pages chaque nuit.
+      # Il n'est pas versionné (voir .gitignore) : on le persiste entre exécutions ici.
+      - name: Restaurer le cache des fiches
+        uses: actions/cache@v4
+        with:
+          path: data/.cache
+          key: fiches-offres-${{ github.run_id }}
+          restore-keys: fiches-offres-
+
+      - name: Collecter les offres
+        id: collecte
+        run: python3 scripts/sync_offers.py
+
+      - name: Committer si les offres ont changé
+        if: success()
+        run: |
+          if git diff --quiet -- data/offers.json; then
+            echo "Aucun changement dans data/offers.json — pas de commit."
+            exit 0
+          fi
+          NB=$(python3 -c "import json;print(json.load(open('data/offers.json'))['count'])")
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/offers.json
+          git commit -m "Offres du Département : synchronisation automatique ($NB offres)"
+          git push
+
+      # En cas d'échec, offers.json est resté intact : le site continue de servir
+      # la dernière bonne version. On alerte pour que quelqu'un révise le scraper.
+      - name: Ouvrir une issue en cas d'échec
+        if: failure()
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const titre = "Synchronisation des offres en échec";
+            const { data: existantes } = await github.rest.issues.listForRepo({
+              owner: context.repo.owner, repo: context.repo.repo,
+              state: "open", labels: "sync-offres",
+            });
+            const corps = [
+              "La collecte quotidienne des offres a échoué.",
+              "",
+              "**`data/offers.json` n'a pas été modifié** : le site continue d'afficher la dernière version valide,",
+              "avec son bandeau de fraîcheur. Rien n'est cassé côté visiteur, mais les offres vont vieillir.",
+              "",
+              `Exécution : ${context.serverUrl}/${context.repo.owner}/${context.repo.repo}/actions/runs/${context.runId}`,
+              "",
+              "**Cause la plus probable** : le site du Département a changé de structure HTML.",
+              "Les sélecteurs CSS à réviser sont regroupés dans `scripts/sync_offers.py`,",
+              "fonction `extraire_offres_de_la_liste()` — les repères DOM sont notés en commentaire juste au-dessus.",
+              "",
+              "Vérification en local : `python3 scripts/sync_offers.py --dry-run`",
+            ].join("\n");
+            if (existantes.length === 0) {
+              await github.rest.issues.create({
+                owner: context.repo.owner, repo: context.repo.repo,
+                title: titre, body: corps, labels: ["sync-offres"],
+              });
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner, repo: context.repo.repo,
+                issue_number: existantes[0].number, body: corps,
+              });
+            }

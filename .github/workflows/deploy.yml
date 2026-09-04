@@ -1,0 +1,56 @@
+# Publication du site statique sur GitHub Pages.
+# Aucune étape de build : les fichiers sont servis tels quels (voir §4 du cahier des charges).
+name: Déploiement GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Un déploiement à la fois ; on ne coupe pas un déploiement en cours.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Préparer l'artefact à publier
+        run: |
+          mkdir -p _site
+          # On copie tout SAUF ce qui n'a rien à faire en ligne :
+          # les sources de référence, le cache du scraper, la doc de travail et le dépôt git.
+          rsync -a --delete \
+            --exclude '.git' \
+            --exclude '.github' \
+            --exclude 'sources' \
+            --exclude 'scripts' \
+            --exclude 'data/.cache' \
+            --exclude '_site' \
+            ./ _site/
+          # Empêche Jekyll de masquer les fichiers commençant par un underscore.
+          touch _site/.nojekyll
+          echo "Contenu publié :" && ls -la _site
+
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

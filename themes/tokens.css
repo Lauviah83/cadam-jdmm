@@ -1,0 +1,119 @@
+/* ==========================================================================
+   tokens.css — Fondations communes aux deux thèmes
+   --------------------------------------------------------------------------
+   Ce fichier ne contient AUCUNE couleur ni AUCUNE police : uniquement les
+   grandeurs géométriques et temporelles partagées par le Design A et le
+   Design B. Les couleurs et les typographies vivent dans themes/a.css et
+   themes/b.css, et nulle part ailleurs (le code applicatif n'utilise que
+   des var(--…)).
+   ========================================================================== */
+
+:root {
+  /* --- Échelle d'espacement -----------------------------------------------
+     Base 4 px, progression douce. On nomme par pas, pas par taille : un
+     changement d'échelle ne rend pas les noms mensongers. */
+  --pas-0: 0;
+  --pas-1: 0.25rem;   /*  4px */
+  --pas-2: 0.5rem;    /*  8px */
+  --pas-3: 0.75rem;   /* 12px */
+  --pas-4: 1rem;      /* 16px */
+  --pas-5: 1.5rem;    /* 24px */
+  --pas-6: 2rem;      /* 32px */
+  --pas-7: 3rem;      /* 48px */
+  --pas-8: 4rem;      /* 64px */
+  --pas-9: 6rem;      /* 96px */
+
+  /* --- Échelle typographique ----------------------------------------------
+     Ratio ~1.20 sur mobile. Les titres passent en clamp() pour respirer sur
+     grand écran sans média-query. */
+  --txt-xs:   0.75rem;   /* 12px — mentions légales, horodatages */
+  --txt-sm:   0.875rem;  /* 14px — libellés, métadonnées */
+  --txt-base: 1rem;      /* 16px — texte courant. Jamais en dessous sur mobile :
+                                    iOS zoome les champs de saisie sous 16px. */
+  --txt-md:   1.125rem;  /* 18px — chapô, question de quiz */
+  --txt-lg:   clamp(1.25rem, 1.1rem + 0.8vw, 1.5rem);
+  --txt-xl:   clamp(1.5rem,  1.3rem + 1.2vw, 2rem);
+  --txt-2xl:  clamp(1.875rem, 1.5rem + 2vw, 2.75rem);
+  --txt-3xl:  clamp(2.25rem, 1.7rem + 3vw, 3.5rem);
+
+  --graisse-normale: 400;
+  --graisse-moyenne: 500;
+  --graisse-demi:    600;
+  --graisse-grasse:  700;
+
+  --interligne-serre:  1.15;   /* grands titres */
+  --interligne-titre:  1.25;
+  --interligne-texte:  1.6;    /* confort de lecture des missions et corrections */
+
+  --interlettre-titre:  -0.02em;
+  --interlettre-eyebrow: 0.08em;  /* labels en petites capitales */
+
+  /* --- Rayons -------------------------------------------------------------- */
+  --rayon-xs:  4px;
+  --rayon-sm:  8px;
+  --rayon-md:  12px;
+  --rayon-lg:  16px;
+  --rayon-xl:  24px;
+  --rayon-plein: 999px;
+
+  /* --- Épaisseurs de trait -------------------------------------------------- */
+  --trait: 1px;
+  --trait-epais: 2px;
+  --trait-focus: 3px;
+
+  /* --- Dimensions d'interface ----------------------------------------------
+     48px est le minimum de cible tactile retenu (RGAA / WCAG 2.5.5 AAA vise
+     44px ; on prend 48 pour un public qui inclut des agents de plus de 50 ans
+     debout sur un stand). */
+  --cible-tactile: 48px;
+  --hauteur-tabbar: 60px;
+  --hauteur-entete: 56px;
+  --largeur-contenu: 1100px;   /* largeur maximale du contenu sur PC (§3.2) */
+  --largeur-texte: 68ch;       /* longueur de ligne confortable */
+
+  /* --- Points de rupture (référence ; à recopier dans les @media) -----------
+     Les media queries ne peuvent pas lire une variable CSS : ces valeurs sont
+     documentaires, elles fixent la convention pour tout le projet. */
+  --rupture-sm: 480px;
+  --rupture-md: 768px;
+  --rupture-lg: 1024px;   /* bascule tab bar → navigation haute */
+  --rupture-xl: 1400px;
+
+  /* --- Durées et courbes ----------------------------------------------------
+     Volontairement courtes : sur un stand, l'interface doit répondre, pas
+     s'exhiber. */
+  --duree-instant: 90ms;
+  --duree-rapide:  160ms;
+  --duree-normale: 240ms;
+  --duree-lente:   380ms;
+  --courbe: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --courbe-sortie: cubic-bezier(0.4, 0, 1, 1);
+
+  /* --- Profondeur (ordre d'empilement) --------------------------------------
+     Centralisé pour éviter la surenchère de z-index disséminés. */
+  --plan-base: 0;
+  --plan-sticky: 10;
+  --plan-tabbar: 100;
+  --plan-entete: 110;
+  --plan-voile: 200;
+  --plan-modale: 210;
+  --plan-annonce: 300;   /* bandeau hors-ligne, messages aria-live */
+
+  /* --- Zones sûres (encoche iPhone) ------------------------------------------
+     Repli à 0px quand le navigateur ne connaît pas env().                        */
+  --sûr-haut:   env(safe-area-inset-top, 0px);
+  --sûr-bas:    env(safe-area-inset-bottom, 0px);
+  --sûr-gauche: env(safe-area-inset-left, 0px);
+  --sûr-droite: env(safe-area-inset-right, 0px);
+}
+
+/* Toute animation devient instantanée si l'utilisateur l'a demandé au système.
+   Les compteurs de score et les fondus des quiz sont concernés (§9, RGAA). */
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --duree-instant: 0ms;
+    --duree-rapide:  0ms;
+    --duree-normale: 0ms;
+    --duree-lente:   0ms;
+  }
+}

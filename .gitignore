@@ -1,0 +1,13 @@
+# Cache local du scraper (régénérable, volumineux)
+data/.cache/
+# Secrets — ne JAMAIS versionner
+.env
+*.key
+*.pem
+secrets.json
+# Systèmes
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.venv/

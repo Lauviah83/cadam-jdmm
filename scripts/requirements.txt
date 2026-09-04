@@ -1,0 +1,8 @@
+# Dépendances épinglées — scraper des offres du Département des Alpes-Maritimes
+requests==2.32.3
+beautifulsoup4==4.12.3
+soupsieve==2.6
+certifi==2024.8.30
+charset-normalizer==3.4.0
+idna==3.10
+urllib3==2.2.3
