@@ -35,6 +35,10 @@ function artboard(nom, T, corps, { w, h }) {
 <helmet>
   ${fontes}
   <style>
+    /* Sans cela, un conteneur en height:100% additionne ses paddings à sa
+       hauteur : l'écran de confirmation dépassait de 54 px et son dernier
+       bouton était coupé. C'est aussi ce que fera css/base.css. */
+    *, *::before, *::after { box-sizing: border-box; }
     body { margin: 0; font-family: ${T.texte}; }
     a { color: ${T.lien}; text-decoration: underline; }
     a:hover { color: ${T.encre2}; }

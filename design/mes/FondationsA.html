@@ -1,0 +1,327 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+  <style>
+    /* Sans cela, un conteneur en height:100% additionne ses paddings à sa
+       hauteur : l'écran de confirmation dépassait de 54 px et son dernier
+       bouton était coupé. C'est aussi ce que fera css/base.css. */
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; }
+    a { color: #185FA5; text-decoration: underline; }
+    a:hover { color: #0C447C; }
+    button { font: inherit; }
+  </style>
+
+<style>body{margin:0;background:#FF00FF}</style></head><body>
+<div style="width:1180px;min-height:1560px;background:#FAFAF8">
+<div style="width:1180px;padding:38px 40px 44px;background:#FAFAF8;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      color:#042C53;display:flex;flex-direction:column;gap:34px">
+    <div style="display:flex;align-items:flex-end;gap:20px;padding-bottom:20px;border-bottom:3px solid #042C53">
+      <div style="flex:1">
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#96590A">Design A · Fondations</div>
+        <div style="margin-top:7px"><div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:40px;line-height:1.15;color:#042C53">Institutionnel</div></div>
+        <div style="margin-top:7px;font-size:14px;color:#455465">La charte des fichiers du projet, systématisée</div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:4px;text-align:right">
+        <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#616D82">Titres · Fraunces</span>
+        <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#616D82">Texte · Manrope</span>
+        <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#616D82">Mono · JetBrains Mono</span>
+      </div>
+    </div>
+
+    
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="border-bottom:2px solid #042C53;padding-bottom:7px">
+      <div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:17px;line-height:1.15;color:#042C53">Palette</div>
+      <div style="margin-top:3px;font-size:12px;color:#616D82">Ratio de contraste mesuré sur le fond de la charte. AA exige 4,5:1 en texte courant, 3:1 pour les composants d'interface.</div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:18px"><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#042C53;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#042C53</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu nuit — texte principal</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          13,5:1 · AAA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#0C447C;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#0C447C</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu profond — titres, aplats</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          9,4:1 · AAA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#185FA5;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#185FA5</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu moyen — liens</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          6,2:1 · AA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#378ADD;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#378ADD</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu clair — bordures, icônes</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#FAECE7;color:#993C1D">
+          3,4:1 · composants seulement</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#B5D4F4;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#B5D4F4</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu pâle — fonds de badges</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#FAECE7;color:#993C1D">
+          — · fond</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#E6F1FB;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#E6F1FB</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Bleu glacé — blocs informatifs</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#FAECE7;color:#993C1D">
+          — · fond</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#EF9F27;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#EF9F27</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Ambre — aplats et filets</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#FAECE7;color:#993C1D">
+          2,1:1 · jamais en texte sur clair</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#96590A;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#96590A</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Ambre foncé — texte sur clair</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          5,4:1 · AA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#0F6E56;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#0F6E56</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Vert — validation</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          5,9:1 · AA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#993C1D;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#993C1D</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Rouge — alerte, échéance</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          6,7:1 · AA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#455465;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#455465</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Gris — métadonnées</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          7,4:1 · AAA</div>
+      </div>
+    </div><div style="display:flex;flex-direction:column;gap:7px">
+      <div style="height:56px;border-radius:10px;background:#616D82;
+        border:1px solid rgba(0,0,0,.07)"></div>
+      <div>
+        <div style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10.5px;color:#042C53">#616D82</div>
+        <div style="font-size:11px;color:#455465;line-height:1.35;margin-top:2px">Gris clair — mentions</div>
+        <div style="margin-top:5px;display:inline-flex;align-items:center;gap:4px;padding:2px 7px;
+          border-radius:999px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9px;
+          background:#E1F5EE;color:#0F6E56">
+          5,0:1 · AA</div>
+      </div>
+    </div></div>
+  </div>
+
+    
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="border-bottom:2px solid #042C53;padding-bottom:7px">
+      <div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:17px;line-height:1.15;color:#042C53">Échelle typographique</div>
+      
+    </div>
+    <div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Titre XXL · 44px</span>
+      <span style="flex:1;font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:44px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Titre XL · 32px</span>
+      <span style="flex:1;font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:32px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Titre L · 24px</span>
+      <span style="flex:1;font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:24px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Titre M · 19px</span>
+      <span style="flex:1;font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:19px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Texte courant · 15px</span>
+      <span style="flex:1;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-weight:400;font-size:15px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Secondaire · 13px</span>
+      <span style="flex:1;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-weight:400;font-size:13px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Métadonnée · 12px</span>
+      <span style="flex:1;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-weight:400;font-size:12px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div>
+    <div style="display:flex;align-items:baseline;gap:18px;padding:9px 0;border-bottom:1px solid rgba(0,0,0,.07)">
+      <span style="width:92px;flex:0 0 92px;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:10px;color:#616D82">Surtitre · 10px</span>
+      <span style="flex:1;font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;letter-spacing:.14em;text-transform:uppercase;font-size:10px;color:#042C53;
+        line-height:1.2">Métiers &amp; mobilité</span>
+    </div></div>
+  </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:34px">
+      
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="border-bottom:2px solid #042C53;padding-bottom:7px">
+      <div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:17px;line-height:1.15;color:#042C53">Espacements</div>
+      <div style="margin-top:3px;font-size:12px;color:#616D82">Base 4 px</div>
+    </div>
+    <div style="display:flex;align-items:flex-end;gap:14px">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:4px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">4</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:8px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">8</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:12px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">12</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:16px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">16</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:24px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">24</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:32px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">32</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:48px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">48</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:64px;height:34px;background:#042C53;border-radius:1px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">64</span>
+    </div></div>
+  </div>
+      
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="border-bottom:2px solid #042C53;padding-bottom:7px">
+      <div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:17px;line-height:1.15;color:#042C53">Rayons et ombres</div>
+      
+    </div>
+    
+        <div style="display:flex;gap:22px;align-items:flex-end">
+          
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:60px;height:44px;background:#E6F1FB;border:1.5px solid #042C53;
+        border-radius:10px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">petit</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:60px;height:44px;background:#E6F1FB;border:1.5px solid #042C53;
+        border-radius:16px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">carte</span>
+    </div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+      <div style="width:60px;height:44px;background:#E6F1FB;border:1.5px solid #042C53;
+        border-radius:999px"></div>
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">pastille</span>
+    </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+            <div style="width:60px;height:44px;background:#FFFFFF;border-radius:10px;
+              box-shadow:0 2px 6px rgba(4,44,83,.07),0 6px 16px rgba(4,44,83,.06)"></div>
+            <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">portée</span>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:center;gap:6px">
+            <div style="width:60px;height:44px;background:#FFFFFF;border-radius:10px;
+              box-shadow:0 8px 24px rgba(4,44,83,.10),0 16px 48px rgba(4,44,83,.08)"></div>
+            <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;color:#616D82">modale</span>
+          </div>
+        </div>
+  </div>
+    </div>
+
+    
+  <div style="display:flex;flex-direction:column;gap:14px">
+    <div style="border-bottom:2px solid #042C53;padding-bottom:7px">
+      <div style="font-family:'Fraunces', 'Iowan Old Style', Palatino, Georgia, serif;font-weight:400;font-variation-settings:"opsz" 144;letter-spacing:-.02em;font-size:17px;line-height:1.15;color:#042C53">États interactifs</div>
+      <div style="margin-top:3px;font-size:12px;color:#616D82">Le focus clavier est toujours visible — il n'est jamais supprimé (RGAA 10.7).</div>
+    </div>
+    <div style="display:flex;gap:26px;flex-wrap:wrap">
+    <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;
+        color:#616D82">Par défaut</span><button type="button" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 18px;border-radius:10px;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:#042C53;color:#fff;border:1px solid #042C53"><span>Ajouter</span></button></div>
+    <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;
+        color:#616D82">Survol</span><span style="display:inline-flex;filter:brightness(1.18)"><button type="button" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 18px;border-radius:10px;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:#042C53;color:#fff;border:1px solid #042C53"><span>Ajouter</span></button></span></div>
+    <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;
+        color:#616D82">Focus clavier</span><span style="display:inline-flex;border-radius:13px;
+        box-shadow:0 0 0 3px #185FA566"><button type="button" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 18px;border-radius:10px;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:#042C53;color:#fff;border:1px solid #042C53"><span>Ajouter</span></button></span></div>
+    <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;
+        color:#616D82">Actif</span><span style="display:inline-flex;filter:brightness(.86)"><button type="button" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 18px;border-radius:10px;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:#042C53;color:#fff;border:1px solid #042C53"><span>Ajouter</span></button></span></div>
+    <div style="display:flex;flex-direction:column;gap:7px;align-items:flex-start">
+      <span style="font-family:'JetBrains Mono', ui-monospace, Menlo, Consolas, monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;
+        color:#616D82">Désactivé</span><span style="display:inline-flex;opacity:.42"><button type="button" style="display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:40px;padding:0 18px;border-radius:10px;font-family:'Manrope', -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;cursor:pointer;background:#042C53;color:#fff;border:1px solid #042C53"><span>Ajouter</span></button></span></div></div>
+  </div>
+  </div>
+</div>
+</body></html>
