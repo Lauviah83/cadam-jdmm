@@ -16,7 +16,7 @@
    CACHE_VERSION, sinon les anciens fichiers restent servis.
    ========================================================================== */
 
-const CACHE_VERSION = 'v1';
+const CACHE_VERSION = 'v2';
 const CACHE_SOCLE   = `jdmm-socle-${CACHE_VERSION}`;
 const CACHE_DONNEES = `jdmm-donnees-${CACHE_VERSION}`;
 
@@ -26,6 +26,12 @@ const RESSOURCES_SOCLE = [
   './',
   './index.html',
   './manifest.webmanifest',
+  './css/polices.css',
+  // Les deux faces du premier rendu. Les autres (italique, latin-ext, mono)
+  // sont mises en cache à la première rencontre, par la stratégie « cache
+  // d'abord » : les précharger alourdirait l'installation sans nécessité.
+  './assets/fonts/fraunces-normal-latin.woff2',
+  './assets/fonts/manrope-normal-latin.woff2',
   './themes/tokens.css',
   './themes/a.css',
   './css/base.css',
@@ -111,14 +117,10 @@ self.addEventListener('fetch', (evenement) => {
 
   const url = new URL(requete.url);
 
-  // Requêtes vers d'autres origines (Google Fonts, EmailJS) : on laisse faire
-  // le navigateur, sauf les polices qu'on met en cache pour le mode hors-ligne.
-  if (url.origin !== self.location.origin) {
-    if (url.hostname === 'fonts.gstatic.com' || url.hostname === 'fonts.googleapis.com') {
-      evenement.respondWith(cacheDAbord(requete, CACHE_SOCLE));
-    }
-    return;
-  }
+  // Requêtes vers d'autres origines : plus aucune au chargement depuis que les
+  // polices sont servies par l'application. Seul le SDK EmailJS en émet, au
+  // moment d'un envoi — on le laisse au navigateur.
+  if (url.origin !== self.location.origin) return;
 
   // Données applicatives : réseau d'abord.
   if (url.pathname.includes('/data/') && url.pathname.endsWith('.json')) {

@@ -104,9 +104,14 @@ visiteur, que l'application ne transmet à personne — pour trois choses seulem
 Ces informations restent sur l'appareil et **sont effaçables à tout moment** depuis
 l'application (bouton « Effacer mes données ») ou en vidant les données du site dans le navigateur.
 
-Les polices sont chargées depuis Google Fonts, ce qui expose l'adresse IP du visiteur à Google.
-Pour l'éviter, les fichiers de police peuvent être hébergés directement dans `assets/` — voir
-`docs/EXPLOITATION.md`. **À arbitrer avec le DPO au même moment que les services d'envoi.**
+**Les polices sont servies par l'application elle-même** (`assets/fonts/`, sous licence SIL
+Open Font License). Aucun appel à Google Fonts, donc aucune exposition de l'adresse IP du
+visiteur à un tiers. Au chargement d'une page, **aucune requête ne quitte le domaine de
+l'application** : pas de CDN, pas de police distante, pas de mesure d'audience.
+
+La seule requête externe possible est l'envoi du formulaire, vers le prestataire de courriel,
+et uniquement au moment où le visiteur clique — c'est l'objet de l'avertissement en tête de
+document.
 
 ## 8. Sécurité
 
