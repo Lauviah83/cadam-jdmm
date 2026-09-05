@@ -1,9 +1,185 @@
 {
- "generated_at": "2026-09-04T12:14:22Z",
+ "generated_at": "2026-09-05T08:14:38Z",
  "source": "https://www.departement06.fr/offres-demploi",
- "count": 52,
- "count_dcip": 7,
+ "count": 60,
+ "count_dcip": 8,
  "offers": [
+  {
+   "id": "agent-de-bibliotheque-collection-adultes-valberg-hf-33090",
+   "titre": "Agent de bibliothèque-collection adultes à Valberg H/F (33090)",
+   "url": "https://www.departement06.fr/offres-demploi/agent-de-bibliotheque-collection-adultes-valberg-hf-33090",
+   "domaine": "Culture et patrimoine",
+   "categorie": "C",
+   "categories": [
+    "C"
+   ],
+   "filiere": "CULTURELLE",
+   "filieres": [
+    "CULTURELLE"
+   ],
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Sous l'autorité de la responsable de la médiathèque départementale annexe de Valberg, et au sein d'une équipe polyvalente composée de trois agents avec renforts lors des périodes touristiques, l'agent contribue au bon fonctionnement quotidien de l…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "assistant-de-service-social-volant-dt3-hf-31319",
+   "titre": "Assistant de service social volant DT3 H/F (31319)",
+   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-volant-dt3-hf-31319",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein de l'équipe volante, l'assistant social rattaché à l'équipe pluridisciplinaire, intervient dans le secteur de nice et alentours, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique posés par différents…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "charge-doperations-de-batiment-tce-dcip-32747",
+   "titre": "Chargé d'opérations de bâtiment TCE DCIP (32747)",
+   "url": "https://www.departement06.fr/offres-demploi/charge-doperations-de-batiment-tce-dcip-32747",
+   "domaine": "Patrimoine bâti",
+   "categorie": "B",
+   "categories": [
+    "B"
+   ],
+   "filiere": "TECHNIQUE",
+   "filieres": [
+    "TECHNIQUE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein d'une équipe composée de 17 agents, le chargé d'opérations, sous l'autorité du chef de service, participe à la conception du programme de travaux et fait réaliser par des entreprises les opérations de rénovation, d'aménagements et d…",
+   "dcip": true,
+   "service": "",
+   "appariement": "domaine",
+   "candidature_permanente": false
+  },
+  {
+   "id": "charge-doperations-des-equipements-electriques-routiers-hf-32407",
+   "titre": "Chargé d'opérations des équipements électriques routiers H/F (32407)",
+   "url": "https://www.departement06.fr/offres-demploi/charge-doperations-des-equipements-electriques-routiers-hf-32407",
+   "domaine": "Infrastructures et réseaux",
+   "categorie": "B",
+   "categories": [
+    "B"
+   ],
+   "filiere": "TECHNIQUE",
+   "filieres": [
+    "TECHNIQUE"
+   ],
+   "deadline": "",
+   "deadline_label": "Candidature permanente",
+   "publie_le": "2026-09-04",
+   "resume": "Sous l'autorité du responsable de la section, le chargé d'opérations assure le suivi technique, administratif et financier des équipements électriques routiers, avec une spécialisation forte sur les tunnels départementaux.",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": true
+  },
+  {
+   "id": "charge-de-suivi-des-ehpad-hf-30346",
+   "titre": "Chargé de suivi des EHPAD H/F (30346)",
+   "url": "https://www.departement06.fr/offres-demploi/charge-de-suivi-des-ehpad-hf-30346",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Le chargé de suivi des EHPAD assure le suivi administratif, financier et réglementaire des établissements d'hébergement pour personnes âgées, en lien avec les services de l'ARS, afin de garantir la qualité, la conformité et l'évolution des…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "educateur-specialise-msd-les-vallees-dt3-hf-20234",
+   "titre": "Educateur spécialisé MSD Les Vallées DT3 H/F (20234)",
+   "url": "https://www.departement06.fr/offres-demploi/educateur-specialise-msd-les-vallees-dt3-hf-20234",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein de la Maison des Solidarités Départementale Les Vallées, l'éducateur spécialisé a un rôle à part entière auprès des familles et des jeunes en difficulté. Il apporte un soutien éducatif aux mineurs, aux jeunes majeurs et à leur famille dans…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "sage-femme-pmi-antibes-dt2-hf-20896",
+   "titre": "Sage femme PMI Antibes DT2 H/F (20896)",
+   "url": "https://www.departement06.fr/offres-demploi/sage-femme-pmi-antibes-dt2-hf-20896",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "La sage-femme assure un accompagnement global et personnalisé des femmes, notamment des populations vulnérables, tout au long de la grossesse et en période post-natale, en garantissant la prévention, la surveillance médicale et l'éducation à la…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "secretaire-msd-vallauris-dt2-hf-20579",
+   "titre": "Secrétaire MSD Vallauris DT2 H/F (20579)",
+   "url": "https://www.departement06.fr/offres-demploi/secretaire-msd-vallauris-dt2-hf-20579",
+   "domaine": "Social",
+   "categorie": "C",
+   "categories": [
+    "C"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-09-04",
+   "resume": "Au sein de Maison des Solidarités Départementales de Vallauris, le secrétaire accueille, oriente et informe le public (accueil physique, téléphonique, numérique). Il assure et suit le traitement administratif des situations individuelles des usagers.",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
   {
    "id": "adjoint-au-responsable-de-ladret-hf-33440",
    "titre": "Adjoint au responsable de l'ADRET H/F (33440)",
@@ -198,8 +374,8 @@
    "filieres": [
     "CULTURELLE"
    ],
-   "deadline": "2026-10-03",
-   "deadline_label": "3 octobre 2026",
+   "deadline": "2026-10-04",
+   "deadline_label": "4 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "Sous l'autorité du Directeur de la Culture et de la responsable de la section cinéma, vous participerez à la conception, à la coordination et à la mise en œuvre des actions, événements et projets portés par la Direction. Vous assurerez leur suivi…",
    "dcip": false,
