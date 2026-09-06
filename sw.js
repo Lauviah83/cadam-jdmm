@@ -25,7 +25,7 @@
    changement de structure.
    ========================================================================== */
 
-const CACHE_VERSION = 'v5';
+const CACHE_VERSION = 'v6';
 const CACHE_SOCLE   = `jdmm-socle-${CACHE_VERSION}`;
 const CACHE_DONNEES = `jdmm-donnees-${CACHE_VERSION}`;
 
@@ -62,7 +62,7 @@ const RESSOURCES_SOCLE = [
   './js/commun/interface.js',
   './js/commun/store.js',
   './js/commun/offers.js',
-  './js/commun/mailer.js',
+  './js/commun/registre.js',
   './js/commun/mentions.js',
   './js/postes/app.js',
   './js/quiz/app.js',

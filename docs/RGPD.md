@@ -9,25 +9,28 @@ Département des Alpes-Maritimes — Direction de la Construction, de l'Immobili
 
 ## ⚠️ Point à faire valider par le DPO avant mise en production
 
-Cette application est un site **statique**, sans serveur ni base de données. Elle ne peut donc
-pas envoyer de courriel par elle-même : l'envoi est délégué à un service tiers, **EmailJS**,
-seul à savoir écrire à une adresse arbitraire — celle que le visiteur vient de saisir.
+L'application est un site **statique**, sans serveur ni base de données. Les demandes des
+visiteurs sont donc collectées par un **service externe** : un script Google Apps Script
+qui écrit dans une feuille de calcul et envoie un récapitulatif quotidien
+(voir `docs/REGISTRE.md`).
 
-**Conséquence** : les coordonnées saisies par le visiteur — prénom, nom, direction, adresse —
-et la fiche demandée **transitent par les serveurs de ce prestataire**, dont l'hébergement peut
-se situer **hors Union européenne**.
+**Conséquence** : les coordonnées saisies — prénom, nom, direction, adresse
+professionnelle — et le poste qui intéresse la personne **sont conservés dans une feuille
+de calcul Google**, dont l'hébergement peut se situer **hors Union européenne**.
 
 Ce point doit être **arbitré et validé par le Délégué à la protection des données du
 Département avant toute mise en ligne**. Trois issues possibles :
 
 | Option | Ce que ça implique |
 |---|---|
-| Valider le prestataire | Vérifier les clauses contractuelles types, inscrire le traitement au registre, mentionner le transfert hors UE dans l'information des personnes |
-| Choisir un prestataire européen | Remplacer la fonction `envoyerParEmailJS` de `js/commun/mailer.js` — c'est le seul point de contact avec le service |
-| Renoncer à l'envoi automatique | Ne conserver que le **plan B** : téléchargement de la fiche et lien `mailto:`. Aucune donnée ne quitte alors le navigateur du visiteur. C'est l'option la plus sobre, et elle fonctionne déjà. |
+| Valider Google Workspace | Vérifier les clauses contractuelles types, inscrire le traitement au registre, mentionner le transfert hors UE dans l'information des personnes |
+| Choisir un service européen ou interne | Le script est le seul point de contact : il suffit d'exposer une adresse qui accepte un `POST` de JSON. Une liste SharePoint via Power Automate ferait l'affaire. Seul `registre.endpoint` change. |
+| Renoncer à la collecte en ligne | Les visiteurs se signalent auprès d'un agent, qui note à la main. C'est déjà ce que l'application affiche tant que le registre n'est pas raccordé. |
 
-Tant que l'arbitrage n'est pas rendu, l'application fonctionne en **plan B** : les clés ne sont
-pas renseignées dans `data/config.json`, donc aucune donnée n'est transmise à qui que ce soit.
+Un point est en revanche **réglé** : le poste qui intéresse un agent est une information
+sensible en contexte de mobilité interne. Elle n'est jamais affichée publiquement, jamais
+transmise à un tiers autre que le service de collecte, et **le visiteur ne reçoit aucun
+courriel** — rien n'atterrit dans une boîte partagée par erreur.
 
 ---
 
@@ -57,16 +60,19 @@ qu'il a sélectionnées, et permettre à la DCIP d'assurer le suivi de cette dem
 | Projet de mobilité | Facultatif | Choisi par le visiteur |
 | Message libre | Facultatif | Saisi par le visiteur |
 | Poste concerné | Déduite | La fiche ouverte au moment de la demande |
-| Horodatage de la demande | Déduite | Généré à l'envoi |
+| Horodatage de la demande | Déduite | Généré à l'enregistrement |
 
 **Aucune autre donnée n'est collectée.** Pas d'adresse IP conservée par l'application, pas de
 profil, pas de données sensibles au sens de l'article 9.
 
 ## 4. Destinataires
 
-- le visiteur lui-même, destinataire principal de la fiche qu'il demande ;
-- la DCIP, en **copie** de chaque envoi, à l'adresse de `data/config.json` → `emails_copie` ;
-- le prestataire technique d'envoi (voir l'avertissement en tête de document).
+- **une seule personne** à la DCIP, destinataire du récapitulatif de fin de journée.
+  Cette adresse est fixée **côté serveur**, dans `scripts/apps-script/Code.gs` — pas dans
+  un fichier public de l'application ;
+- le prestataire hébergeant le tableau (voir l'avertissement en tête de document).
+
+Aucun courriel n'est envoyé au visiteur.
 
 Aucune cession, aucune revente, aucun transfert à un tiers non listé ici.
 
@@ -75,9 +81,11 @@ Aucune cession, aucune revente, aucun transfert à un tiers non listé ici.
 **12 mois** à compter de la demande, puis suppression
 (`data/config.json` → `rgpd.duree_conservation_mois`).
 
-Cette durée couvre la campagne de mobilité interne consécutive à l'événement. La purge est
-un **acte d'exploitation à réaliser dans la boîte destinataire** : elle n'est pas automatique,
-puisqu'il n'y a pas de base de données. Voir `docs/EXPLOITATION.md`.
+Cette durée couvre la campagne de mobilité interne consécutive à l'événement.
+
+> ⚠️ **La purge n'est pas automatique.** Il faut supprimer les lignes de la feuille de
+> calcul — et les récapitulatifs quotidiens dans la boîte du destinataire — à l'échéance.
+> Inscrivez cette date dans le registre des traitements. Voir `docs/REGISTRE.md`.
 
 ## 6. Droits des personnes
 
@@ -116,7 +124,10 @@ document.
 
 - Site servi exclusivement en **HTTPS** (GitHub Pages, TLS 1.3).
 - Aucune donnée personnelle stockée dans le dépôt, aucune clé privée versionnée.
-- La **Public Key** d'EmailJS est publique par conception : elle n'autorise que l'envoi via
-  les gabarits du compte, jamais la lecture de quoi que ce soit.
+- L'adresse du service de collecte est publique, mais ce point d'entrée ne sait **qu'ajouter
+  une ligne** : il ne lit rien, ne modifie rien, ne supprime rien. Le pire qu'un tiers puisse
+  en faire est d'y écrire des demandes fictives.
+- L'adresse qui reçoit le récapitulatif est fixée **côté serveur**, jamais dans un fichier
+  servi au navigateur.
 - Mesures anti-abus : champ leurre, délai minimum avant soumission, plafond de 3 envois par
   navigateur et par heure.

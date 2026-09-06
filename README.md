@@ -20,10 +20,14 @@ Elles reproduisent le contenu et le parcours des deux fichiers de référence,
 ## Le parcours d'un visiteur
 
 **Postes** — il scanne, voit les 7 fiches (filtrables par service), en ouvre une, lit
-missions et profil, puis clique **« Je suis intéressé(e) — recevoir la fiche »**.
+missions et profil, puis clique **« Je suis intéressé(e) par ce poste »**.
 Il renseigne **prénom, nom, direction et adresse — tous obligatoires**, éventuellement son
-projet de mobilité et un message, accepte d'être recontacté, et reçoit la fiche.
-**La DCIP en reçoit une copie** : c'est ainsi qu'elle sait qui s'intéresse à quoi.
+projet de mobilité et un message, accepte d'être recontacté, et **enregistre sa demande**.
+L'écran confirme qu'il sera recontacté dans les meilleurs délais.
+
+La demande rejoint un **tableau** tenu par un script de collecte, et **une seule personne**
+reçoit chaque soir à 18 h le **récapitulatif des demandes du jour** : classement des postes
+les plus demandés, puis le détail de chacune. Voir [`docs/REGISTRE.md`](docs/REGISTRE.md).
 
 **Quiz** — il scanne, choisit un des trois quiz, répond, lit la correction rédigée,
 obtient son score et son verdict. Aucune inscription, rien à installer.
@@ -39,7 +43,11 @@ Relevés sur le site déployé, profil mobile :
 | Postes | 93 | 100 | 100 | 100 |
 | Quiz | 100 | 100 | 100 | 100 |
 
-axe-core (WCAG 2.1 AA) : **0 violation** sur 9 écrans × 2 formats, en local et en production.
+axe-core (WCAG 2.1 AA) : **0 violation** sur 10 écrans × 2 formats.
+
+Le design des quiz est extrait du fichier source par `scripts/extraire_css_quiz.py`, qui
+répare au passage 17 sélecteurs annulés dans l'original par un commentaire placé à
+l'intérieur du sélecteur — dont tout le bloc responsive.
 Recette complète dans `scripts/recette/` — parcours, clavier, hors ligne, accessibilité.
 
 ---
@@ -95,7 +103,8 @@ GitHub Pages sert les fichiers tels quels, la maintenance sera reprise par un ag
 collectivité, et le projet vivra plus longtemps que n'importe quelle version de framework.
 
 **Aucune requête ne quitte le domaine au chargement** : les polices sont servies par
-l'application elle-même. Seul le SDK EmailJS est chargé, à la demande, au moment d'un envoi.
+l'application elle-même. Le seul appel externe est l'enregistrement d'une demande, au
+moment où le visiteur clique.
 
 Les 52 offres du Département sont récupérées chaque nuit par un robot, mais **ne sont pas
 affichées** : elles servent uniquement à savoir si chaque fiche est encore en ligne et
@@ -106,11 +115,13 @@ closes — 4 des 7 le sont déjà.
 
 ## Points ouverts
 
-- **Clés EmailJS et adresse en copie** — voir [`docs/CLES.md`](docs/CLES.md).
-  Sans elles, l'application fonctionne en plan B : téléchargement de la fiche et lien
-  `mailto:` pré-rempli. La DCIP ne reçoit alors aucune copie.
+- **Registre des demandes à raccorder** — voir [`docs/REGISTRE.md`](docs/REGISTRE.md),
+  une vingtaine de minutes. Tant qu'il ne l'est pas, l'application le dit à l'écran et
+  invite le visiteur à se signaler auprès d'un agent : elle ne laisse jamais croire à un
+  enregistrement qui n'a pas eu lieu.
 - **Logo officiel** — les icônes sont provisoires, le SVG reste à réclamer.
-- **Contact DPO** à renseigner, et validation du DPO sur EmailJS (voir `docs/RGPD.md`).
+- **Contact DPO** à renseigner, et validation du DPO sur l'hébergement du tableau
+  (voir `docs/RGPD.md`).
 - **3 fiches sur 7 sont encore en ligne** ; 4 offres DCIP publiées n'ont pas de fiche.
   Arbitrage DCIP.
 - Le dépôt est sous un **compte personnel**. Un transfert vers une organisation du
@@ -118,7 +129,7 @@ closes — 4 des 7 le sont déjà.
 
 ## Documentation
 
-- [`docs/CLES.md`](docs/CLES.md) — activer l'envoi par courriel, gabarit prêt à copier
+- [`docs/REGISTRE.md`](docs/REGISTRE.md) — le tableau des demandes et le récapitulatif quotidien
 - [`docs/EXPLOITATION.md`](docs/EXPLOITATION.md) — mettre à jour le contenu, le robot, le cache
 - [`docs/RGPD.md`](docs/RGPD.md) — données personnelles, conservation, arbitrage DPO
 - [`docs/ACCESSIBILITE.md`](docs/ACCESSIBILITE.md) — ce qui a été contrôlé, et ce qui ne l'a pas été

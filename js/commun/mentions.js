@@ -16,7 +16,7 @@ const DOCUMENTS = {
   rgpd: { fichier: 'docs/RGPD.md', titre: 'Protection des données personnelles' },
   accessibilite: { fichier: 'docs/ACCESSIBILITE.md', titre: "Déclaration d'accessibilité" },
   exploitation: { fichier: 'docs/EXPLOITATION.md', titre: "Guide d'exploitation" },
-  cles: { fichier: 'docs/CLES.md', titre: "Activer l'envoi par courriel" },
+  registre: { fichier: 'docs/REGISTRE.md', titre: 'Le registre des demandes' },
 };
 
 const echapper = (t) => String(t)

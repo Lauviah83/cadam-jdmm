@@ -571,3 +571,9 @@
   background: var(--succes-fond);
   color: var(--succes);
 }
+
+/* Le rond de confirmation prend la couleur de ce qui s'est réellement passé :
+   enregistré, en attente de réseau, ou registre non raccordé. */
+.rond-succes--succes { background: var(--succes-fond); color: var(--succes); }
+.rond-succes--accent { background: var(--accent-fond); color: var(--accent-texte); }
+.rond-succes--alerte { background: var(--alerte-fond); color: var(--alerte); }

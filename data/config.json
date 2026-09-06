@@ -8,11 +8,6 @@
     "date_confirmee": true,
     "_note_date": "Date arrêtée par le porteur du projet le 2026-09-04 : mercredi 23 septembre 2026. Elle remplace le 25 septembre indiqué d'abord sous réserve. date_confirmee vaut true, l'application n'affiche donc plus la mention « (à confirmer) ». Ne PAS réintroduire les dates des fichiers sources (10 juin 2026, 31 mai 2026) : elles sont dépassées."
   },
-  "emailjs": {
-    "public_key": "",
-    "service_id": "",
-    "template_fiche": ""
-  },
   "offres": {
     "source": "https://www.departement06.fr/offres-demploi",
     "fraicheur_alerte_heures": 72,
@@ -68,9 +63,9 @@
     "defaut": "a",
     "switcher_visible": true
   },
-  "emails_copie": [
-    "À_RENSEIGNER"
-  ],
-  "_note_emails_copie": "Adresse(s) recevant une COPIE de chaque fiche envoyée à un visiteur. À renseigner avant la mise en production. Le cahier des charges citait dcip_affaires_generales@departement06.fr, smonnoyer@departement06.fr ; le porteur du projet prévoit une adresse dédiée créée pour l'événement. ⚠️ Ce fichier est servi en clair par GitHub Pages : n'y mettre qu'une adresse de service, jamais une adresse nominative.",
-  "_note_emailjs": "Seul fournisseur d'envoi : EmailJS est le seul à savoir écrire à une adresse arbitraire — celle que le visiteur vient de saisir. Le service configuré dans EmailJS détermine l'adresse d'expédition : utiliser l'adresse dédiée de l'événement, jamais une boîte personnelle. Tant que ces trois valeurs sont vides, l'application bascule sur son plan B (téléchargement de la fiche et lien mailto) sans qu'aucune donnée ne quitte le navigateur. Marche à suivre : docs/CLES.md."
+  "registre": {
+    "endpoint": "À_RENSEIGNER",
+    "destinataire_recapitulatif": "mickael@connect3s.fr"
+  },
+  "_note_registre": "endpoint : adresse du script de collecte (Google Apps Script déployé en application web), qui écrit chaque demande dans un tableau et envoie le récapitulatif en fin de journée. Marche à suivre : docs/REGISTRE.md. Tant que cette valeur vaut À_RENSEIGNER, l'application le dit à l'écran au lieu de laisser croire à un enregistrement. destinataire_recapitulatif est indicatif ici : la valeur qui fait foi est DESTINATAIRE dans scripts/apps-script/Code.gs, côté serveur — une adresse écrite dans ce fichier-ci serait publique et modifiable par n'importe qui."
 }

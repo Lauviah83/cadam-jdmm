@@ -54,8 +54,8 @@ const fiche = await p.locator('#vue').innerText();
 ok('la fiche s\'ouvre', (await p.locator('.hero h1').textContent()).length > 12);
 ok('elle porte Description, Missions, Profil',
    contient(fiche, 'Description', 'Missions principales', 'Profil recherché'));
-ok('le bouton « Je suis intéressé(e) — recevoir la fiche » est là',
-   contient(fiche, 'Je suis intéressé(e) — recevoir la fiche'));
+ok('le bouton « Je suis intéressé(e) par ce poste » est là',
+   contient(fiche, 'Je suis intéressé(e) par ce poste'));
 ok('le bouton « Postuler en ligne » est là', fiche.includes('Postuler en ligne'));
 ok('le bouton « Voir les autres postes » est là', fiche.includes('Voir les autres postes'));
 await p.screenshot({ path: 'app-postes-fiche.png' });
@@ -65,6 +65,8 @@ await p.locator('a[href^="#/demande/"]').click();
 await p.waitForTimeout(600);
 const form = await p.locator('#vue').innerText();
 ok('le titre est « Je suis intéressé(e) »', contient(form, 'Je suis intéressé(e)'));
+ok('le bouton dit « Enregistrer ma demande »',
+   contient(await p.locator('#envoyer').textContent(), 'Enregistrer ma demande'));
 ok('le poste sélectionné est rappelé', contient(form, 'Poste sélectionné'));
 for (const c of ['prenom','nom','direction','email']) {
   ok(`le champ ${c} est présent`, await p.locator('#' + c).count() === 1);
@@ -90,19 +92,21 @@ await p.locator('#email').fill('camille.durand@departement06.fr');
 await p.locator('#envoyer').click(); await p.waitForTimeout(250);
 ok('le consentement manquant est signalé', await p.locator('#err-rgpd').isVisible());
 
-console.log('\n— Envoi (aucune clé : plan B) —');
+console.log('\n— Enregistrement (registre non raccordé) —');
 await p.locator('#rgpd').check();
 await p.locator('[data-projet]').nth(1).click();
 await p.waitForTimeout(3200);
 await p.locator('#envoyer').click();
 await p.waitForTimeout(900);
 const conf = await p.locator('#vue').innerText();
-ok('la confirmation s\'affiche', conf.includes('Encore une étape') || conf.includes('Demande enregistrée'));
-ok('elle dit que l\'envoi n\'est pas activé', conf.includes('pas encore activé'), conf.slice(0,120));
+ok('la confirmation s\'affiche',
+   contient(conf, 'À signaler sur place') || contient(conf, 'Demande enregistrée'));
+ok('elle ne fait pas croire à un enregistrement',
+   contient(conf, "n’est pas encore raccordé"), conf.slice(0, 140));
 ok('le poste d\'intérêt est rappelé', contient(conf, "Poste d'intérêt"));
-ok('le téléchargement est proposé', await p.locator('#conf-telecharger').isVisible());
-const mailto = await p.locator('#conf-mailto').getAttribute('href');
-ok('le mailto vise le demandeur', mailto.startsWith('mailto:camille.durand%40departement06.fr'));
+ok('les coordonnées saisies sont rappelées',
+   contient(conf, 'Camille Durand') && contient(conf, 'camille.durand@departement06.fr'));
+ok('on peut revenir aux autres postes', await p.locator('a[href="#/"]').count() >= 1);
 await p.screenshot({ path: 'app-postes-conf.png' });
 
 console.log('\n— Application QUIZ —');

@@ -26,9 +26,8 @@ import {
   appliquerTheme, annoncer, surveillerReseau, enregistrerServiceWorker,
 } from '../commun/interface.js';
 import {
-  envoyerFiche, verifierFormulaire, telechargerFiche, imprimerFiche,
-  lienMailto, DELAI_MINIMUM_MS,
-} from '../commun/mailer.js';
+  enregistrerDemande, verifierFormulaire, activerRejeuAutomatique, enAttente,
+} from '../commun/registre.js';
 import { ico, icoService } from '../commun/icones.js';
 
 /* Libellés raccourcis des filtres, repris du fichier source. */
@@ -73,6 +72,11 @@ async function demarrer() {
   window.addEventListener('hashchange', router);
   router();
   enregistrerServiceWorker();
+
+  // Une demande qui n'a pas pu partir est rejouée dès que le réseau revient.
+  activerRejeuAutomatique((bilan) => {
+    annoncer(`${bilan.rejouees} demande${bilan.rejouees > 1 ? 's' : ''} transmise${bilan.rejouees > 1 ? 's' : ''}.`);
+  });
 }
 
 /* =========================================================================
@@ -283,7 +287,7 @@ function vueFiche(id) {
 
       <div class="pile-serree" style="margin-top:var(--pas-3)">
         <a class="bouton bouton--primaire bouton--large" href="#/demande/${p.id}">
-          ${ico('courriel', 18)} Je suis intéressé(e) — recevoir la fiche</a>
+          ${ico('etincelle', 18)} Je suis intéressé(e) par ce poste</a>
         <a class="bouton bouton--valide bouton--large" href="${p.url}" target="_blank" rel="noopener">
           Postuler en ligne ${ico('chevron', 16)}
           <span class="lecteur-seul">(nouvelle fenêtre, site du Département)</span></a>
@@ -291,8 +295,8 @@ function vueFiche(id) {
       </div>
 
       ${s.expiree ? `<p class="texte-faible">Cette annonce n'est plus en ligne. Vous pouvez tout
-        de même recevoir la fiche : la DCIP saura que ce métier vous intéresse et pourra vous
-        signaler la prochaine ouverture.</p>` : ''}
+        de même vous signaler : la DCIP saura que ce métier vous intéresse et pourra vous
+        prévenir de la prochaine ouverture.</p>` : ''}
     </div>`, p.titre);
 }
 
@@ -339,7 +343,7 @@ function vueFormulaire(id) {
         <div>
           <p class="hero-pill">Candidature · Mobilité interne</p>
           <h1>Je suis <em>intéressé(e)</em></h1>
-          <p class="sous">Laissez vos coordonnées — nous vous envoyons la fiche et vous recontactons.</p>
+          <p class="sous">Laissez vos coordonnées — la DCIP vous recontacte dans les meilleurs délais.</p>
         </div>
       </div>
     </div>
@@ -399,7 +403,7 @@ function vueFormulaire(id) {
         <p class="champ__erreur" id="err-general" hidden></p>
 
         <button type="submit" class="bouton bouton--primaire bouton--large" id="envoyer">
-          Envoyer ma demande</button>
+          Enregistrer ma demande</button>
         <a class="bouton bouton--secondaire bouton--large" href="#/poste/${p.id}">
           ← Retour à la fiche</a>
       </form>
@@ -459,10 +463,10 @@ async function soumettre() {
 
   const bouton = document.getElementById('envoyer');
   bouton.disabled = true;
-  bouton.innerHTML = 'Envoi…';
-  annoncer('Envoi en cours.');
+  bouton.innerHTML = 'Enregistrement…';
+  annoncer('Enregistrement en cours.');
 
-  const bilan = await envoyerFiche({ poste: etat.poste, contact });
+  const bilan = await enregistrerDemande({ poste: etat.poste, contact });
   vueEnvoye(bilan, contact);
 }
 
@@ -470,56 +474,61 @@ async function soumettre() {
    Vue confirmation
    ========================================================================= */
 
+/**
+ * L'écran dit ce qui s'est réellement passé.
+ *  · enregistré        → la DCIP a la demande, elle recontacte ;
+ *  · mis en file       → la demande partira au retour du réseau, rien n'est perdu ;
+ *  · registre absent   → on ne fait pas croire à un enregistrement.
+ */
 function vueEnvoye(bilan, contact) {
   const p = etat.poste;
+  const enFile = enAttente();
+
+  const ton = bilan.ok ? 'succes' : (bilan.configure ? 'accent' : 'alerte');
+  const icone = bilan.ok ? 'coche' : (bilan.configure ? 'horloge' : 'alerte');
+
   afficher('envoye', `
     <div class="section pile" style="text-align:center;padding-top:var(--pas-7)">
       <p style="display:flex;justify-content:center">
-        <span class="rond-succes" aria-hidden="true">${ico(bilan.ok ? 'coche' : 'courriel', 32)}</span>
+        <span class="rond-succes rond-succes--${ton}" aria-hidden="true">${ico(icone, 32)}</span>
       </p>
       <div>
-        <h1>${bilan.ok ? 'Demande enregistrée&nbsp;!' : 'Encore une étape'}</h1>
+        <h1>${bilan.ok ? 'Demande enregistrée&nbsp;!' : (bilan.misEnFile ? 'Demande conservée' : 'À signaler sur place')}</h1>
         <p class="texte-doux" style="margin-top:var(--pas-3);line-height:1.6">
-          ${bilan.ok
-            ? `Merci ${contact.prenom}. ${bilan.message}`
-            : bilan.message}
+          ${bilan.ok ? `Merci ${contact.prenom}. ` : ''}${bilan.message}
         </p>
       </div>
 
-      <div class="carte carte--plate" style="text-align:left">
+      <div class="carte carte--plate recap-poste" style="text-align:left">
         <p class="surtitre">Poste d'intérêt</p>
         <p class="carte__titre" style="margin-top:var(--pas-2)">${p.titre}</p>
         <p class="carte__sous">Service ${p.service}</p>
+        <p class="carte__sous" style="margin-top:var(--pas-2)">
+          ${contact.prenom} ${contact.nom} — ${contact.direction}<br>${contact.email}</p>
       </div>
 
+      ${enFile > 1 ? `<p class="texte-faible">${enFile} demandes attendent le réseau
+        sur cet appareil.</p>` : ''}
+
       <div class="pile-serree">
-        ${bilan.planB ? `
-          <button type="button" class="bouton bouton--primaire bouton--large" id="conf-telecharger">
-            ${ico('telecharger', 18)} Télécharger la fiche</button>
-          <a class="bouton bouton--secondaire bouton--large" id="conf-mailto"
-             href="${lienMailto(p, contact, etat.config)}">
-            ${ico('courriel', 18)} Me l'envoyer depuis ma messagerie</a>
-          <button type="button" class="bouton bouton--fantome bouton--compact" id="conf-imprimer">
-            Imprimer ou enregistrer en PDF</button>` : `
-          <button type="button" class="bouton bouton--secondaire bouton--large" id="conf-telecharger">
-            ${ico('telecharger', 18)} Télécharger une copie</button>`}
-        <a class="bouton bouton--valide bouton--large" href="#/">Voir les autres postes</a>
+        <a class="bouton bouton--primaire bouton--large" href="#/">Voir les autres postes</a>
+        <a class="bouton bouton--secondaire bouton--large" href="${p.url}"
+           target="_blank" rel="noopener">
+          ${ico('lien', 18)} Postuler en ligne
+          <span class="lecteur-seul">(nouvelle fenêtre, site du Département)</span></a>
       </div>
     </div>`, bilan.message);
 
-  const tel = document.getElementById('conf-telecharger');
-  if (tel) tel.addEventListener('click', () => telechargerFiche(p, contact, etat.config));
-  const imp = document.getElementById('conf-imprimer');
-  if (imp) imp.addEventListener('click', () => {
-    if (!imprimerFiche(p, contact, etat.config)) {
-      annoncer("L'aperçu a été bloqué par le navigateur. Utilisez le téléchargement.");
-    }
-  });
+  window.scrollTo({ top: 0 });
 }
 
 
+/* =========================================================================
+   Démarrage
+   ========================================================================= */
 
-
+/* Le module est chargé en différé par le navigateur (type="module") : le DOM
+   peut déjà être prêt. On couvre les deux cas. */
 if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', demarrer);
 } else {
