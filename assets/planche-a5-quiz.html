@@ -7,9 +7,11 @@
   * { box-sizing: border-box; }
   body { margin: 0; font-family: Manrope, "Segoe UI", Helvetica, Arial, sans-serif; }
   .planche {
-    width: 148mm; height: 210mm; padding: 14mm 13mm;
+    /* 209 mm, pas 210 : à la hauteur exacte de la page, le moteur d'impression
+       déborde d'un pixel et sort une seconde page blanche. */
+    width: 148mm; height: 209mm; overflow: hidden; padding: 14mm 13mm;
     background: #FAFAF8; color: #042C53;
-    display: flex; flex-direction: column; page-break-after: always;
+    display: flex; flex-direction: column;
   }
   .bandeau {
     margin: -14mm -13mm 9mm; padding: 9mm 13mm 8mm;
