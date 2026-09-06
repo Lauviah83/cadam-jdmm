@@ -23,7 +23,7 @@ import qrcode
 import qrcode.image.svg
 
 RACINE = Path(__file__).resolve().parent.parent
-URL_DEFAUT = "https://departement06.github.io/cadam-jdmm/"
+URL_DEFAUT = "https://dcip06.github.io/JDMM/"
 
 
 def generer_qr(url: str, chemin: Path) -> None:

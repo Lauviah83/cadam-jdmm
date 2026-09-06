@@ -4,10 +4,14 @@ Deux applications pour le stand de la **DCIP** (Direction de la Construction, de
 l'Immobilier et du Patrimoine) à la **Journée des Métiers et de la Mobilité** du
 **CADAM**, le **mercredi 23 septembre 2026** — Département des Alpes-Maritimes.
 
+> **Dépôt de référence : [`DCIP06/JDMM`](https://github.com/DCIP06/JDMM)**, sous
+> l'organisation du Département. `Lauviah83/cadam-jdmm` était le dépôt de développement ;
+> il n'est plus la source.
+
 | Application | En ligne | Ce qu'elle fait |
 |---|---|---|
-| **Postes vacants** | <https://lauviah83.github.io/cadam-jdmm/postes/> | Les 7 fiches DCIP. On ouvre une fiche, on la reçoit par courriel. |
-| **Trois quiz** | <https://lauviah83.github.io/cadam-jdmm/quiz/> | Prévention incendie, gardiennage, sûreté — 20 questions. |
+| **Postes vacants** | <https://dcip06.github.io/JDMM/postes/> | Les 7 fiches DCIP. On ouvre une fiche, on la reçoit par courriel. |
+| **Trois quiz** | <https://dcip06.github.io/JDMM/quiz/> | Prévention incendie, gardiennage, sûreté — 20 questions. |
 
 Chacune a son QR code (`assets/qr-postes.svg`, `assets/qr-quiz.svg`) et sa carte A5
 prête à imprimer (`assets/planche-a5-postes.html`, `assets/planche-a5-quiz.html`).

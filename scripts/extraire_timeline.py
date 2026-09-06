@@ -4,7 +4,8 @@
 import json, re, subprocess, unicodedata
 from pathlib import Path
 
-RACINE = Path('/home/kali/Projects/2026-cadam-jdmm')
+# Chemin relatif au script : le dépôt doit pouvoir être cloné n'importe où.
+RACINE = Path(__file__).resolve().parent.parent
 PDF = RACINE / 'sources' / 'timeline_rollup_60x160cm.pdf'
 
 texte = subprocess.run(['pdftotext', '-layout', str(PDF), '-'],

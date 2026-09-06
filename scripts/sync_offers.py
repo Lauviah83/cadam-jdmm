@@ -48,7 +48,7 @@ URL_LISTE = f"{BASE}/offres-demploi"
 # Repo public : le User-Agent doit permettre au Département de nous identifier
 # et de nous joindre. Politesse élémentaire, et exigence des CGU de la plupart
 # des sites publics.
-USER_AGENT = "CD06-JDMM-bot/1.0 (+https://github.com/Lauviah83/cadam-jdmm)"
+USER_AGENT = "CD06-JDMM-bot/1.0 (+https://github.com/DCIP06/JDMM)"
 
 DELAI_ENTRE_REQUETES = 1.0   # secondes — on ne martèle pas un site public
 TIMEOUT = 20                 # secondes

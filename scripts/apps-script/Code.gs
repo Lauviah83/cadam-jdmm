@@ -27,7 +27,7 @@ var ONGLET = 'Demandes';
  * de confort, pas une sécurité. La vraie protection est que ce point d'entrée
  * ne fait qu'ajouter une ligne — il ne lit rien et ne supprime rien.
  */
-var ORIGINES = ['https://lauviah83.github.io'];
+var ORIGINES = ['https://dcip06.github.io'];
 
 /** Colonnes du tableau, dans l'ordre. */
 var COLONNES = [

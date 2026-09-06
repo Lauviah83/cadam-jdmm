@@ -6,7 +6,7 @@
   "dir": "ltr",
   "start_url": "./",
   "scope": "./",
-  "id": "/cadam-jdmm/postes/",
+  "id": "/JDMM/postes/",
   "display": "standalone",
   "display_override": ["standalone", "minimal-ui"],
   "orientation": "portrait-primary",
