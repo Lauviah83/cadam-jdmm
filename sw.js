@@ -25,7 +25,7 @@
    changement de structure.
    ========================================================================== */
 
-const CACHE_VERSION = 'v4';
+const CACHE_VERSION = 'v5';
 const CACHE_SOCLE   = `jdmm-socle-${CACHE_VERSION}`;
 const CACHE_DONNEES = `jdmm-donnees-${CACHE_VERSION}`;
 
@@ -47,6 +47,8 @@ const RESSOURCES_SOCLE = [
   './css/base.css',
   './css/layout.css',
   './css/components.css',
+  './css/quiz.css',
+  './css/quiz-complements.css',
   './themes/tokens.css',
   './themes/a.css',
   './themes/b.css',

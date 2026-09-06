@@ -25,13 +25,17 @@ const ECRANS = [
     await p.locator('#envoyer').click(); await p.waitForTimeout(300);
   }],
   ['Quiz · hub', 'quiz/', null],
-  ['Quiz · question (fond sombre)', 'quiz/', async (p) => {
-    await p.locator('a.quiz').first().click(); await p.waitForTimeout(600);
+  ['Quiz · intro (fond sombre)', 'quiz/', async (p) => {
+    await p.locator('.quiz-card').first().click(); await p.waitForTimeout(600);
+  }],
+  ['Quiz · question', 'quiz/', async (p) => {
+    await p.locator('.quiz-card').first().click(); await p.waitForTimeout(500);
+    await p.locator('#qz-commencer').click(); await p.waitForTimeout(500);
   }],
   ['Quiz · correction', 'quiz/', async (p) => {
-    await p.locator('a.quiz').first().click(); await p.waitForTimeout(500);
-    await p.locator('.option').nth(1).click();
-    await p.locator('#quiz-action').click(); await p.waitForTimeout(400);
+    await p.locator('.quiz-card').first().click(); await p.waitForTimeout(500);
+    await p.locator('#qz-commencer').click(); await p.waitForTimeout(400);
+    await p.locator('.option').nth(1).click(); await p.waitForTimeout(500);
   }],
   ['Mentions · RGPD', 'mentions.html?doc=rgpd', null],
 ];

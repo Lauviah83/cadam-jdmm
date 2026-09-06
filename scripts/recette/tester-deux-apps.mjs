@@ -110,21 +110,33 @@ erreurs.length = 0;
 await p.goto(BASE + 'quiz/', { waitUntil: 'networkidle' });
 await p.waitForTimeout(900);
 ok('la page se charge sans erreur', erreurs.length === 0, erreurs.slice(0,2).join(' | '));
-ok('les 3 quiz sont proposés', await p.locator('a.quiz').count() === 3, String(await p.locator('a.quiz').count()));
-ok('les compteurs annoncent 8, 6 et 6',
-   (await p.locator('.hero .sous').textContent()).includes('20 questions'));
+ok('les 3 quiz sont proposés', await p.locator('.quiz-card').count() === 3,
+   String(await p.locator('.quiz-card').count()));
+ok('le hub reprend le titre du fichier source',
+   contient(await p.locator('.hub-title').textContent(), 'Testez vos connaissances'));
+ok('les compteurs des cartes annoncent 8, 6 et 6',
+   (await p.locator('.card-meta').allTextContents()).join(' ').match(/8 questions/)
+   && (await p.locator('.card-meta').allTextContents()).join(' ').match(/6 questions/));
 ok('un lien mène aux postes', await p.locator('a[href="../postes/"]').count() >= 1);
 await p.screenshot({ path: 'app-quiz-hub.png' });
 
-await p.locator('a.quiz').first().click();
+await p.locator('.quiz-card').first().click();
 await p.waitForTimeout(700);
-ok('le quiz démarre', await p.locator('#quiz-question').isVisible());
+ok('l\'écran d\'intro s\'affiche', await p.locator('.intro .meta-grid').isVisible());
+ok('le nombre de questions y est calculé, pas recopié',
+   (await p.locator('.meta-grid').innerText()).replace(/\s+/g,' ').includes('QUESTIONS 8'),
+   (await p.locator('.meta-grid').innerText()).replace(/\s+/g,' ').slice(0,50));
+await p.locator('#qz-commencer').click();
+await p.waitForTimeout(600);
+ok('le quiz démarre', await p.locator('.question').isVisible());
 ok('le compteur dit 1 / 8',
-   (await p.locator('.quiz__compteur').textContent()).replace(/\s+/g,' ').includes('1 / 8'));
+   (await p.locator('.counter').textContent()).replace(/\s+/g,' ').includes('1 / 8'));
+ok('les réponses portent des lettres A, B, C',
+   (await p.locator('.option .marker').allTextContents()).join('') === 'ABC');
 await p.locator('.option').first().click();
-await p.locator('#quiz-action').click();
-await p.waitForTimeout(400);
-ok('la correction s\'affiche', await p.locator('.correction').isVisible());
+await p.waitForTimeout(500);
+ok('la correction s\'affiche', await p.locator('.feedback.show').isVisible());
+ok('la bonne réponse est marquée', await p.locator('.option.correct').count() === 1);
 ok('aucun résidu QF_/QG_/QS_', !/Q[FGS]_/.test(await p.locator('body').innerText()));
 await p.screenshot({ path: 'app-quiz-question.png' });
 

@@ -12,7 +12,7 @@ import {
   appliquerTheme, annoncer, surveillerReseau, enregistrerServiceWorker,
 } from '../commun/interface.js';
 import { chargerConfig } from '../commun/offers.js';
-import { rendreHub, rendrePartie } from './moteur.js';
+import { rendreHub, rendrePartie, memoriserConfig } from './moteur.js';
 
 const ROUTES = [
   [/^#?\/?$/,              (cible) => rendreHub(cible)],
@@ -22,10 +22,7 @@ const ROUTES = [
 async function demarrer() {
   appliquerTheme();
 
-  const config = await chargerConfig();
-  const ev = config.evenement || {};
-  const tag = document.getElementById('nav-tag');
-  if (tag) tag.textContent = [ev.nom, ev.date].filter(Boolean).join(' · ');
+  memoriserConfig(await chargerConfig());
 
   // Les quiz sont entièrement embarqués : ils fonctionnent sans réseau.
   // Le bandeau ne signale donc que l'état, sans alarmer.
@@ -43,11 +40,6 @@ function router() {
 
   if (!trouve) { window.location.hash = '#/'; return; }
   const params = (fragment.match(trouve[0]) || []).slice(1);
-
-  // Le moteur pose sa propre classe sur la coque selon le quiz ouvert :
-  // on repart d'un état neutre à chaque navigation.
-  cible.className = 'vue-quiz';
-  delete cible.dataset.quiz;
 
   try {
     trouve[1](cible, ...params);

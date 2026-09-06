@@ -1,0 +1,116 @@
+/* ==========================================================================
+   quiz-complements.css — Ce que le fichier source ne couvrait pas
+   --------------------------------------------------------------------------
+   Fichier séparé à dessein : css/quiz.css est REGÉNÉRÉ depuis les sources par
+   scripts/extraire_css_quiz.py, et tout ajout qu'on y ferait serait écrasé.
+   ========================================================================== */
+
+/* Le hub occupe toute la page, comme le #hub du fichier source. */
+.hub { width: 100%; }
+
+/* Le panneau de quiz couvre l'écran : sans cela, le fond clair du document
+   reste visible sous un contenu plus court que la fenêtre, et le texte clair
+   du quiz devient illisible. */
+.quiz { min-height: 100dvh; }
+body:has(.quiz[data-quiz]) { background: #0A0D14; }
+body:has(.quiz[data-quiz="feu"]) { background: #0F0E0C; }
+body:has(.quiz[data-quiz="gard"]) { background: #0B0E14; }
+/* Repli pour les navigateurs sans :has() — le panneau lui-même reste peint. */
+
+/* Une carte de quiz est ici un lien, pas un <div> : ses enfants doivent
+   rester empilés, et elle ne se souligne pas. */
+.quiz-card { text-decoration: none; color: inherit; }
+.quiz-card > span { display: block; }
+.quiz-card .card-meta { display: flex; align-items: center; }
+.quiz-card .card-btn { display: flex; }
+
+/* Meilleur score d'un quiz déjà joué — le fichier source ne conservait
+   aucun résultat d'une session à l'autre. */
+.card-score {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: #1D9E75;
+  margin-left: auto;
+}
+
+/* Question à réponses multiples. Le fichier source validait au premier clic,
+   ce qui rendait la seule question à choix multiples injouable : cocher une
+   réponse figeait la question. Il faut donc un état « choisi mais pas encore
+   validé », que le source n'avait pas. */
+.quiz .option.selected {
+  border-color: var(--qz-accent);
+  background: var(--qz-surface-2);
+}
+.quiz .option.selected .marker {
+  background: var(--qz-accent);
+  border-color: var(--qz-accent);
+  color: var(--qz-bg);
+}
+.quiz .consigne-multi {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--qz-text-soft);
+  margin: -20px 0 28px;
+}
+
+/* Le focus clavier reste visible sur fond sombre (RGAA 10.7). */
+.quiz .option:focus-visible,
+.quiz .btn:focus-visible,
+.quiz .qz-back:focus-visible {
+  outline: 3px solid var(--qz-accent-2);
+  outline-offset: 3px;
+}
+
+/* Pied de page de l'application, hors panneau de quiz. */
+.pied--quiz {
+  background: #F6F4EF;
+  border-top: 1px solid #E8E5DF;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .quiz .fade-in, .hub .dot { animation: none !important; }
+  .quiz .option, .quiz .btn { transition: none !important; }
+}
+
+/* css/base.css colore h1…h4 avec la couleur du thème, ce qui s'applique
+   directement à l'élément et l'emporte donc sur la couleur héritée du
+   panneau : les titres des quiz restaient bleu foncé sur fond noir. */
+.quiz h1, .quiz h2, .quiz h3, .quiz h4 { color: inherit; }
+
+/* ==========================================================================
+   Corrections de contraste
+   --------------------------------------------------------------------------
+   Le design du fichier source emploie des gris très clairs (#aaa, #bbb, #ccc)
+   qui ne sont pas lisibles : les compteurs des cartes tombaient à 1,9:1, le
+   pied du hub à 1,6:1, là où le seuil AA est de 4,5:1. Pour une collectivité,
+   c'est une obligation légale, pas une préférence.
+
+   Chaque valeur est assombrie ou éclaircie en CONSERVANT SA TEINTE, jusqu'au
+   premier ton conforme : le dessin ne change pas, seule la lisibilité.
+   Ratios mesurés indiqués en regard.
+   ========================================================================== */
+
+.hub-tag     { color: #6E6E6E; }   /* #aaa → 2,3:1 devenait 4,6:1 */
+.hub-select  { color: #6E6E6E; }   /* #aaa → 2,3:1 devenait 4,6:1 */
+.hub-foot    { color: #6E6E6E; }   /* #ccc → 1,6:1 devenait 4,6:1 */
+.card-desc   { color: #757575; }   /* #888 → 3,5:1 devenait 4,6:1 */
+.card-meta span { color: #757575; }/* #bbb → 1,9:1 devenait 4,6:1 */
+
+.card-feu  .card-cat { color: #D53F15; }   /* 3,8:1 → 4,6:1 */
+.card-gard .card-cat { color: #1B6DF5; }   /* 3,7:1 → 4,6:1 */
+.card-surt .card-cat { color: #3A6DE8; }   /* 4,5:1 → 4,6:1 */
+
+/* Sur les fonds sombres, le gris le plus discret servait aussi aux libellés
+   de l'écran d'intro : il faut l'éclaircir. */
+.quiz[data-quiz="feu"]  { --qz-text-soft: #847B6D; }   /* 3,4:1 → 4,6:1 */
+.quiz[data-quiz="gard"] { --qz-text-soft: #717D90; }   /* 3,4:1 → 4,6:1 */
+.quiz[data-quiz="surt"] { --qz-text-soft: #707B99; }   /* 2,8:1 → 4,6:1 */
+
+/* Le bouton principal porte du blanc sur l'accent vif : 3,8:1 sur l'orange.
+   Le noir passe sur les trois accents (5,5 · 5,7 · 4,6). */
+.quiz .btn { color: #000000; }
+.quiz .btn.secondary { color: var(--qz-text); }

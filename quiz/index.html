@@ -25,6 +25,8 @@
 <link rel="stylesheet" href="../css/base.css">
 <link rel="stylesheet" href="../css/layout.css">
 <link rel="stylesheet" href="../css/components.css">
+<link rel="stylesheet" href="../css/quiz.css">
+<link rel="stylesheet" href="../css/quiz-complements.css">
 </head>
 
 <body>
@@ -32,34 +34,15 @@
 
 <div class="bandeau-reseau" id="bandeau-reseau" role="status" hidden></div>
 
-<div class="appli appli--simple">
+<div id="vue"></div>
 
-  <header class="barre">
-    <div class="barre__interieur">
-      <a class="barre__marque" href="#/">DCIP <em>06</em></a>
-      <nav class="nav-filtres" aria-label="Navigation">
-        <a class="nf-btn on" href="#/">Les quiz</a>
-        <a class="nf-btn" href="../postes/">Les postes vacants</a>
-      </nav>
-      <span class="barre__tag" id="nav-tag"></span>
-    </div>
-  </header>
-
-  <main class="contenu">
-    <!-- Une seule zone : l'application n'a que trois écrans, rendus tour à tour. -->
-    <div id="vue"></div>
-
-    <footer class="pied">
-      <nav aria-label="Liens de bas de page">
-        <a href="../postes/">Les postes vacants</a>
-        <a href="../mentions.html?doc=rgpd">Données personnelles</a>
-        <a href="../mentions.html?doc=accessibilite">Accessibilité</a>
-        <a href="https://www.departement06.fr/offres-demploi" rel="noopener">Offres du Département</a>
-      </nav>
-      <p>Département des Alpes-Maritimes — DCIP. Aucun traceur, aucune mesure d'audience.</p>
-    </footer>
-  </main>
-</div>
+<footer class="pied pied--quiz">
+  <nav aria-label="Liens de bas de page">
+    <a href="../postes/">Les postes vacants</a>
+    <a href="../mentions.html?doc=rgpd">Données personnelles</a>
+    <a href="../mentions.html?doc=accessibilite">Accessibilité</a>
+  </nav>
+</footer>
 
 <p class="lecteur-seul" id="annonce" role="status" aria-live="polite"></p>
 

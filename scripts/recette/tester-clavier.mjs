@@ -60,22 +60,22 @@ await p.goto(BASE + 'quiz/', { waitUntil: 'networkidle' });
 await p.waitForTimeout(800);
 await p.evaluate(() => { window.location.hash = '#/feu'; });
 await p.waitForTimeout(800);
+await p.locator('#qz-commencer').click();
+await p.waitForTimeout(600);
 ok('la première question est affichée', await p.locator('.option').count() === 3,
    String(await p.locator('.option').count()));
 
 await p.keyboard.press('2');
 await p.waitForTimeout(250);
-ok('la touche 2 sélectionne la deuxième réponse',
-   await p.locator('.option').nth(1).getAttribute('aria-checked') === 'true');
+// Une réponse unique se valide au choix, comme dans le fichier source.
+ok('la touche 2 choisit et valide la deuxième réponse',
+   await p.locator('.feedback.show').isVisible());
 
 await p.keyboard.press('Enter');
-await p.waitForTimeout(400);
-ok('Entrée valide la réponse', await p.locator('.correction').isVisible());
-
-await p.keyboard.press('Enter');
-await p.waitForTimeout(400);
+await p.waitForTimeout(500);
 ok('Entrée enchaîne sur la question suivante',
-   (await p.locator('.quiz__compteur').textContent()).replace(/\s+/g, ' ').includes('2 / 8'));
+   (await p.locator('.counter').textContent()).replace(/\s+/g, ' ').includes('2 / 8'),
+   (await p.locator('.counter').textContent()).replace(/\s+/g, ' '));
 
 // Une touche chiffre ne doit pas être détournée pendant une saisie.
 console.log('\n— Les raccourcis ne détournent pas la saisie —');
