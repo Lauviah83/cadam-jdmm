@@ -25,7 +25,7 @@ const ECRANS = [
     await p.locator('#envoyer').click(); await p.waitForTimeout(300);
   }],
   ['Quiz · hub', 'quiz/', null],
-  ['Quiz · intro (fond sombre)', 'quiz/', async (p) => {
+  ['Quiz · intro', 'quiz/', async (p) => {
     await p.locator('.quiz-card').first().click(); await p.waitForTimeout(600);
   }],
   ['Quiz · question', 'quiz/', async (p) => {

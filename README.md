@@ -51,7 +51,8 @@ axe-core (WCAG 2.1 AA) : **0 violation** sur 10 écrans × 2 formats.
 
 Le design des quiz est extrait du fichier source par `scripts/extraire_css_quiz.py`, qui
 répare au passage 17 sélecteurs annulés dans l'original par un commentaire placé à
-l'intérieur du sélecteur — dont tout le bloc responsive.
+l'intérieur du sélecteur — dont tout le bloc responsive. Les panneaux sont passés sur
+**fond clair** (`css/quiz-clair.css`), chaque quiz gardant sa couleur de signature.
 Recette complète dans `scripts/recette/` — parcours, clavier, hors ligne, accessibilité.
 
 ---

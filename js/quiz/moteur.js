@@ -104,6 +104,17 @@ export async function rendrePartie(cible, id) {
   intro(cible);
 }
 
+/**
+ * Remonte en haut à chaque changement d'écran.
+ * Le routeur ne le fait qu'au changement d'adresse ; or intro → question →
+ * résultats se succèdent sans quitter la route. Sans cela, l'écran de
+ * résultats s'ouvrait à la position où l'on avait laissé la dernière
+ * question, et le bouton de retour, en position fixe, masquait le score.
+ */
+function remonter() {
+  window.scrollTo({ top: 0, behavior: 'instant' in window ? 'instant' : 'auto' });
+}
+
 /** Coque commune aux trois écrans d'un quiz. */
 function coque(quiz, contenu) {
   return `
@@ -148,6 +159,7 @@ function intro(cible) {
     partie.reponses = [];
     question(cible);
   });
+  remonter();
   annoncer(`${q.titre}. ${q.questions.length} questions.`);
 }
 
@@ -208,6 +220,7 @@ function question(cible) {
   document.getElementById('qz-suivant').addEventListener('click', () => suivant(cible));
 
   document.addEventListener('keydown', auClavier);
+  remonter();
 }
 
 /**
@@ -276,7 +289,6 @@ function suivant(cible) {
   if (partie.index === partie.quiz.questions.length - 1) { resultats(cible); return; }
   partie.index += 1;
   question(cible);
-  document.getElementById('qz-intitule').scrollIntoView({ block: 'start' });
 }
 
 /* --- Écran de résultats ------------------------------------------------------ */
@@ -319,6 +331,7 @@ function resultats(cible) {
     partie.index = 0; partie.score = 0; partie.reponses = [];
     question(cible);
   });
+  remonter();
   annoncer(`Résultat : ${score} sur ${total}. ${verdict.titre}`);
 }
 

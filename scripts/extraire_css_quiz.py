@@ -85,15 +85,28 @@ def reparer(selecteur):
 
 
 def porter(selecteur):
-    """Reporte un sélecteur `#qz-feu …` sur la classe `.quiz` de l'application."""
+    """
+    Reporte un sélecteur « #qz-feu … » sur la classe de l'application.
+
+    Une règle qui ne vise QU'UN quiz garde son attribut : « #qz-feu » devient
+    « .quiz[data-quiz="feu"] ». Sans cela, les trois fonds dégradés — un par
+    quiz — se retrouvaient tous sur « .quiz », et le dernier écrasait les deux
+    autres : les trois quiz affichaient le même fond.
+
+    Une règle qui vise les trois (« #qz-feu, #qz-gard, #qz-surt ») va bien sur
+    « .quiz », puisqu'elle leur est commune.
+    """
+    vises = set(re.findall(r'#qz-(feu|gard|surt)', selecteur))
+    remplacement = '.quiz' if len(vises) != 1 else f'.quiz[data-quiz="{vises.pop()}"]'
     selecteur = selecteur.replace('#qz-feu::before', '&::before')
-    selecteur = re.sub(r'#qz-(feu|gard|surt)', '.quiz', selecteur)
+    selecteur = re.sub(r'#qz-(feu|gard|surt)', remplacement, selecteur)
     # Le doublon « .quiz, .quiz » du source, et « .quiz .quiz::before ».
     morceaux = [m.strip() for m in selecteur.split(',')]
     vus, propres = set(), []
     for m in morceaux:
-        m = m.replace('.quiz &::before', '.quiz::before').replace('&::before', '.quiz::before')
-        m = re.sub(r'^\.quiz \.quiz', '.quiz', m)
+        m = re.sub(r'(\.quiz(?:\[[^\]]*\])?) &::before', r'\1::before', m)
+        m = m.replace('&::before', '.quiz::before')
+        m = re.sub(r'^(\.quiz(?:\[[^\]]*\])?) \.quiz(?:\[[^\]]*\])?', r'\1', m)
         if m and m not in vus:
             vus.add(m)
             propres.append(m)
@@ -179,7 +192,26 @@ def main():
         deja_vues.add((cle, normalise))
         composants.append((cle, normalise))
 
-    sortie_composants = [f'{sel} {{ {corps} }}' for sel, corps in composants]
+    # Une règle identique pour les trois quiz peut être écrite une seule fois,
+    # sur « .quiz ». C'est sans risque : les trois valeurs de data-quiz sont
+    # mutuellement exclusives, donc seul compte l'ordre AU SEIN d'un quiz, et
+    # la fusion se fait à la position de la première occurrence.
+    generique = lambda sel: re.sub(r'\.quiz\[data-quiz="[a-z]+"\]', '.quiz', sel)
+    compte = {}
+    for sel, corps in composants:
+        compte.setdefault((generique(sel), corps), set()).add(sel)
+
+    sortie_composants, emises, fusionnees = [], set(), 0
+    for sel, corps in composants:
+        cle = (generique(sel), corps)
+        if cle in emises:
+            continue
+        emises.add(cle)
+        if len(compte[cle]) == 3:          # portée par les trois quiz
+            fusionnees += 1
+            sortie_composants.append(f'{generique(sel)} {{ {corps} }}')
+        else:
+            sortie_composants.append(f'{sel} {{ {corps} }}')
 
     sortie_palettes = [f'.quiz[data-quiz="{q}"] {{{c}}}' for q, c in palettes.items()]
 
@@ -217,7 +249,7 @@ def main():
 
     print(f"css/quiz.css : {len(sortie_palettes)} palettes, {len(sortie_composants)} règles, "
           f"{len(medias)} bloc(s) responsive · {repares} sélecteurs réparés "
-          f"· {len(hub)} règles de hub")
+          f"· {fusionnees} règles communes fusionnées · {len(hub)} règles de hub")
     return 0
 
 

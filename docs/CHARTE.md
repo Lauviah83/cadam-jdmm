@@ -124,16 +124,33 @@ contraste devront être recontrôlés après recalage.
 
 Ces choix ne relèvent pas de la charte : ils s'appliquent quel que soit l'arbitrage.
 
-### Les fonds sombres des quiz
+### Les quiz sur fond clair
 
-Ils font partie du contenu validé du projet, pas de l'habillage. Ils sont donc identiques
-dans les deux thèmes :
+Le fichier source habillait les panneaux de quiz en sombre. **Le fond clair a été demandé
+le 6 septembre 2026** : `css/quiz-clair.css` redéfinit les palettes, tout le reste du design
+étant conservé — structure, typographies, échelle, marqueurs A/B/C, filet de correction.
+
+Chaque quiz garde sa couleur de signature, reprise des boutons de cartes du hub, qui étaient
+déjà pensés pour un fond clair :
 
 | Quiz | Fond | Accent | Contraste de l'accent |
 |---|---|---|---|
-| Prévention incendie | `#0F0E0C` | `#E94B1F` | 5,0:1 ✔ |
-| Gardiennage | `#0B0E14` | `#3B82F6` | 5,3:1 ✔ |
-| Sûreté | `#0A0D14` | `#3D6FE8` surfaces / `#4C7BEC` texte | 4,3:1 / 5,0:1 |
+| Prévention incendie | `#FDF7F4` | `#C0320A` | 5,4:1 ✔ AA |
+| Gardiennage | `#F6F9FE` | `#1D4ED8` | 6,4:1 ✔ AA |
+| Sûreté | `#F7F7FD` | `#3730A3` | 9,3:1 ✔ AAA |
+
+Trois adaptations que le passage au clair imposait :
+
+- **Les halos de fond** étaient calculés pour un fond noir ; à la même opacité, ils salissent
+  un fond clair. Ils sont allégés, le principe est conservé.
+- **La texture de grain** est en `mix-blend-mode: overlay` : elle donne du relief sur un fond
+  sombre et ne fait que salir sur un fond clair. Retirée.
+- **Les marqueurs de réponse** portaient un texte quasi noir sur un vert et un rouge alors
+  clairs. Nos verts et rouges sont foncés : c'est le blanc qui passe (7,0:1 et 6,2:1).
+
+La bordure des options est volontairement contrastée (**3,0:1** sur le blanc de la carte) :
+c'est le contour d'un bouton, donc un composant d'interface. Les simples séparateurs, eux,
+sont adoucis.
 
 ### Les icônes sont tracées, pas des émojis
 
