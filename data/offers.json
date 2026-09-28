@@ -1,9 +1,33 @@
 {
- "generated_at": "2026-09-26T09:15:13Z",
+ "generated_at": "2026-09-28T10:44:28Z",
  "source": "https://www.departement06.fr/offres-demploi",
  "count": 60,
  "count_dcip": 9,
  "offers": [
+  {
+   "id": "responsable-de-la-micro-folie-hf-34035",
+   "titre": "Responsable de la Micro-Folie H/F (34035)",
+   "url": "https://www.departement06.fr/offres-demploi/responsable-de-la-micro-folie-hf-34035",
+   "domaine": "Culture et patrimoine",
+   "categorie": "B",
+   "categories": [
+    "B",
+    "A"
+   ],
+   "filiere": "CULTURELLE",
+   "filieres": [
+    "CULTURELLE",
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-10-09",
+   "deadline_label": "9 octobre 2026",
+   "publie_le": "2026-09-28",
+   "resume": "Au sein de la direction de la culture du Département des Alpes-Maritimes et sous l'autorité de la directrice de la médiathèque départementale (basée à Nice), le ou la responsable de la Micro-Folie départementale assure en pleine autonomie le bon…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
   {
    "id": "agent-forestier-des-parcs-naturels-departementaux-secteur-est-hf-21278",
    "titre": "Agent forestier des Parcs naturels départementaux - secteur Est H/F (21278)",
@@ -340,28 +364,6 @@
    "candidature_permanente": false
   },
   {
-   "id": "assistant-de-service-social-volant-dt4-hf-20291",
-   "titre": "Assistant de service social volant DT4 H/F (20291)",
-   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-volant-dt4-hf-20291",
-   "domaine": "Social",
-   "categorie": "A",
-   "categories": [
-    "A"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-07",
-   "resume": "Au sein de la maison des Solidarités départementales de Nice et alentours, l'équipe volante, l'assistant social rattaché à l'équipe pluridisciplinaire, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique posés par…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
    "id": "cesf-volant-dt2-hf-20760",
    "titre": "CESF Volant DT2 H/F (20760)",
    "url": "https://www.departement06.fr/offres-demploi/cesf-volant-dt2-hf-20760",
@@ -450,28 +452,6 @@
    "candidature_permanente": false
   },
   {
-   "id": "secretaire-msd-nice-ouest-dt3-hf-31763",
-   "titre": "Secrétaire MSD Nice Ouest DT3 H/F (31763)",
-   "url": "https://www.departement06.fr/offres-demploi/secretaire-msd-nice-ouest-dt3-hf-31763",
-   "domaine": "Social",
-   "categorie": "C",
-   "categories": [
-    "C"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-07",
-   "resume": "Au sein de la Maison des Solidarités Départementale de Nice Ouest, le secrétaire assure un accueil de qualité, une écoute active et un suivi administratif rigoureux afin de garantir une prise en charge efficace des usagers, en facilitant leur…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
    "id": "agent-de-bibliotheque-collection-adultes-valberg-hf-33090",
    "titre": "Agent de bibliothèque-collection adultes à Valberg H/F (33090)",
    "url": "https://www.departement06.fr/offres-demploi/agent-de-bibliotheque-collection-adultes-valberg-hf-33090",
@@ -488,28 +468,6 @@
    "deadline_label": "4 octobre 2026",
    "publie_le": "2026-09-04",
    "resume": "Sous l'autorité de la responsable de la médiathèque départementale annexe de Valberg, et au sein d'une équipe polyvalente composée de trois agents avec renforts lors des périodes touristiques, l'agent contribue au bon fonctionnement quotidien de l…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
-   "id": "assistant-de-service-social-volant-dt3-hf-31319",
-   "titre": "Assistant de service social volant DT3 H/F (31319)",
-   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-volant-dt3-hf-31319",
-   "domaine": "Social",
-   "categorie": "A",
-   "categories": [
-    "A"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-04",
-   "resume": "Au sein de l'équipe volante, l'assistant social rattaché à l'équipe pluridisciplinaire, intervient dans le secteur de nice et alentours, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique posés par différents…",
    "dcip": false,
    "service": "",
    "appariement": "",
@@ -1335,6 +1293,51 @@
    "deadline_label": "30 septembre 2026",
    "publie_le": "2026-06-16",
    "resume": "Au sein de la direction, le chargé de mission protection de l'enfance assure le pilotage opérationnel et stratégique de la direction en garantissant la coordination efficace entre les services, la fiabilité du suivi des dossiers, et la production d…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "psychologue-centre-de-sante-puget-theniers-hf-33936",
+   "titre": "Psychologue Centre de santé Puget-Théniers H/F (33936)",
+   "url": "https://www.departement06.fr/offres-demploi/psychologue-centre-de-sante-puget-theniers-hf-33936",
+   "domaine": "Santé",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-06-08",
+   "resume": "Dans ce cadre, le psychologue participera à l'amélioration de la prise en charge des patients du territoire et sera à l'écoute de leurs aidants. Il apportera son expertise et son expérience en éducation thérapeutique à la prise en charge coordonnée…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "referent-suivi-parcours-mna-hf-32215",
+   "titre": "Référent suivi parcours MNA H/F (32215)",
+   "url": "https://www.departement06.fr/offres-demploi/referent-suivi-parcours-mna-hf-32215",
+   "domaine": "Social",
+   "categorie": "B",
+   "categories": [
+    "B",
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-06-04",
+   "resume": "Au sein de la section Suivi des enfants confiés, le référent suivi parcours des MNA assure l'accompagnement et le suivi des enfants, adolescents et jeunes adultes confiés, en coordonnant les acteurs internes et externes, afin de répondre à leurs…",
    "dcip": false,
    "service": "",
    "appariement": "",
