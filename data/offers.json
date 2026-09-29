@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-28T10:44:28Z",
+ "generated_at": "2026-09-29T10:32:05Z",
  "source": "https://www.departement06.fr/offres-demploi",
  "count": 60,
  "count_dcip": 9,
@@ -342,28 +342,6 @@
    "candidature_permanente": false
   },
   {
-   "id": "assistant-de-service-social-msd-les-paillons-dt4-hf-20505",
-   "titre": "Assistant de service social MSD Les Paillons DT4 H/F (20505)",
-   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-msd-les-paillons-dt4-hf-20505",
-   "domaine": "Social",
-   "categorie": "A",
-   "categories": [
-    "A"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-07",
-   "resume": "Au sein de la Maison des Solidarités Départementale Les Paillons, l'assistant social rattaché à l'équipe pluridisciplinaire, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique posés par différents publics en…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
    "id": "cesf-volant-dt2-hf-20760",
    "titre": "CESF Volant DT2 H/F (20760)",
    "url": "https://www.departement06.fr/offres-demploi/cesf-volant-dt2-hf-20760",
@@ -563,28 +541,6 @@
    "candidature_permanente": false
   },
   {
-   "id": "secretaire-msd-vallauris-dt2-hf-20579",
-   "titre": "Secrétaire MSD Vallauris DT2 H/F (20579)",
-   "url": "https://www.departement06.fr/offres-demploi/secretaire-msd-vallauris-dt2-hf-20579",
-   "domaine": "Social",
-   "categorie": "C",
-   "categories": [
-    "C"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-04",
-   "resume": "Au sein de Maison des Solidarités Départementales de Vallauris, le secrétaire accueille, oriente et informe le public (accueil physique, téléphonique, numérique). Il assure et suit le traitement administratif des situations individuelles des usagers.",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
    "id": "adjoint-antenne-departementale-de-recueil-devaluation-et-de-traitement-des",
    "titre": "Adjoint Antenne départementale de recueil, d'évaluation et de traitement des informations préoccupantes H/F (33440)",
    "url": "https://www.departement06.fr/offres-demploi/adjoint-antenne-departementale-de-recueil-devaluation-et-de-traitement-des",
@@ -602,28 +558,6 @@
    "deadline_label": "30 septembre 2026",
    "publie_le": "2026-09-04",
    "resume": "Au sein d'une équipe de 13 agents, l'adjoint assure la coordination opérationnelle de l'activité de l'ADRET, garantit la qualité du suivi des situations, le respect des délais et des procédures, sécurise le dispositif et les professionnels. Son…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
-   "id": "assistant-de-service-social-msd-le-cannet-dt1-hf-20358",
-   "titre": "Assistant de service social MSD Le Cannet DT1 H/F (20358)",
-   "url": "https://www.departement06.fr/offres-demploi/assistant-de-service-social-msd-le-cannet-dt1-hf-20358",
-   "domaine": "Social",
-   "categorie": "A",
-   "categories": [
-    "A"
-   ],
-   "filiere": "MEDICO-SOCIALE",
-   "filieres": [
-    "MEDICO-SOCIALE"
-   ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
-   "publie_le": "2026-09-04",
-   "resume": "Au sein de la MSD, l'assistant social rattaché à l'équipe pluridisciplinaire, aide à résoudre des problèmes divers d'ordre social, administratif, socio-économique, posés par différents publics en difficulté, dans le cadre de la politique…",
    "dcip": false,
    "service": "",
    "appariement": "",
@@ -822,8 +756,8 @@
    "filieres": [
     "TECHNIQUE"
    ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "L'administrateur réseaux et sécurité garanti la conception, l'exploitation, la sécurisation et l'évolution de l'infrastructure réseau et sécurité de la collectivité, en assurant un haut niveau de disponibilité, de performance, de conformité…",
    "dcip": false,
@@ -844,8 +778,8 @@
    "filieres": [
     "TECHNIQUE"
    ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "Nous recherchons un « Responsable Digital Workplace » pour incarner la cohérence globale de l'environnement de travail numérique, entendu comme un produit de service transverse au bénéfice de toute la collectivité. Le poste est ouvert au sein du…",
    "dcip": false,
@@ -866,8 +800,8 @@
    "filieres": [
     "TECHNIQUE"
    ],
-   "deadline": "2026-09-30",
-   "deadline_label": "30 septembre 2026",
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
    "publie_le": "2026-09-03",
    "resume": "Au sein du service Infrastructures et Exploitation, le superviseur d'exploitation systèmes et réseaux pilote la coordination et le bon déroulement des activités des équipes systèmes et réseaux. Il garantit la continuité de service, la sécurité et la…",
    "dcip": false,
@@ -1342,6 +1276,72 @@
    "service": "",
    "appariement": "",
    "candidature_permanente": false
+  },
+  {
+   "id": "appreciateur-de-la-minorite-hf-32847",
+   "titre": "Appréciateur de la minorité H/F (32847)",
+   "url": "https://www.departement06.fr/offres-demploi/appreciateur-de-la-minorite-hf-32847",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-05-11",
+   "resume": "Au sein de la section Appréciations, mise à l'abri et évaluations, l'appréciateur de la minorité assure l'évaluation objective et rigoureuse de la minorité et de la vulnérabilité de personnes se déclarant mineures et isolées, en collaboration avec…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "chef-du-service-parcours-et-pilotage-protection-de-lenfance-de-30238",
+   "titre": "Chef du service Parcours et pilotage protection de l'enfance DE (30238)",
+   "url": "https://www.departement06.fr/offres-demploi/chef-du-service-parcours-et-pilotage-protection-de-lenfance-de-30238",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-09-30",
+   "deadline_label": "30 septembre 2026",
+   "publie_le": "2026-04-03",
+   "resume": "Sous la responsabilité de la directrice de l'enfance, le chef du service assure le pilotage du dispositif global de protection de l'enfance en lien étroit avec l'ensemble des services de sa direction, la direction des territoires et de l'action…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "medecin-hf",
+   "titre": "Médecin (H/F)",
+   "url": "https://www.departement06.fr/offres-demploi/medecin-hf",
+   "domaine": "Santé",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "",
+   "deadline_label": "Candidature permanente",
+   "publie_le": "2026-04-01",
+   "resume": "En qualité de médecin, vous pouvez exercer vos missions dans différentes structures départementales en territoires ou en central (notamment au service départemental de protection maternelle et infantile, en centres de santé, en maison départementale…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": true
   }
  ]
 }
