@@ -1,9 +1,98 @@
 {
- "generated_at": "2026-10-05T11:18:49Z",
+ "generated_at": "2026-10-06T11:08:11Z",
  "source": "https://www.departement06.fr/offres-demploi",
- "count": 40,
+ "count": 44,
  "count_dcip": 7,
  "offers": [
+  {
+   "id": "responsable-de-section-services-medico-sociaux-et-accueils-alternatifs-hf-33025",
+   "titre": "Responsable de section services médico-sociaux et accueils alternatifs H/F (33025)",
+   "url": "https://www.departement06.fr/offres-demploi/responsable-de-section-services-medico-sociaux-et-accueils-alternatifs-hf-33025",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE"
+   ],
+   "deadline": "2026-10-31",
+   "deadline_label": "31 octobre 2026",
+   "publie_le": "2026-10-06",
+   "resume": "Le responsable de section des services médico-sociaux et accueils alternatifs assure le pilotage opérationnel et stratégique du développement, du suivi et du contrôle des dispositifs d'aide au maintien à domicile, d'offres de répit et d'habitats…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "responsable-fonctionnel-du-systeme-dinformation-financier-hf-34000",
+   "titre": "Responsable fonctionnel du système d'information financier H/F (34000)",
+   "url": "https://www.departement06.fr/offres-demploi/responsable-fonctionnel-du-systeme-dinformation-financier-hf-34000",
+   "domaine": "Finances et contrôle de gestion",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "ADMINISTRATIVE",
+   "filieres": [
+    "ADMINISTRATIVE",
+    "TECHNIQUE"
+   ],
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
+   "publie_le": "2026-10-06",
+   "resume": "Le responsable fonctionnel du système d'information financier garantit le bon fonctionnement, l'optimisation et l'appropriation du système d'information financier par l'ensemble des utilisateurs, en assurant son paramétrage, son évolution, sa…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "responsable-pmi-nice-centre-dt4-hf-20934",
+   "titre": "Responsable PMI Nice Centre DT4 H/F (20934)",
+   "url": "https://www.departement06.fr/offres-demploi/responsable-pmi-nice-centre-dt4-hf-20934",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
+   "publie_le": "2026-10-05",
+   "resume": "Au quotidien,- vous encadrerez techniquement et hiérarchiquement l'équipe pluridisciplinaire de la structure;- vous assurerez des consultations médicales dans les centres de protection maternelle infantile et de planification;",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
+  {
+   "id": "responsable-pmi-nice-lyautey-dt4-hf-20951",
+   "titre": "Responsable PMI Nice Lyautey DT4 H/F (20951)",
+   "url": "https://www.departement06.fr/offres-demploi/responsable-pmi-nice-lyautey-dt4-hf-20951",
+   "domaine": "Social",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-10-30",
+   "deadline_label": "30 octobre 2026",
+   "publie_le": "2026-10-05",
+   "resume": "Au quotidien,- vous encadrerez techniquement et hiérarchiquement l'équipe pluridisciplinaire de la structure;- vous assurerez des consultations médicales dans les centres de protection maternelle infantile et de planification;",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
   {
    "id": "responsable-de-la-section-aide-sociale-paph-30745-hf",
    "titre": "Responsable de la section aide sociale PA/PH (30745) H/F",
