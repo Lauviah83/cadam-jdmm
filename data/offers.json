@@ -1,7 +1,7 @@
 {
- "generated_at": "2026-10-06T11:08:11Z",
+ "generated_at": "2026-10-07T10:57:02Z",
  "source": "https://www.departement06.fr/offres-demploi",
- "count": 44,
+ "count": 43,
  "count_dcip": 7,
  "offers": [
   {
@@ -198,28 +198,6 @@
    "deadline_label": "30 octobre 2026",
    "publie_le": "2026-10-02",
    "resume": "Au sein du service placement familial et adoption, le psychologue participe à la mise en œuvre de la politique du Département en faveur de la famille et de l'enfance, conçoit un travail clinique auprès des enfants et des adultes, met en œuvre les…",
-   "dcip": false,
-   "service": "",
-   "appariement": "",
-   "candidature_permanente": false
-  },
-  {
-   "id": "attache-de-presse-dcep-32026",
-   "titre": "Attaché de presse DCEP (32026)",
-   "url": "https://www.departement06.fr/offres-demploi/attache-de-presse-dcep-32026",
-   "domaine": "Communication - Evènementiel",
-   "categorie": "A",
-   "categories": [
-    "A"
-   ],
-   "filiere": "ADMINISTRATIVE",
-   "filieres": [
-    "ADMINISTRATIVE"
-   ],
-   "deadline": "2026-10-23",
-   "deadline_label": "23 octobre 2026",
-   "publie_le": "2026-10-01",
-   "resume": "Au sein du service presse et en étroite collaboration avec les services administratifs et le cabinet du Président, l'attaché de presse contribue à la mise en œuvre de la stratégie de relations presse du Département et à la promotion de ses actions…",
    "dcip": false,
    "service": "",
    "appariement": "",
