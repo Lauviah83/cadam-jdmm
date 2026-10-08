@@ -1,9 +1,31 @@
 {
- "generated_at": "2026-10-07T10:57:02Z",
+ "generated_at": "2026-10-08T11:14:19Z",
  "source": "https://www.departement06.fr/offres-demploi",
- "count": 43,
+ "count": 44,
  "count_dcip": 7,
  "offers": [
+  {
+   "id": "psychologue-centre-de-sante-puget-theniers-hf-33936",
+   "titre": "Psychologue Centre de santé Puget-Théniers H/F (33936)",
+   "url": "https://www.departement06.fr/offres-demploi/psychologue-centre-de-sante-puget-theniers-hf-33936",
+   "domaine": "Santé",
+   "categorie": "A",
+   "categories": [
+    "A"
+   ],
+   "filiere": "MEDICO-SOCIALE",
+   "filieres": [
+    "MEDICO-SOCIALE"
+   ],
+   "deadline": "2026-10-31",
+   "deadline_label": "31 octobre 2026",
+   "publie_le": "2026-10-07",
+   "resume": "Dans ce cadre, le psychologue participera à l'amélioration de la prise en charge des patients du territoire et sera à l'écoute de leurs aidants. Il apportera son expertise et son expérience en éducation thérapeutique à la prise en charge coordonnée…",
+   "dcip": false,
+   "service": "",
+   "appariement": "",
+   "candidature_permanente": false
+  },
   {
    "id": "responsable-de-section-services-medico-sociaux-et-accueils-alternatifs-hf-33025",
    "titre": "Responsable de section services médico-sociaux et accueils alternatifs H/F (33025)",
@@ -528,14 +550,14 @@
    "filieres": [
     "TECHNIQUE"
    ],
-   "deadline": "",
-   "deadline_label": "Candidature permanente",
+   "deadline": "2026-10-31",
+   "deadline_label": "31 octobre 2026",
    "publie_le": "2026-09-04",
    "resume": "Sous l'autorité du responsable de la section, le chargé d'opérations assure le suivi technique, administratif et financier des équipements électriques routiers, avec une spécialisation forte sur les tunnels départementaux.",
    "dcip": false,
    "service": "",
    "appariement": "",
-   "candidature_permanente": true
+   "candidature_permanente": false
   },
   {
    "id": "charge-de-suivi-des-ehpad-hf-30346",
